@@ -56,12 +56,14 @@ export default function Connect({
         className="bg-transparent"
       >
         <div
-          className={`relative h-[90vh] max-h-[390px] w-[90vw] max-w-[400px] overflow-scroll rounded-[24px] p-8 text-base lg:grid lg:h-[30rem] lg:max-h-[480px] lg:w-[70vw] lg:max-w-[46rem] lg:grid-cols-5 ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
+          className={`relative h-[90vh] max-h-[390px] w-[90vw] max-w-[400px] overflow-auto rounded-[12px] p-8 text-base lg:grid lg:max-h-[480px] lg:w-[70vw] lg:max-w-[46rem] lg:grid-cols-9 lg:rounded-[24px] ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
         >
           {connectStatus === "pending" && <Loading />}
-          <div className="relative col-span-2">
+          <div className="relative col-span-4">
             <div className="mb-4 flex justify-between">
-              <h3 className="text-xl font-bold lg:mb-8">Connect Wallet</h3>
+              <h3 className="text-xl font-bold lg:mb-8 lg:text-2xl">
+                Connect Wallet
+              </h3>
 
               <button
                 // @ts-expect-error: Expecting an error because React doesn't recognize the popover API.
@@ -76,7 +78,7 @@ export default function Connect({
               <h4 className="mb-8 font-bold">Popular</h4>
 
               <div
-                className={`${layout === "list" ? "flex w-full flex-col gap-2 lg:pr-8" : "grid grid-cols-2 gap-4 lg:w-fit"}`}
+                className={`${layout === "list" ? "flex w-full flex-col gap-2 lg:pr-8" : "grid grid-cols-3 gap-4 lg:w-fit lg:grid-cols-2"}`}
               >
                 {connectors.map((connector) => {
                   const { name, icon } = connector;
@@ -140,23 +142,21 @@ function ConnectButton({
   return (
     <button
       onClick={func}
-      className={`flex w-full items-center gap-2 rounded-[12px] border-[1px] border-solid border-transparent text-sm focus:outline-none ${theme === "light" ? "bg-transparent hover:border-grey-200 hover:bg-grey-100 focus:border-grey-200 focus:bg-grey-100" : "bg-grey-900 hover:border-grey-700 hover:bg-grey-800 focus:border-grey-700 focus:bg-grey-800"} ${layout === "list" ? "flex-row p-3" : "mx-auto h-[104px] flex-col justify-center p-1 lg:max-w-[104px]"}`}
+      className={`flex w-full items-center gap-2 rounded-[12px] border-[1px] border-solid border-transparent text-sm focus:outline-none ${theme === "light" ? "bg-transparent hover:border-grey-200 hover:bg-grey-100 focus:border-grey-200 focus:bg-grey-100" : "bg-grey-900 hover:border-grey-700 hover:bg-grey-800 focus:border-grey-700 focus:bg-grey-800"} ${layout === "list" ? "flex-row p-3" : "mx-auto h-[104px] flex-col justify-center p-1 lg:h-[124px] lg:max-w-[124px]"}`}
     >
       <img
         className="h-[24px] w-[24px]"
         src={base64DataUrl || "https://placehold.co/24x24"}
         alt={`${name} icon`}
-        width={24}
-        height={24}
       />
-      <span className="text-xs capitalize">{name}</span>
+      <span className="text-xs capitalize lg:text-sm">{name}</span>
     </button>
   );
 }
 
 function WalletInfo() {
   return (
-    <div className="col-span-3 hidden flex-col lg:flex">
+    <div className="col-span-5 hidden flex-col lg:flex">
       <button
         // @ts-expect-error: Expecting an error because React doesn't recognize the popover API.
         popovertarget="connect-modal"
@@ -165,9 +165,11 @@ function WalletInfo() {
         <X />
         <span className="sr-only">Close menu</span>
       </button>
-      <h4 className="mb-8 text-center text-lg font-bold">What is a Wallet ?</h4>
+      <h4 className="mb-8 text-center text-lg font-bold lg:text-xl">
+        What is a Wallet ?
+      </h4>
 
-      <div className="flex flex-col gap-4 p-4 text-sm">
+      <div className="flex flex-col gap-4 py-4 pl-8 pr-4 text-base">
         <div className="grid grid-cols-9 items-center">
           <div className="col-span-2 h-[54px] w-[54px] rounded-[12px]">
             <img
@@ -178,7 +180,7 @@ function WalletInfo() {
           </div>
           <div className="col-span-7">
             <p className="font-bold">A Home for Your Digital Assets</p>
-            <p className="text-xs">
+            <p className="text-xs lg:text-sm">
               Wallets are used to send, receive, store, and display digital
               assets like Ethereum and NFTs.
             </p>
@@ -194,7 +196,7 @@ function WalletInfo() {
           </div>
           <div className="col-span-7">
             <p className="font-bold">A New Way to Sign in</p>
-            <p className="text-xs">
+            <p className="text-xs lg:text-sm">
               Instead of creating new accounts and passwords on every website,
               just connect your wallet.
             </p>
