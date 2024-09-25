@@ -32,7 +32,7 @@ export default function Connect({
 
   return (
     <>
-      <div className="grid h-screen w-full place-content-center">
+      <div className="grid w-full place-content-center">
         <button
           onClick={() => {
             if (address) {
@@ -160,6 +160,7 @@ function WalletInfo() {
       <button
         // @ts-expect-error: Expecting an error because React doesn't recognize the popover API.
         popovertarget="connect-modal"
+        popovertargetaction="hide"
         className="mb-16 ml-auto w-fit"
       >
         <X />
