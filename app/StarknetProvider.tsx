@@ -1,10 +1,6 @@
 "use client";
 
-import { InjectedConnector } from "starknetkit/injected";
-import {
-  ArgentMobileConnector,
-  isInArgentMobileAppBrowser,
-} from "starknetkit/argentMobile";
+import { ArgentMobileConnector } from "starknetkit/argentMobile";
 import { WebWalletConnector } from "starknetkit/webwallet";
 import { mainnet, sepolia } from "@starknet-react/chains";
 import {
