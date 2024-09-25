@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import StarknetProvider from "./StarknetProvider";
-
-/// <reference types="react/canary" />
+import Connect from "./components/connect/Connect";
 
 export const metadata: Metadata = {
   title: "SeamlessUI",
@@ -17,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StarknetProvider>
-        <body className={`antialiased`}>{children}</body>
+        <body className={`p-8 antialiased`}>
+          <Connect layout="grid" theme="light" />
+          {children}
+        </body>
       </StarknetProvider>
     </html>
   );
