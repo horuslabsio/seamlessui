@@ -56,10 +56,7 @@ export default function Connect({
         className="bg-transparent"
       >
         <div
-          // style={{
-          //   scrollbarWidth: "none",
-          // }}
-          className={`relative h-[90vh] max-h-[390px] w-[90vw] max-w-[400px] overflow-auto rounded-[24px] p-8 text-base lg:grid lg:max-h-[480px] lg:w-[70vw] lg:max-w-[46rem] lg:grid-cols-9 ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
+          className={`relative h-[90vh] max-h-[390px] w-[90vw] max-w-[400px] overflow-auto rounded-[12px] p-8 text-base lg:grid lg:max-h-[480px] lg:w-[70vw] lg:max-w-[46rem] lg:grid-cols-9 lg:rounded-[24px] ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
         >
           {connectStatus === "pending" && <Loading />}
           <div className="relative col-span-4">
@@ -81,7 +78,7 @@ export default function Connect({
               <h4 className="mb-8 font-bold">Popular</h4>
 
               <div
-                className={`${layout === "list" ? "flex w-full flex-col gap-2 lg:pr-8" : "grid grid-cols-2 gap-4 lg:w-fit"}`}
+                className={`${layout === "list" ? "flex w-full flex-col gap-2 lg:pr-8" : "grid grid-cols-3 gap-4 lg:w-fit lg:grid-cols-2"}`}
               >
                 {connectors.map((connector) => {
                   const { name, icon } = connector;
