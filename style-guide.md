@@ -13,7 +13,7 @@ This style guide defines the coding standards and conventions for contributors t
 ## Project Structure
 
 - Organize files in a scalable and maintainable structure.
-- Place all reusable components in the `/components` directory.
+- Organize all components within the `/components` directory, placing each component in a folder that clearly represents its functionality.
 - Internal-use components should be placed in the `/internal` folder.
 
 ## Naming Conventions
@@ -40,13 +40,7 @@ This style guide defines the coding standards and conventions for contributors t
 
 - Adhere to the colors specified in the Tailwind config.
 
-- Use only the specified font family `Inter`, unless stated otherwise.
-
-- For UI components, use [HeadlessUI](https://headlessui.com/).If a component is not available in HeadlessUI, create a custom reusable component in the /internal folder, ensuring it follows WCAG standards. Reference ARIA Authoring Practices.
-
-- Import all icons from React Icons.
-
-- Set the website's max width to `85rem`.
+- Import all icons from lucide react.
 
 ### Responsive Design
 
@@ -84,9 +78,13 @@ Follow this format for commit messages:
 
 - `feat`: for new features.
 - `fix`: for bug fixes.
+- `chore`:Tooling, configuration changes, or maintenance updates.
+- `perf`: improving performance,
+- `test`: Adding or updating tests,
 - `style`: for stylistic changes related to Tailwind classes or general formatting.
 - `docs`: for documentation updates.
 - `refactor`: for code refactoring without adding features or fixing bugs.
+- `build`: changes that affect the build system,
 
 Make small, focused commits to ensure that reviews are easier and changes are more traceable.
 
