@@ -5,7 +5,7 @@ import ConnectGridVariant from "./components/connect/ConnectGridVariant";
 export default function Home() {
   return (
     <main>
-      <ConnectGridVariant />
+      <ConnectGridVariant layout="grid" theme="light" />
     </main>
   );
 }
