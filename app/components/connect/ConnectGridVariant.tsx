@@ -58,7 +58,7 @@ export default function ConnectGridVariant({
         <div
           className={`relative h-[90vh] max-h-[390px] w-[90vw] max-w-[400px] overflow-scroll rounded-[24px] p-8 text-base lg:grid lg:h-[30rem] lg:max-h-[480px] lg:w-[70vw] lg:max-w-[46rem] lg:grid-cols-5 ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
         >
-          <Loading connectStatus={connectStatus} />
+          {connectStatus === "pending" && <Loading />}
           <div className="relative col-span-2">
             <div className="mb-4 flex justify-between">
               <h3 className="text-xl font-bold lg:mb-8">Connect Wallet</h3>
@@ -116,58 +116,25 @@ function ConnectButton({
   theme: "dark" | "light";
   src: string | { dark: string; light: string };
 }) {
-  //   function svgToBase64(svgString: string | { dark: string; light: string }) {
-  //     let base64Img;
-  //     if (typeof svgString === "string") {
-  //       if (svgString.startsWith("<svg")) {
-  //         // Encode the SVG string
-  //         const base64 = btoa(svgString);
-  //         // Create the data URL
-  //         base64Img = `data:image/svg+xml;base64,${base64}`;
-  //       } else {
-  //         base64Img = svgString;
-  //       }
-  //     } else {
-  //       if (svgString.light.startsWith("<svg")) {
-  //         const base64 = btoa(svgString.light);
-  //         base64Img = `data:image/svg+xml;base64,${base64}`;
-  //       } else {
-  //         base64Img = svgString.light;
-  //       }
-  //     }
-
-  //     return base64Img;
-  //   }
-  //   const base64DataUrl = svgToBase64(src);
-
   const [base64DataUrl, setBase64DataUrl] = useState<string | undefined>(
     undefined
   );
 
   useEffect(() => {
-    function svgToBase64(svgString: string | { dark: string; light: string }) {
-      let base64Img;
+    const svgToBase64 = (
+      svgString: string | { dark: string; light: string }
+    ) => {
       if (typeof svgString === "string") {
-        if (svgString.startsWith("<svg")) {
-          const base64 = btoa(svgString);
-          base64Img = `data:image/svg+xml;base64,${base64}`;
-        } else {
-          base64Img = svgString;
-        }
-      } else {
-        if (svgString.light.startsWith("<svg")) {
-          const base64 = btoa(svgString.light);
-          base64Img = `data:image/svg+xml;base64,${base64}`;
-        } else {
-          base64Img = svgString.light;
-        }
+        return svgString.startsWith("<svg")
+          ? `data:image/svg+xml;base64,${btoa(svgString)}`
+          : svgString;
       }
+      return svgString.light.startsWith("<svg")
+        ? `data:image/svg+xml;base64,${btoa(svgString.light)}`
+        : svgString.light;
+    };
 
-      return base64Img;
-    }
-
-    const dataUrl = svgToBase64(src);
-    setBase64DataUrl(dataUrl);
+    setBase64DataUrl(svgToBase64(src));
   }, [src]);
 
   return (
@@ -238,24 +205,16 @@ function WalletInfo() {
   );
 }
 
-function Loading({
-  connectStatus,
-}: {
-  connectStatus: "error" | "idle" | "pending" | "success";
-}) {
+function Loading() {
   return (
-    <>
-      {connectStatus === "pending" && (
-        <div
-          role="alert"
-          className="absolute left-0 top-0 z-10 grid h-full w-full place-content-center rounded-[24px] bg-[#ffffff81]"
-        >
-          <span
-            className="mx-auto inline-block h-[38px] w-[38px] animate-spin rounded-full border-2 border-blue-700 border-b-transparent"
-            aria-label="Loading"
-          ></span>
-        </div>
-      )}
-    </>
+    <div
+      role="alert"
+      className="absolute left-0 top-0 z-10 grid h-full w-full place-content-center rounded-[24px] bg-[#ffffff81]"
+    >
+      <span
+        className="mx-auto inline-block h-[38px] w-[38px] animate-spin rounded-full border-2 border-blue-700 border-b-transparent"
+        aria-label="Loading"
+      ></span>
+    </div>
   );
 }
