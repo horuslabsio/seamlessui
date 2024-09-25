@@ -19,7 +19,7 @@ export default function Connect({
   useEffect(() => {
     if (connectStatus === "error" || connectStatus === "success") {
       // @ts-expect-error: Expecting an error because React doesn't recognize the popover API.
-      connectPopover.current?.hidePopover();
+      connectPopover.current.hidePopover();
     }
   }, [connectStatus]);
 
