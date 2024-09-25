@@ -25,3 +25,32 @@ body {
     text-wrap: balance;
   }
 }
+[popover] {
+  transform: translateY(10%); /* closing popover style*/
+}
+[popover],
+::backdrop {
+  opacity: 0;
+  transition-property: opacity display overlay;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-behavior: allow-discrete;
+}
+[popover]:popover-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+[popover]:popover-open::backdrop {
+  opacity: 1;
+  backdrop-filter: blur(5px);
+}
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+
+  ::backdrop::popover-open {
+    opacity: 0;
+  }
+}

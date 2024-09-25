@@ -14,11 +14,15 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@starknet-react/chains": "^3.0.0",
+    "@starknet-react/core": "^3.0.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
+    "lucide-react": "^0.446.0",
     "next": "14.2.13",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "starknetkit": "^2.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
