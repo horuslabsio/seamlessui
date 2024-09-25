@@ -18,7 +18,7 @@ export default function ConnectGridVariant({
 
   useEffect(() => {
     if (connectStatus === "error" || connectStatus === "success") {
-      //@ts-ignore
+      //@ts-expect-error: Expecting an error because React doesn't recognize the popover API.
       connectPopover.current?.hidePopover();
     }
   }, [connectStatus]);
@@ -38,7 +38,7 @@ export default function ConnectGridVariant({
             if (address) {
               disconnect();
             } else {
-              //@ts-ignore
+              //@ts-expect-error: Expecting an error because React doesn't recognize the popover API.
               connectPopover.current.showPopover();
             }
           }}
@@ -64,7 +64,7 @@ export default function ConnectGridVariant({
               <h3 className="text-xl font-bold lg:mb-8">Connect Wallet</h3>
 
               <button
-                //@ts-ignore
+                //@ts-expect-error: Expecting an error because React doesn't recognize the popover API.
                 popovertarget="connect-modal"
                 className="w-fit lg:hidden"
               >
@@ -158,7 +158,7 @@ function WalletInfo() {
   return (
     <div className="col-span-3 hidden flex-col lg:flex">
       <button
-        //@ts-ignore
+        //@ts-expect-error: Expecting an error because React doesn't recognize the popover API.
         popovertarget="connect-modal"
         className="mb-16 ml-auto w-fit"
       >
