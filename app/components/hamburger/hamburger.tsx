@@ -31,7 +31,7 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
   };
 
   return (
-    <div className="relative w-[316px]">
+    <div className="relative w-[52%] md:w-[316px]">
       <div
         className={`flex h-[50px] w-full cursor-pointer items-center justify-between rounded-xl px-4 ${
           theme === "dark"
@@ -93,9 +93,9 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
 
       {open && (
         <div
-          className={`absolute left-0 top-10 h-40 w-40 ${
+          className={`absolute left-0 top-10 ${
             theme === "dark" ? "bg-[#1a1a1a] text-white" : "bg-white text-black"
-          } flex h-fit w-[565px] flex-col gap-4 rounded-3xl px-[18px] py-[16px] text-center transition-all duration-300 ease-in-out md:h-[316px] md:px-[54px] md:py-[40px] md:font-[700]`}
+          } flex h-fit w-full flex-col gap-4 rounded-3xl px-[18px] py-[16px] text-center transition-all duration-300 ease-in-out md:h-[316px] md:w-[565px] md:px-[54px] md:py-[40px] md:font-[700]`}
         >
           <div
             className={`flex items-center justify-between gap-[18px] px-1 py-3 ${
