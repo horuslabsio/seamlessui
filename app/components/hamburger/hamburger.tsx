@@ -1,25 +1,30 @@
 "use client";
 import React, { useState } from "react";
 import { useSwitchChain } from "@starknet-react/core";
-import { constants } from "starknet";
 import Image from "next/image";
+import { Check } from "lucide-react";
 
 interface HamburgerProps {
   theme: "dark" | "light";
 }
+
+const STARKNET_CHAINID = {
+  SN_MAIN: "0x534e5f4d41494e", // Mainnet
+  SN_SEPOLIA: "0x534e5f5345504f4c4941", // Sepolia testnet
+};
 
 const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
   const [selected, setSelected] = useState("Mainnet");
   const [isOpen, setIsOpen] = useState(false);
 
   const options = [
-    { name: "Mainnet", chainId: constants.StarknetChainId.SN_MAIN },
-    { name: "Sepolia", chainId: constants.StarknetChainId.SN_SEPOLIA },
+    { name: "Mainnet", chainId: STARKNET_CHAINID.SN_MAIN },
+    { name: "Sepolia", chainId: STARKNET_CHAINID.SN_SEPOLIA },
   ];
 
   const { switchChain, error } = useSwitchChain({
     params: {
-      chainId: constants.StarknetChainId.SN_SEPOLIA,
+      chainId: STARKNET_CHAINID.SN_SEPOLIA,
     },
   });
 
@@ -45,13 +50,29 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
       </div>
 
       {isOpen && (
-        <div className="absolute left-0 top-12 z-10 w-full rounded-xl border border-gray-500 bg-base-light text-black shadow-lg">
+        <div className="absolute left-0 top-0 z-10 w-full rounded-xl border-[3px] border-[#eaeaea] bg-[#f0f0f0] px-4 py-2 text-black shadow-lg">
+          <div
+            className={`flex h-[50px] w-full cursor-pointer items-center justify-between px-4 ${
+              theme === "dark"
+                ? "border-b-[3px] border-grey-700 text-black"
+                : "border-[3px] border-[#eaeaea] bg-[#f0f0f0] text-black"
+            } md:font-[700]`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <span>{selected}</span>
+            <span>{isOpen ? "▲" : "▼"}</span>
+          </div>
           {options.map((option) => (
             <div
               key={option.name}
-              className="cursor-pointer p-2 hover:bg-gray-300"
+              className={`mt-2 flex cursor-pointer items-center gap-2 rounded-md p-2 ${
+                selected === option.name ? "bg-white" : "hover:bg-gray-300"
+              }`}
               onClick={() => handleSelect(option)}
             >
+              {selected === option.name && (
+                <Check size={20} className="text-grey-800" />
+              )}
               {option.name}
             </div>
           ))}
