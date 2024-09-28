@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useAccount, useConnect, useContract } from "@starknet-react/core";
-import { cairo, uint256, Contract } from "starknet";
+import { useAccount, useConnect } from "@starknet-react/core";
 
 interface SwapProps {
   theme: "dark" | "light";
