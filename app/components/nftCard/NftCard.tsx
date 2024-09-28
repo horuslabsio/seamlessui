@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { EllipsisVertical } from "lucide-react";
 import { useSwitchChain } from "@starknet-react/core";
@@ -10,7 +9,7 @@ interface NFTCardProps {
   theme: "dark" | "light";
   layout: "list" | "grid";
   name: string;
-  collection: string; // Collection name for the NFT
+  collection: string;
   price: number;
   ethPrice: number;
   image: string;
@@ -65,7 +64,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
         <Image
           fill
           src={image}
-          alt={name}
+          alt={collection}
           className="h-full w-full rounded-xl object-cover"
         />
       </div>
@@ -73,11 +72,6 @@ const NFTCard: React.FC<NFTCardProps> = ({
         className={`grid grid-rows-[auto_1fr_auto] ${isList ? "md:col-span-2 md:items-center md:gap-1 md:pt-3" : "pt-3"}`}
       >
         <h3 className="truncate text-lg font-bold">{name}</h3>
-        <p
-          className={`hidden text-sm font-medium ${isDark ? "text-[#FAFAFA]" : "text-[#141925]"}`}
-        >
-          Collection: {collection}
-        </p>
         <div
           className={`flex justify-between ${isList ? "md:flex-col md:justify-start md:gap-1" : "flex-row items-center justify-between"}`}
         >
@@ -89,6 +83,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
                   ? "border border-gray-800 hover:bg-gray-700"
                   : "border border-[#DADADA] hover:bg-gray-200"
               }`}
+              // disabled={true}
             >
               <svg
                 width="16"
@@ -121,13 +116,17 @@ const NFTCard: React.FC<NFTCardProps> = ({
               </svg>
             </button>
             <p
-              className={`text-sm font-bold ${isDark ? "text-[#FAFAFA]" : "text-[#141925]"}`}
+              className={`text-sm font-bold ${
+                isDark ? "text-[#FAFAFA]" : "text-[#141925]"
+              }`}
             >
               {ethPrice.toFixed(4)} ETH
             </p>
           </div>
           <p
-            className={`justify-self-end text-sm font-bold ${isDark ? "text-[#FAFAFA]" : "text-[#141925]"}`}
+            className={`justify-self-end text-sm font-bold ${
+              isDark ? "text-[#FAFAFA]" : "text-[#141925]"
+            }`}
           >
             ${price.toFixed(3)}
           </p>
