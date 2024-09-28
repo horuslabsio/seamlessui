@@ -35,7 +35,7 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
       <div
         className={`flex h-[50px] w-full cursor-pointer items-center justify-between rounded-xl px-4 ${
           theme === "dark"
-            ? "border-[3px] border-[#494949] bg-[#2a2a2a] text-white"
+            ? "border-[3px] border-grey-700 bg-[#2a2a2a] text-white"
             : "border-[3px] border-[#eaeaea] bg-[#f0f0f0] text-black"
         } md:font-[700]`}
         onClick={() => setIsOpen(!isOpen)}
@@ -45,7 +45,7 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
       </div>
 
       {isOpen && (
-        <div className="absolute left-0 top-12 z-10 w-full rounded-xl border border-gray-500 bg-white text-black shadow-lg">
+        <div className="absolute left-0 top-12 z-10 w-full rounded-xl border border-gray-500 bg-base-light text-black shadow-lg">
           {options.map((option) => (
             <div
               key={option.name}
@@ -59,7 +59,7 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
       )}
 
       {error && (
-        <p className="text-red-500">Error switching network: {error.message}</p>
+        <p className="text-red-600">Error switching network: {error.message}</p>
       )}
     </div>
   );
@@ -94,7 +94,9 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
       {open && (
         <div
           className={`absolute left-0 top-10 ${
-            theme === "dark" ? "bg-[#1a1a1a] text-white" : "bg-white text-black"
+            theme === "dark"
+              ? "bg-base-dark text-white"
+              : "bg-base-light text-black"
           } flex h-fit w-full flex-col gap-4 rounded-3xl px-[18px] py-[16px] text-center transition-all duration-300 ease-in-out md:h-[316px] md:w-[565px] md:px-[54px] md:py-[40px] md:font-[700]`}
         >
           <div
@@ -106,7 +108,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
           >
             <p
               className={`${
-                theme === "dark" ? "text-[#7a7a7a]" : "text-[#7a7a7a]"
+                theme === "dark" ? "text-grey-500" : "text-grey-500"
               }`}
             >
               Select Network
@@ -117,7 +119,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
           <button
             className={`flex w-full items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
               theme === "dark"
-                ? "rounded-xl border-[1.75px] border-[#494949] bg-[#3a3a3a]"
+                ? "rounded-xl border-[1.75px] border-grey-700 bg-grey-600"
                 : "rounded-xl border border-[#9a9a9a]"
             } `}
           >
@@ -144,7 +146,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
           <button
             className={`flex w-full items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
               theme === "dark"
-                ? "rounded-xl bg-white text-black"
+                ? "rounded-xl bg-base-light text-black"
                 : "rounded-xl bg-black text-white"
             } `}
           >
