@@ -39,7 +39,11 @@ const NFTCard: React.FC<NFTCardProps> = ({
       await switchChain({ chainId: targetChainId });
       setCurrentChainId(targetChainId);
     } catch (e) {
-      console.error("Error switching chain:", e);
+      if (e instanceof Error) {
+        console.error("Error switching chain:", e.message);
+      } else {
+        console.error("Unexpected error switching chain:", e);
+      }
     }
   };
 
@@ -133,7 +137,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
         </div>
         {error && (
           <p className="mt-2 text-sm text-red-500">
-            Failed to switch network: {error.message}
+            Failed to switch network: {error.message}{" "}
           </p>
         )}
       </div>
