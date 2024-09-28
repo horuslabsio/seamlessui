@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import StarknetProvider from "./StarknetProvider";
 import Connect from "./components/connect/Connect";
+import Swap from "./components/swap/swap";
 
 export const metadata: Metadata = {
   title: "SeamlessUI",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <StarknetProvider>
         <body className={`p-8 antialiased`}>
           <Connect layout="grid" theme="light" />
+          <Swap theme="dark" />
           {children}
         </body>
       </StarknetProvider>
