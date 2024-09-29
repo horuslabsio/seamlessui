@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { EllipsisVertical } from "lucide-react";
 import { useSwitchChain } from "@starknet-react/core";
-import { constants } from "starknet";
 import Image from "next/image";
 
 interface NFTCardProps {
@@ -25,17 +24,12 @@ const NFTCard: React.FC<NFTCardProps> = ({
   image,
 }) => {
   const { switchChain, error } = useSwitchChain({});
-  const [currentChainId, setCurrentChainId] = useState(
-    constants.StarknetChainId.SN_MAIN
-  );
+  const [currentChainId, setCurrentChainId] = useState("SN_MAIN");
 
   const handleNetworkSwitch = async () => {
     try {
       const targetChainId =
-        currentChainId === constants.StarknetChainId.SN_MAIN
-          ? constants.StarknetChainId.SN_SEPOLIA
-          : constants.StarknetChainId.SN_MAIN;
-
+        currentChainId === "SN_MAIN" ? "SN_SEPOLIA" : "SN_MAIN";
       await switchChain({ chainId: targetChainId });
       setCurrentChainId(targetChainId);
     } catch (e) {
