@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import { useAccount, useConnect } from "@starknet-react/core";
+import { useAccount } from "@starknet-react/core";
+import { ArrowUpDown, ChevronDown, ChevronUp, X } from "lucide-react";
 
 interface SwapProps {
   theme: "dark" | "light";
@@ -44,7 +44,9 @@ const CustomSelect: React.FC<{
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selectedToken}</span>
-        <span>{isOpen ? "▲" : "▼"}</span>
+        <span>
+          {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        </span>
       </div>
 
       {isOpen && (
@@ -68,14 +70,13 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
   const [fromToken, setFromToken] =
     useState<keyof typeof tokenAddresses>("ETH");
   const [toToken, setToToken] = useState<keyof typeof tokenAddresses>("USDT");
-  const [amount, setAmount] = useState("0");
-  const [equivalent, setEquivalent] = useState("0");
+  const [amount, setAmount] = useState("");
+  const [equivalent, setEquivalent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [rate, setRate] = useState(0);
 
   const { address } = useAccount();
-  const { connect, connectors } = useConnect();
 
   useEffect(() => {
     updateRate();
@@ -102,17 +103,6 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
   };
 
   const numberRegex = /^[0-9]*[.,]?[0-9]*$/;
-
-  const handleConnectWallet = async () => {
-    if (connectors.length > 0) {
-      try {
-        await connect({ connector: connectors[0] });
-      } catch (error) {
-        console.error("Failed to connect wallet:", error);
-        setError("Failed to connect wallet. Please try again.");
-      }
-    }
-  };
 
   const handleSwap = async () => {
     if (!address) return;
@@ -154,138 +144,136 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
 
   return (
     <div
-      className={`mt-12 flex h-[371.67px] w-full cursor-pointer flex-col items-center gap-2 rounded-full md:h-[636px] md:w-[594px] md:gap-6 ${theme === "dark" ? "bg-light-linear-gradient" : "bg-dark-linear-gradient"} rounded-xl p-[18px] md:p-[32px]`}
+      className={`mt-12 flex h-[371.67px] w-full cursor-pointer flex-col items-center gap-2 rounded-full md:h-[636px] md:w-[594px] md:gap-6 ${theme === "dark" ? "bg-light-linear-gradient" : "bg-dark-linear-gradient"} mx-auto rounded-xl p-[18px] md:p-[26px]`}
     >
       <div
         className={`flex w-full items-center justify-between ${theme === "dark" ? "text-black" : "text-white"}`}
       >
         <p className="text-[15px] font-[700] md:text-[25px]">Swap</p>
-        <Image
-          src={theme === "dark" ? "/icons/close.svg" : "/icons/close-white.svg"}
-          alt="Close"
-          width={40}
-          height={40}
-          className="h-[20px] w-[20px] md:h-[40px] md:w-[40px]"
+        <X
+          size={30}
+          className={`${theme === "dark" ? "text-black" : "text-white"}`}
         />
       </div>
 
-      <div className="relative flex w-full flex-col items-center">
-        <div className="mb-4 flex w-full flex-col">
-          <label
-            className={`mb-2 text-[9.97px] md:text-[16px] ${theme === "dark" ? "text-black" : "text-white"}`}
-          >
-            From
-          </label>
-          <div
-            className={`flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "dark" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-grey-700 bg-grey-600"}`}
-          >
-            <div className="flex w-full items-center justify-between">
-              <div className="flex flex-col items-start">
-                <input
-                  type="text"
-                  value={amount}
-                  placeholder="2"
-                  onChange={handleAmountChange}
-                  className={`w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px] ${theme === "dark" ? "text-black" : "text-white"}`}
+      <form>
+        <div className="relative flex w-full flex-col items-center">
+          <div className="mb-4 flex w-full flex-col">
+            <label
+              className={`mb-2 text-[9.97px] md:text-[16px] ${theme === "dark" ? "text-black" : "text-white"}`}
+            >
+              From
+            </label>
+            <div
+              className={`flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "dark" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-grey-700 bg-grey-600"}`}
+            >
+              <div className="flex w-full items-center justify-between">
+                <div className="flex flex-col items-start">
+                  <input
+                    type="text"
+                    value={amount}
+                    placeholder="0"
+                    onChange={handleAmountChange}
+                    className={`w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px] ${theme === "dark" ? "text-black" : "text-white"}`}
+                  />
+                  <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-grey-500 md:text-[16px]">
+                    = ${(parseFloat(amount || "0") * rate).toFixed(3)}
+                  </p>
+                </div>
+                <CustomSelect
+                  selectedToken={fromToken}
+                  onTokenSelect={setFromToken}
+                  theme={theme}
                 />
-                <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-grey-500 md:text-[16px]">
-                  = ${parseFloat(amount) * rate}
-                </p>
               </div>
-              <CustomSelect
-                selectedToken={fromToken}
-                onTokenSelect={setFromToken}
-                theme={theme}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleTokenSwap}
+            className={`absolute top-[44%] h-[46px] w-[46px] rounded-full px-[9.97px] py-0 md:h-[80px] md:w-[80px] md:px-[18px] md:py-[17px] ${theme === "dark" ? "border-[5px] border-white bg-gray-200" : "border-[5px] border-base-dark bg-grey-600"}`}
+          >
+            <div className="relative flex h-[15.95px] w-[15.95px] items-center justify-center md:h-[32px] md:w-[32px]">
+              <ArrowUpDown
+                size={30}
+                className={`${theme === "dark" ? "text-black" : "text-white"}`}
               />
+            </div>
+          </button>
+
+          <div className="mt-0 flex w-full flex-col">
+            <label
+              className={`mb-2 text-[9.97px] md:text-[16px] ${theme === "dark" ? "text-black" : "text-white"}`}
+            >
+              To
+            </label>
+            <div
+              className={`flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "dark" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-grey-700 bg-grey-600"}`}
+            >
+              <div className="flex w-full items-center justify-between">
+                <div className="flex flex-col items-start">
+                  <input
+                    type="text"
+                    value={parseFloat(equivalent).toFixed(3)}
+                    placeholder="0"
+                    readOnly
+                    className={`w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px] ${theme === "dark" ? "text-black" : "text-white"}`}
+                  />
+                  <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-grey-500 md:text-[16px]">
+                    = ${Number(equivalent).toFixed(3)}
+                  </p>
+                </div>
+                <CustomSelect
+                  selectedToken={toToken}
+                  onTokenSelect={setToToken}
+                  theme={theme}
+                />
+              </div>
             </div>
           </div>
         </div>
+
+        <div className="flex w-full flex-col gap-[8px] md:my-4">
+          <div className="flex w-full items-center justify-between">
+            <p
+              className={`${theme === "dark" ? "" : ""} text-[9.97px] font-[700] text-grey-500 md:text-[16px]`}
+            >
+              Current price
+            </p>
+            <p
+              className={`${theme === "dark" ? "text-black" : "text-white"} text-[9.97px] font-[700] md:text-[16px]`}
+            >
+              1 {fromToken} = {rate.toFixed(3)} {toToken}
+            </p>
+          </div>
+          <div className="flex w-full items-center justify-between">
+            <p
+              className={`${theme === "dark" ? "" : ""} text-[9.97px] font-[700] text-grey-500 md:text-[16px]`}
+            >
+              Min received
+            </p>
+            <p
+              className={`${theme === "dark" ? "text-black" : "text-white"} text-[9.97px] font-[700] md:text-[16px]`}
+            >
+              {parseFloat(equivalent || "0").toFixed(3)} {toToken}
+            </p>
+          </div>
+        </div>
+
+        {error && (
+          <p className="text-[9.97px] text-red-500 md:text-[16px]">{error}</p>
+        )}
 
         <button
-          onClick={handleTokenSwap}
-          className={`absolute top-[44%] h-[46px] w-[46px] rounded-full px-[9.97px] py-0 md:h-[80px] md:w-[80px] md:px-[18px] md:py-[17px] ${theme === "dark" ? "border-[5px] border-white bg-gray-200" : "border-[5px] border-base-dark bg-grey-600"}`}
+          onClick={handleSwap}
+          disabled={isLoading || !address}
+          type="submit"
+          className={`my-4 h-[31.94px] w-full rounded-xl py-[6.97px] text-[11.97px] font-[700] md:h-[54px] md:py-[12px] md:text-[20px] ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"} ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
         >
-          <div className="relative h-[15.95px] w-[15.95px] md:h-[32px] md:w-[32px]">
-            <Image
-              src={
-                theme === "dark" ? "/icons/swap.svg" : "/icons/swap-white.svg"
-              }
-              alt="Swap"
-              fill
-              style={{ objectFit: "contain" }}
-            />
-          </div>
+          {isLoading ? "Processing..." : address ? "Swap" : "Connect Wallet"}
         </button>
-
-        <div className="mt-0 flex w-full flex-col">
-          <label
-            className={`mb-2 text-[9.97px] md:text-[16px] ${theme === "dark" ? "text-black" : "text-white"}`}
-          >
-            To
-          </label>
-          <div
-            className={`flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "dark" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-grey-700 bg-grey-600"}`}
-          >
-            <div className="flex w-full items-center justify-between">
-              <div className="flex flex-col items-start">
-                <input
-                  type="text"
-                  value={equivalent}
-                  readOnly
-                  className={`w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px] ${theme === "dark" ? "text-black" : "text-white"}`}
-                />
-                <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-grey-500 md:text-[16px]">
-                  = ${equivalent}
-                </p>
-              </div>
-              <CustomSelect
-                selectedToken={toToken}
-                onTokenSelect={setToToken}
-                theme={theme}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex w-full flex-col gap-2 md:my-2">
-        <div className="flex w-full items-center justify-between">
-          <p
-            className={`${theme === "dark" ? "" : ""} text-[9.97px] font-[700] text-grey-500 md:text-[16px]`}
-          >
-            Current price
-          </p>
-          <p
-            className={`${theme === "dark" ? "text-black" : "text-white"} text-[9.97px] font-[700] md:text-[16px]`}
-          >
-            1 {fromToken} = {rate.toFixed(6)} {toToken}
-          </p>
-        </div>
-        <div className="flex w-full items-center justify-between">
-          <p
-            className={`${theme === "dark" ? "" : ""} text-[9.97px] font-[700] text-grey-500 md:text-[16px]`}
-          >
-            Min received
-          </p>
-          <p
-            className={`${theme === "dark" ? "text-black" : "text-white"} text-[9.97px] font-[700] md:text-[16px]`}
-          >
-            {equivalent} {toToken}
-          </p>
-        </div>
-      </div>
-
-      {error && (
-        <p className="text-[9.97px] text-red-500 md:text-[16px]">{error}</p>
-      )}
-
-      <button
-        onClick={address ? handleSwap : handleConnectWallet}
-        disabled={isLoading}
-        className={`h-[31.94px] w-full rounded-xl py-[6.97px] text-[11.97px] font-[700] md:h-[54px] md:py-[12px] md:text-[20px] ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"} ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
-      >
-        {isLoading ? "Processing..." : address ? "Swap" : "Connect Wallet"}
-      </button>
+      </form>
     </div>
   );
 };
