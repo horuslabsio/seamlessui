@@ -1,7 +1,5 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import { EllipsisVertical } from "lucide-react";
-import { useSwitchChain } from "@starknet-react/core";
 import Image from "next/image";
 
 interface NFTData {
