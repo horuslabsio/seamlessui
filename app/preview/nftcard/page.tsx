@@ -19,12 +19,12 @@ const NFTCardPreview: React.FC = () => {
 
   return (
     <div className="flex flex-wrap gap-8">
-      <NFTCard theme="light" layout="grid" {...nftData} />
-      <NFTCard theme="dark" layout="grid" {...nftData} />
-      <NFTCard theme="light" layout="list" {...nftData} />
-      <NFTCard theme="dark" layout="list" {...nftData} />
-      <NFTCard theme="light" layout="grid" {...nftData} />
-      <NFTCard theme="light" layout="list" {...nftData} />
+      <NFTCard theme="light" layout="grid" nft={nftData} />
+      <NFTCard theme="dark" layout="grid" nft={nftData} />
+      <NFTCard theme="light" layout="list" nft={nftData} />
+      <NFTCard theme="dark" layout="list" nft={nftData} />
+      <NFTCard theme="light" layout="grid" nft={nftData} />
+      <NFTCard theme="light" layout="list" nft={nftData} />
     </div>
   );
 };

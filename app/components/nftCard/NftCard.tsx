@@ -4,9 +4,7 @@ import { EllipsisVertical } from "lucide-react";
 import { useSwitchChain } from "@starknet-react/core";
 import Image from "next/image";
 
-interface NFTCardProps {
-  theme: "dark" | "light";
-  layout: "list" | "grid";
+interface NFTData {
   name: string;
   collection: string;
   price: number;
@@ -14,15 +12,13 @@ interface NFTCardProps {
   image: string;
 }
 
-const NFTCard: React.FC<NFTCardProps> = ({
-  theme,
-  layout,
-  name,
-  collection,
-  price,
-  ethPrice,
-  image,
-}) => {
+interface NFTCardProps {
+  theme: "dark" | "light";
+  layout: "list" | "grid";
+  nft: NFTData;
+}
+
+const NFTCard: React.FC<NFTCardProps> = ({ theme, layout, nft }) => {
   const isDark = theme === "dark";
   const isList = layout === "list";
 
@@ -43,15 +39,15 @@ const NFTCard: React.FC<NFTCardProps> = ({
       >
         <Image
           fill
-          src={image}
-          alt={collection}
+          src={nft.image}
+          alt={nft.collection}
           className="h-full w-full rounded-xl object-cover"
         />
       </div>
       <div
         className={`grid grid-rows-[auto_1fr_auto] ${isList ? "md:col-span-2 md:items-center md:gap-1 md:pt-3" : "pt-3"}`}
       >
-        <h3 className="truncate text-lg font-bold">{name}</h3>
+        <h3 className="truncate text-lg font-bold">{nft.name}</h3>
         <div
           className={`flex justify-between ${isList ? "md:flex-col md:justify-start md:gap-1" : "flex-row items-center justify-between"}`}
         >
@@ -99,7 +95,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
                 isDark ? "text-[#FAFAFA]" : "text-[#141925]"
               }`}
             >
-              {ethPrice.toFixed(4)} ETH
+              {nft.ethPrice.toFixed(4)} ETH
             </p>
           </div>
           <p
@@ -107,7 +103,7 @@ const NFTCard: React.FC<NFTCardProps> = ({
               isDark ? "text-[#FAFAFA]" : "text-[#141925]"
             }`}
           >
-            ${price.toFixed(3)}
+            ${nft.price.toFixed(3)}
           </p>
         </div>
       </div>
