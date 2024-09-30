@@ -119,8 +119,12 @@ const NFTCard: React.FC<NFTCardProps> = ({ theme, layout, nft }) => {
         >
           Add to Buy
         </button>
-        <button className="rounded-lg border border-[#EEEEEE] bg-[#F7F7F7] p-2 hover:bg-gray-200">
-          <EllipsisVertical className="h-5 w-5 text-[#1A1A1A]" />
+        <button
+          className={`rounded-lg border-[1.75px] ${isDark ? "border-[#494949] bg-[#3A3A3A] hover:bg-[#313131]" : "border-[#EEEEEE] bg-[#F7F7F7] hover:bg-gray-200"} p-2`}
+        >
+          <EllipsisVertical
+            className={`h-5 w-5 ${isDark ? "text-[#FAFAFA]" : "text-[#1A1A1A]"}`}
+          />
         </button>
       </div>
     </div>
