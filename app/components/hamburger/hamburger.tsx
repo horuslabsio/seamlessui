@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useSwitchChain } from "@starknet-react/core";
-import Image from "next/image";
-import { Check } from "lucide-react";
+import { Check, LibraryBig, Menu, X } from "lucide-react";
 
 interface HamburgerProps {
   theme: "dark" | "light";
@@ -95,21 +94,11 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
         className="z-10 flex h-8 w-8 cursor-pointer flex-col justify-around border-none bg-transparent p-0 focus:outline-none"
         onClick={() => setOpen(!open)}
       >
-        <div
-          className={`h-1 w-8 transform rounded bg-gray-800 transition duration-300 ease-in-out ${
-            open ? "translate-y-2 rotate-45" : ""
-          }`}
-        />
-        <div
-          className={`h-1 w-8 rounded bg-gray-800 transition-opacity duration-300 ease-in-out ${
-            open ? "opacity-0" : "opacity-100"
-          }`}
-        />
-        <div
-          className={`h-1 w-8 transform rounded bg-gray-800 transition duration-300 ease-in-out ${
-            open ? "-translate-y-2 -rotate-45" : ""
-          }`}
-        />
+        {open ? (
+          <X className="h-8 w-8 text-gray-800 transition duration-300 ease-in-out" />
+        ) : (
+          <Menu className="h-8 w-8 text-gray-800 transition duration-300 ease-in-out" />
+        )}
       </button>
 
       {open && (
@@ -145,21 +134,9 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
             } `}
           >
             {theme === "dark" ? (
-              <Image
-                src="/icons/transaction-history-white.svg"
-                alt="transaction history icon"
-                width={500}
-                height={500}
-                className="h-[15px] w-[16.66px] md:h-[30px] md:w-[30px]"
-              />
+              <LibraryBig size={30} className="text-white" />
             ) : (
-              <Image
-                src="/icons/transaction-history.svg"
-                alt="transaction history icon"
-                width={500}
-                height={500}
-                className="h-[15px] w-[16.66px] md:h-[30px] md:w-[30px]"
-              />
+              <LibraryBig size={30} className="text-black" />
             )}{" "}
             Transaction History
           </button>
