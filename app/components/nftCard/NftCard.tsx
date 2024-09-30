@@ -23,24 +23,6 @@ const NFTCard: React.FC<NFTCardProps> = ({
   ethPrice,
   image,
 }) => {
-  const { switchChain, error } = useSwitchChain({});
-  const [currentChainId, setCurrentChainId] = useState("SN_MAIN");
-
-  const handleNetworkSwitch = async () => {
-    try {
-      const targetChainId =
-        currentChainId === "SN_MAIN" ? "SN_SEPOLIA" : "SN_MAIN";
-      await switchChain({ chainId: targetChainId });
-      setCurrentChainId(targetChainId);
-    } catch (e) {
-      if (e instanceof Error) {
-        console.error("Error switching chain:", e.message);
-      } else {
-        console.error("Unexpected error switching chain:", e);
-      }
-    }
-  };
-
   const isDark = theme === "dark";
   const isList = layout === "list";
 
@@ -75,7 +57,6 @@ const NFTCard: React.FC<NFTCardProps> = ({
         >
           <div className="flex items-center gap-2">
             <button
-              onClick={handleNetworkSwitch}
               className={`rounded-xl p-2 ${
                 isDark
                   ? "border border-gray-800 hover:bg-gray-700"
@@ -129,11 +110,6 @@ const NFTCard: React.FC<NFTCardProps> = ({
             ${price.toFixed(3)}
           </p>
         </div>
-        {error && (
-          <p className="mt-2 text-sm text-red-500">
-            Failed to switch network: {error.message}{" "}
-          </p>
-        )}
       </div>
       <div
         className={`grid grid-cols-[1fr_auto] gap-2 ${isList ? "md:col-span-3" : ""}`}
