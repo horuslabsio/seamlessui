@@ -26,7 +26,6 @@ interface TransactionProps {
 }
 
 const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
-  const [open, setOpen] = useState(true);
   const [showDetails, setShowDetails] = useState<{ [key: string]: boolean }>(
     {}
   );
@@ -111,7 +110,6 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
           Transaction List
         </h1>
         <X
-          onClick={() => setOpen(false)}
           className={`${theme === "dark" ? "text-white" : "text-black"}`}
           size={30}
         />
