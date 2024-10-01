@@ -28,7 +28,7 @@ There are many ways to contribute to SeamlessUI:
 
 Contributions are made via Issues and Pull Requests (PRs). Here are some general guidelines:
 
-- Before creating a new issues, check for existing Issues and PRs.
+- Before creating a new issue, check for existing Issues and PRs.
 
 - Contributions should address either functionality or style, but not both in the same PR.
 
