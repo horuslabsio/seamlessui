@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { useSwitchChain } from "@starknet-react/core";
-import { Check, LibraryBig, Menu, X } from "lucide-react";
+import { Check, Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import TransactionList from "../transaction-history/transaction-history";
 
 interface HamburgerProps {
   theme: "dark" | "light";
@@ -45,21 +46,23 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selected}</span>
-        <span>{isOpen ? "▲" : "▼"}</span>
+        <span>
+          {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        </span>
       </div>
 
       {isOpen && (
         <div className="absolute left-0 top-0 z-10 w-full rounded-xl border-[3px] border-[#eaeaea] bg-[#f0f0f0] px-4 py-2 text-black shadow-lg">
           <div
             className={`flex h-[50px] w-full cursor-pointer items-center justify-between px-4 ${
-              theme === "dark"
-                ? "border-b-[3px] border-grey-700 text-black"
-                : "border-[3px] border-[#eaeaea] bg-[#f0f0f0] text-black"
-            } md:font-[700]`}
+              theme === "dark" ? "" : ""
+            } border-b-[3px] border-grey-300 text-black md:font-[700]`}
             onClick={() => setIsOpen(!isOpen)}
           >
             <span>{selected}</span>
-            <span>{isOpen ? "▲" : "▼"}</span>
+            <span>
+              {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+            </span>
           </div>
           {options.map((option) => (
             <div
@@ -126,21 +129,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
             <CustomSelect theme={theme} />
           </div>
 
-          <button
-            className={`flex w-full items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
-              theme === "dark"
-                ? "rounded-xl border-[1.75px] border-grey-700 bg-grey-600"
-                : "rounded-xl border border-[#9a9a9a]"
-            } `}
-          >
-            {theme === "dark" ? (
-              <LibraryBig size={30} className="text-white" />
-            ) : (
-              <LibraryBig size={30} className="text-black" />
-            )}{" "}
-            Transaction History
-          </button>
-
+          <TransactionList theme={theme} />
           <button
             className={`flex w-full items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
               theme === "dark"

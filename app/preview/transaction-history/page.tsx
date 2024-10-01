@@ -6,9 +6,13 @@ const page = () => {
       <h1 className="text-center text-3xl">
         Transaction history components (Light and Dark Theme)
       </h1>
-      <div className="mt-10 flex flex-row items-center gap-4">
-        <Transaction theme="light" />
-        <Transaction theme="dark" />
+      <div className="mt-10 flex flex-row items-start gap-[20%]">
+        <div className="relative w-1/3">
+          <Transaction theme="light" />
+        </div>
+        <div className="relative w-1/3">
+          <Transaction theme="dark" />
+        </div>
       </div>
     </div>
   );

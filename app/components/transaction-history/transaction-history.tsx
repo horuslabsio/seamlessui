@@ -7,6 +7,7 @@ import {
   BadgeMinus,
   ListCheck,
   Files,
+  LibraryBig,
 } from "lucide-react";
 import React, { useState } from "react";
 
@@ -26,6 +27,7 @@ interface TransactionProps {
 }
 
 const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
+  const [open, setOpen] = useState(false);
   const [showDetails, setShowDetails] = useState<{ [key: string]: boolean }>(
     {}
   );
@@ -100,155 +102,178 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
   };
 
   return (
-    <div
-      className={`${theme === "dark" ? "bg-dark-linear-gradient" : "bg-light-linear-gradient"} mx-auto flex h-fit w-[632px] flex-col items-center rounded-xl px-[40px] py-[32px]`}
-    >
-      <div className="mb-8 flex w-full flex-row items-center justify-between">
-        <h1
-          className={`${theme === "dark" ? "text-white" : "text-black"} text-[24px] font-[700]`}
-        >
-          Transaction List
-        </h1>
-        <X
-          className={`${theme === "dark" ? "text-white" : "text-black"}`}
-          size={30}
-        />
-      </div>
+    <div className="relative">
+      <button
+        className={`flex w-[457px] items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
+          theme === "dark"
+            ? "rounded-xl border-[1.75px] border-grey-700 bg-grey-600"
+            : "rounded-xl border border-[#9a9a9a]"
+        } `}
+        onClick={() => setOpen(!open)}
+      >
+        {!open && (
+          <span className="flex w-[460px] items-center justify-center">
+            <LibraryBig size={30} />
+            Transaction History
+          </span>
+        )}
+      </button>
 
-      {transactions.map((transaction) => (
+      {open && (
         <div
-          key={transaction.id}
-          className={`transition-all duration-300 ease-in-out ${
-            showDetails[transaction.id]
-              ? "max-h-fit justify-start"
-              : "max-h-[144px]"
-          } overflow-hidden ${theme === "dark" ? "border-[#2A2A2A] bg-base-dark" : "border-[#F5F5F5] bg-base-light"} mb-4 flex w-[552px] flex-col items-center justify-start gap-[24px] rounded-[24px] border px-[17px] py-[24px]`}
+          className={`${theme === "dark" ? "bg-dark-linear-gradient" : "bg-light-linear-gradient"} absolute left-0 top-0 mx-auto flex h-fit w-[632px] flex-col items-center rounded-xl px-[40px] py-[32px]`}
         >
-          <div className="relative flex flex-shrink-0 items-center justify-start gap-[24px]">
-            <div
-              className={`flex h-[76px] w-[76px] flex-col items-center justify-center justify-self-start rounded-[26px] ${
-                transaction.status === "success"
-                  ? "bg-[#CDFFD2]"
-                  : transaction.status === "warning"
-                    ? "bg-yellow-100"
-                    : "bg-red-100"
-              }`}
+          <div className="mb-8 flex w-full flex-row items-center justify-between">
+            <h1
+              className={`${theme === "dark" ? "text-white" : "text-black"} text-[24px] font-[700]`}
             >
-              {getIcon(transaction.status)}
-            </div>
+              Transaction List
+            </h1>
+            <X
+              className={`${theme === "dark" ? "text-white" : "text-black"}`}
+              size={30}
+              onClick={() => setOpen(!open)}
+            />
+          </div>
 
-            <div className="flex h-fit w-[419px] flex-col gap-2">
-              <div className="flex justify-between border-b-[1.75px] border-grey-300 px-[2px] py-[12px]">
+          {transactions.map((transaction) => (
+            <div
+              key={transaction.id}
+              className={`transition-all duration-300 ease-in-out ${
+                showDetails[transaction.id]
+                  ? "max-h-fit justify-start"
+                  : "max-h-[144px]"
+              } overflow-hidden ${theme === "dark" ? "border-[#2A2A2A] bg-base-dark" : "border-[#F5F5F5] bg-base-light"} mb-4 flex w-[552px] flex-col items-center justify-start gap-[24px] rounded-[24px] border px-[17px] py-[24px]`}
+            >
+              <div className="relative flex flex-shrink-0 items-center justify-start gap-[24px]">
                 <div
-                  className={`flex h-[48px] w-[209px] items-center gap-[16px] rounded-3xl border px-[16px] py-[12px] ${
-                    theme === "dark"
-                      ? "border-grey-700 bg-grey-700"
-                      : "border-grey-300 bg-[#f5f5f5]"
+                  className={`flex h-[76px] w-[76px] flex-col items-center justify-center justify-self-start rounded-[26px] ${
+                    transaction.status === "success"
+                      ? "bg-[#CDFFD2]"
+                      : transaction.status === "warning"
+                        ? "bg-yellow-100"
+                        : "bg-red-100"
                   }`}
                 >
-                  <div className="h-[24px] w-[24px] rounded-full bg-purple-900"></div>
-                  <p className="text-[16px] font-[700] text-[#FD9332]">
-                    {transaction.address}
-                  </p>
+                  {getIcon(transaction.status)}
                 </div>
-                <div>
-                  <p className="flex gap-1 text-[16px] font-[700] text-[#10A41F]">
-                    +{transaction.amount}{" "}
-                    <span className="self-end text-[12px]">
-                      {transaction.currency}
-                    </span>
-                  </p>
-                  <p className="flex gap-1 text-[12px] font-[700] text-grey-500">
-                    ${transaction.usdAmount.toFixed(2)} USD
-                  </p>
-                </div>
-              </div>
 
-              <div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    <p
-                      className={`${
+                <div className="flex h-fit w-[419px] flex-col gap-2">
+                  <div className="flex justify-between border-b-[1.75px] border-grey-300 px-[2px] py-[12px]">
+                    <div
+                      className={`flex h-[48px] w-[209px] items-center gap-[16px] rounded-3xl border px-[16px] py-[12px] ${
                         theme === "dark"
-                          ? "bg-[#2A2A2A] text-[#9A9A9A]"
-                          : "bg-[#F5F5F5] text-grey-500"
-                      } rounded-sm px-[8px] py-[3px] text-[12px] font-[700]`}
+                          ? "border-grey-700 bg-grey-700"
+                          : "border-grey-300 bg-[#f5f5f5]"
+                      }`}
                     >
-                      {transaction.date}
-                    </p>
-                    <p
-                      className={`${
-                        theme === "dark"
-                          ? "bg-[#2A2A2A] text-[#9A9A9A]"
-                          : "bg-[#F5F5F5] text-grey-500"
-                      } rounded-sm px-[8px] py-[3px] text-[12px] font-[700]`}
-                    >
-                      {transaction.time}
-                    </p>
+                      <div className="h-[24px] w-[24px] rounded-full bg-purple-900"></div>
+                      <p className="text-[16px] font-[700] text-[#FD9332]">
+                        {transaction.address}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="flex gap-1 text-[16px] font-[700] text-[#10A41F]">
+                        +{transaction.amount}{" "}
+                        <span className="self-end text-[12px]">
+                          {transaction.currency}
+                        </span>
+                      </p>
+                      <p className="flex gap-1 text-[12px] font-[700] text-grey-500">
+                        ${transaction.usdAmount.toFixed(2)} USD
+                      </p>
+                    </div>
                   </div>
 
-                  <div
-                    className="flex cursor-pointer items-center gap-2"
-                    onClick={() => toggleDetails(transaction.id)}
-                  >
-                    <p
-                      className={`${theme === "dark" ? "text-[#9A9A9A]" : "text-grey-500"} text-[12px] font-[700]`}
-                    >
-                      TRANSACTION ID
-                    </p>
-                    <ChevronDown
-                      className={`${
-                        theme === "dark" ? "text-grey-300" : "text-[#141925]"
-                      } transform ${showDetails[transaction.id] ? "rotate-180" : ""}`}
-                      size={20}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {showDetails[transaction.id] && (
-            <div
-              className={`flex h-[244px] w-[419px] justify-start gap-[25px] rounded-[12px] px-[14px] py-[32px] ${theme === "dark" ? "bg-[#48433D]" : "bg-[#FFEBDA]"} self-end`}
-            >
-              <ListCheck className="text-grey-500" size={20} />
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1">
+                        <p
+                          className={`${
+                            theme === "dark"
+                              ? "bg-[#2A2A2A] text-[#9A9A9A]"
+                              : "bg-[#F5F5F5] text-grey-500"
+                          } rounded-sm px-[8px] py-[3px] text-[12px] font-[700]`}
+                        >
+                          {transaction.date}
+                        </p>
+                        <p
+                          className={`${
+                            theme === "dark"
+                              ? "bg-[#2A2A2A] text-[#9A9A9A]"
+                              : "bg-[#F5F5F5] text-grey-500"
+                          } rounded-sm px-[8px] py-[3px] text-[12px] font-[700]`}
+                        >
+                          {transaction.time}
+                        </p>
+                      </div>
 
-              <div className="flex flex-col gap-[15px]">
-                <p className="text-[12px] font-[700] text-grey-500">
-                  Fee 0.00024158 ETH ($0.92)
-                </p>
-                <div>
-                  <p className="text-[16px] font-[700] text-grey-500">
-                    Transaction hash
-                  </p>
-                  <h2 className="text-[#FD9332]">
-                    0xc662c410C0ECf747543f5bA90660f6
-                  </h2>
-                </div>
-                <div>
-                  <p className="text-[16px] font-[700] text-grey-500">
-                    Wallet Address Recipient
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <h2 className="text-[#FD9332]">
-                      0xc662c410C0ECf747543f5bA90660f6
-                    </h2>
-                    <div className="flex h-[25px] w-[25px] items-center justify-center rounded-full bg-white">
-                      <Files size={20} className="text-[#FF7300]" />
+                      <div
+                        className="flex cursor-pointer items-center gap-2"
+                        onClick={() => toggleDetails(transaction.id)}
+                      >
+                        <p
+                          className={`${theme === "dark" ? "text-[#9A9A9A]" : "text-grey-500"} text-[12px] font-[700]`}
+                        >
+                          TRANSACTION ID
+                        </p>
+                        <ChevronDown
+                          className={`${
+                            theme === "dark"
+                              ? "text-grey-300"
+                              : "text-[#141925]"
+                          } transform ${showDetails[transaction.id] ? "rotate-180" : ""}`}
+                          size={20}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <p
-                  className={`underline ${theme === "dark" ? "text-white" : "text-black"}`}
-                >
-                  See transactions
-                </p>
               </div>
+              {showDetails[transaction.id] && (
+                <div
+                  className={`flex h-[244px] w-[419px] items-start justify-start gap-[25px] rounded-[12px] px-[14px] py-[32px] text-start ${theme === "dark" ? "bg-[#48433D]" : "bg-[#FFEBDA]"} self-end`}
+                >
+                  <ListCheck className="text-grey-500" size={20} />
+
+                  <div className="flex flex-col gap-[15px]">
+                    <p className="text-[12px] font-[700] text-grey-500">
+                      Fee 0.00024158 ETH ($0.92)
+                    </p>
+                    <div>
+                      <p className="text-[16px] font-[700] text-grey-500">
+                        Transaction hash
+                      </p>
+                      <h2 className="text-[#FD9332]">
+                        0xc662c410C0ECf747543f5bA90660f6
+                      </h2>
+                    </div>
+                    <div>
+                      <p className="text-[16px] font-[700] text-grey-500">
+                        Wallet Address Recipient
+                      </p>
+                      <div className="flex items-center gap-4">
+                        <h2 className="text-[#FD9332]">
+                          0xc662c410C0ECf747543f5bA90660f6
+                        </h2>
+                        <div className="flex h-[25px] w-[25px] items-center justify-center rounded-full bg-white">
+                          <Files size={20} className="text-[#FF7300]" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <p
+                      className={`underline ${theme === "dark" ? "text-white" : "text-black"}`}
+                    >
+                      See transactions
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
-          )}
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };
