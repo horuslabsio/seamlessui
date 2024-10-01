@@ -90,4 +90,4 @@ Make small, focused commits to ensure that reviews are easier and changes are mo
 
 ## Conclusion
 
-By following this style guide, we ensure that our project is scalable, maintainable, and adheres to best practices. If you have any questions, feel free to ask during code reviews or or reach out via the project's communication channels.
+By following this style guide, we ensure that our project is scalable, maintainable, and adheres to best practices. If you have any questions, feel free to ask during code reviews or reach out via the project's communication channels.
