@@ -9,8 +9,8 @@ interface HamburgerProps {
 }
 
 const STARKNET_CHAINID = {
-  SN_MAIN: "0x534e5f4d41494e", // Mainnet
-  SN_SEPOLIA: "0x534e5f5345504f4c4941", // Sepolia testnet
+  SN_MAIN: "0x534e5f4d41494e",
+  SN_SEPOLIA: "0x534e5f5345504f4c4941",
 };
 
 const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
