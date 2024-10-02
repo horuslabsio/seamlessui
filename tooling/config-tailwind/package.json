@@ -1,0 +1,14 @@
+{
+  "name": "@seamlessui/tailwind-config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./tailwind.config.ts",
+    "./base": "./base.ts"
+  },
+  "devDependencies": {
+    "@seamlessui/typescript-config": "workspace:*",
+    "@seamlessui/eslint-config": "workspace:*",
+    "tailwindcss": "^3.4.1"
+  }
+}
