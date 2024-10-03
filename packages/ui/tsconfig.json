@@ -1,5 +1,5 @@
 {
-  "extends": "@seamlessui/typescript-config/react-library.json",
+  "extends": "@seamlessui/typescript-config/base.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }

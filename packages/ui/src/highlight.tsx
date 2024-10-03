@@ -1,28 +1,25 @@
-import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import { Fragment } from "react";
-import { codeToHast } from "shiki";
-import { jsx, jsxs } from "react/jsx-runtime";
+"use client";
+import { codeToHtml } from "shiki";
+import { useEffect, useState } from "react";
 
 export function Highlight({ code }: { code: string }) {
+  const [html, setHtml] = useState<string | null>(null);
+
+  useEffect(() => {
+    const convertCodeToHtml = async () => {
+      const out = await codeToHtml(code, {
+        lang: "ts",
+        theme: "night-owl",
+      });
+      setHtml(out);
+    };
+
+    convertCodeToHtml();
+  }, [code]); // Run effect when code changes
+
   return (
     <div className="overflow-auto bg-[#051626] p-8 text-[.85em] leading-4">
-      <CodeBlock code={code} />
+      {html ? <div dangerouslySetInnerHTML={{ __html: html }} /> : null}
     </div>
   );
-}
-
-async function CodeBlock({ code }: { code: string }) {
-  const out = await codeToHast(code, {
-    lang: "ts",
-    theme: "night-owl",
-  });
-
-  return toJsxRuntime(out, {
-    Fragment,
-    jsx,
-    jsxs,
-    components: {
-      pre: (props) => <pre data-custom-codeblock {...props} />,
-    },
-  });
 }

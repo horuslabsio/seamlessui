@@ -51,6 +51,7 @@ export default function Connect({
       </div>
 
       <div
+        //@ts-ignore
         popover="auto"
         id="connect-modal"
         ref={connectPopover}
@@ -136,7 +137,7 @@ function ConnectButton({
   return (
     <button
       onClick={func}
-      className={`flex w-full items-center gap-4 rounded-[12px] border-[1px] border-solid border-transparent text-sm focus:outline-none ${theme === "light" ? "bg-transparent hover:border-grey-200 hover:bg-grey-100 focus:border-grey-200 focus:bg-grey-100" : "bg-grey-900 hover:border-grey-700 hover:bg-grey-800 focus:border-grey-700 focus:bg-grey-800"} ${layout === "list" ? "flex-row p-3" : "mx-auto h-[104px] flex-col justify-center p-1 lg:h-[124px]"}`}
+      className={`flex w-full items-center gap-4 rounded-[12px] border-[1px] border-solid border-transparent text-sm focus:outline-none ${theme === "light" ? "hover:border-grey-200 hover:bg-grey-100 focus:border-grey-200 focus:bg-grey-100 bg-transparent" : "bg-grey-900 hover:border-grey-700 hover:bg-grey-800 focus:border-grey-700 focus:bg-grey-800"} ${layout === "list" ? "flex-row p-3" : "mx-auto h-[104px] flex-col justify-center p-1 lg:h-[124px]"}`}
     >
       <img
         className="h-[24px] w-[24px]"

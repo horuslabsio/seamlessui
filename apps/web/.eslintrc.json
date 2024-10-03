@@ -1,0 +1,3 @@
+{
+  "extends": ["@seamlessui/eslint-config/base.json"]
+}
