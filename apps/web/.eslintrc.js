@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["@seamlessui/eslint-config/next.js"],
+  extends: ["@seamlessui/eslint-config/base.ts"],
 };

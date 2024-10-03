@@ -1,5 +1,5 @@
 {
-  "extends": "@seamlessui/typescript-config/nextjs.json",
+  "extends": "@seamlessui/typescript-config/base.json",
   "compilerOptions": {
     "plugins": [{ "name": "next" }]
   },
