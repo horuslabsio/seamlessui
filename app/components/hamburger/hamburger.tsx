@@ -52,11 +52,15 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
       </div>
 
       {isOpen && (
-        <div className="absolute left-0 top-0 z-10 w-full rounded-xl border-[3px] border-[#eaeaea] bg-[#f0f0f0] px-4 py-2 text-black shadow-lg">
+        <div
+          className={`absolute left-0 top-0 z-10 w-full rounded-xl border-[3px] ${theme === "dark" ? "border-grey-800 bg-base-dark text-white" : "border-[#eaeaea] bg-[#f0f0f0] text-black"} px-4 py-2 shadow-lg`}
+        >
           <div
             className={`flex h-[50px] w-full cursor-pointer items-center justify-between px-4 ${
-              theme === "dark" ? "" : ""
-            } border-b-[3px] border-grey-300 text-black md:font-[700]`}
+              theme === "dark"
+                ? "border-gray-500 text-white"
+                : "border-grey-300 text-black"
+            } border-b-[3px] md:font-[700]`}
             onClick={() => setIsOpen(!isOpen)}
           >
             <span>{selected}</span>
@@ -68,12 +72,21 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
             <div
               key={option.name}
               className={`mt-2 flex cursor-pointer items-center gap-2 rounded-md p-2 ${
-                selected === option.name ? "bg-white" : "hover:bg-gray-300"
-              }`}
+                selected === option.name
+                  ? theme === "dark"
+                    ? "bg-black text-white"
+                    : "bg-white text-black"
+                  : theme === "dark"
+                    ? "text-white hover:bg-grey-800"
+                    : "text-black hover:bg-grey-300"
+              } `}
               onClick={() => handleSelect(option)}
             >
               {selected === option.name && (
-                <Check size={20} className="text-grey-800" />
+                <Check
+                  size={20}
+                  className={`${theme === "dark" ? "text-grey-300" : "text-grey-800"}`}
+                />
               )}
               {option.name}
             </div>
