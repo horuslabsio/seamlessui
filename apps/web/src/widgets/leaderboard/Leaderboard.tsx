@@ -1,6 +1,6 @@
-import FirstRankIcon from "@/public/icons/first-rank";
-import SecondRankIcon from "@/public/icons/second-rank";
-import ThirdRankIcon from "@/public/icons/third-rank";
+import FirstRankIcon from "../../../public/first-rank";
+import SecondRankIcon from "../../../public/second-rank";
+import ThirdRankIcon from "../../../public/third-rank";
 
 const Leaderboard = ({ theme = "light" }) => {
   const leaderboardData = [

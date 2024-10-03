@@ -1,4 +1,12 @@
-let ThirdRankIcon = ({ height, width, fill = "none" }) => {
+const ThirdRankIcon = ({
+  height,
+  width,
+  fill = "none",
+}: {
+  height: number;
+  width: number;
+  fill?: string;
+}) => {
   return (
     <svg
       width={width}
