@@ -1,12 +1,6 @@
 import { Highlight } from "@/app/utilities/Highlight";
 import Iframe from "@/app/utilities/Iframe";
-import {
-  ReactElement,
-  ReactNode,
-  cloneElement,
-  isValidElement,
-  useState,
-} from "react";
+import { ReactElement, cloneElement, isValidElement, useState } from "react";
 import { Variant, VariantsProps } from "@/types";
 import Dropdown from "./Dropdown";
 import { BulbIcon, CodeIcon, CopyIcon, EyeIcon } from "@/public/icons";
