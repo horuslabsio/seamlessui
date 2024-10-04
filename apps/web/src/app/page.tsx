@@ -21,11 +21,11 @@ export default function Page(): JSX.Element {
   };
   return (
     <main>
-      <Highlight code={`<Connect layout="list" theme="light" />`} />
-      <Connect layout="list" theme="light" />
-      <Leaderboard theme="dark" />
-      <NFTCard layout="grid" theme="dark" nft={nftData} />
-      <Swap theme="dark" />
+      {/* <Highlight code={`<Connect layout="list" theme="light" />`} /> */}
+      {/* <Connect layout="list" theme="light" /> */}
+      {/* <Leaderboard theme="dark" /> */}
+      {/* <NFTCard layout="grid" theme="dark" nft={nftData} /> */}
+      {/* <Swap theme="dark" /> */}
     </main>
   );
 }
