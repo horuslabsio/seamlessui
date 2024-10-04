@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import StarknetProvider from "./StarknetProvider";
-// import Connect from "./components/connect/Connect";
-import Settings from "./components/settings/Settings";
+import StarknetProvider from "./providers/StarknetProvider";
 import { i18n, type Locale } from "@/i18n-config";
+import Header from "@/app/ui/Header";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale.symbol }));
@@ -25,8 +24,7 @@ export default function RootLayout({
     <html lang={params.lang}>
       <StarknetProvider>
         <body className={`p-8 antialiased`}>
-          {/* <Connect layout="grid" theme="dark" /> */}
-          <Settings />
+          <Header />
           {children}
         </body>
       </StarknetProvider>
