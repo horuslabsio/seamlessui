@@ -8,10 +8,11 @@ import {
 } from "@starknet-react/core";
 import Erc20Abi from "../../public/abi/erc20.json";
 import Close from "../../public/svg/Close";
-import { useState } from "react";
 import { formatCurrency } from "../utils/helpers";
 import { ETH_SEPOLIA, STRK_SEPOLIA } from "../utils/constant";
 import CopyButton from "./CopyButton";
+import EthLogo from "@/public/svg/EthLogo";
+import StrkLogo from "@/public/svg/StrkLogo";
 
 function AccountBalance({
   theme,
@@ -59,7 +60,7 @@ function AccountBalance({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 md:gap-4">
             <div className="h-7 w-7 rounded-full md:h-8 md:w-8">
-              <img className="w-full" src="/assets/eth.svg" alt="" />
+              <EthLogo />
             </div>
             <div>
               <p className="text-sm md:text-base">ETH</p>
@@ -74,7 +75,7 @@ function AccountBalance({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 md:gap-4">
             <div className="h-7 w-7 rounded-full md:h-8 md:w-8">
-              <img className="w-full" src="/assets/strk.svg" alt="" />
+              <StrkLogo />
             </div>
             <div>
               <p className="text-sm md:text-base">STRK</p>
@@ -102,7 +103,6 @@ const UserModal = ({
 }) => {
   const { address } = useAccount();
   const { disconnect } = useDisconnect();
-  const [imageError, setImageError] = useState(false);
   const { data: starkProfile } = useStarkProfile({
     address,
   });
@@ -126,15 +126,15 @@ const UserModal = ({
           <div
             className={`mx-auto mb-2 h-16 w-16 overflow-clip rounded-full border-[1.3px] md:mb-4 ${theme === "light" ? "border-[#DADADA]" : "border-[#494949]"} md:h-24 md:w-24`}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={
                 starkProfile
-                  ? starkProfile?.profilePicture
+                  ? starkProfile.profilePicture
                   : "/assets/default_pfp.png"
               }
               className="w-full rounded-full"
               alt="starknet profile"
-              onError={() => setImageError(true)}
             />
           </div>
           <CopyButton
@@ -176,7 +176,6 @@ const AddressBar = ({
   const { data: starkProfile } = useStarkProfile({
     address,
   });
-  const [imageError, setImageError] = useState(false);
   if (!address) {
     return null;
   }
@@ -201,19 +200,17 @@ const AddressBar = ({
       <button
         aria-haspopup="dialog"
         onClick={() => togglePopover({ targetId: "user-popover" })}
-        className={`flex items-center gap-x-1 rounded-full border-[1px] md:gap-x-2 ${theme === "light" ? "border-[#DADADA] bg-[#F5F5F5] text-[#141925]" : "border-[#494949] bg-[#3A3A3A] text-[#FAFAFA]"} px-[10px] py-2 text-[13px] font-bold leading-4 md:px-5 md:py-2 md:text-xl md:leading-[34px]`}
+        className={`flex items-center gap-x-1 rounded-full border-[1px] ${theme === "light" ? "border-[#DADADA] bg-[#F5F5F5] text-[#141925]" : "border-[#494949] bg-[#3A3A3A] text-[#FAFAFA]"} px-[10px] py-2 text-[13px] font-bold leading-4 md:px-5 md:py-2 md:text-xl md:leading-[34px]`}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={
-            !imageError && starkProfile?.profilePicture
+            starkProfile
               ? starkProfile.profilePicture
               : "/assets/default_pfp.png"
           }
           className="h-6 w-6 rounded-full md:h-8 md:w-8"
           alt="starknet profile"
-          onError={() => {
-            setImageError(true);
-          }}
         />
         <span className="">
           {starkProfile?.name
