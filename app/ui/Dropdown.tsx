@@ -11,7 +11,6 @@ type Props = {
   name: string;
   options: Option[];
   selectedOption: string;
-  //   onSelect: (option: Option) => void;
 };
 
 const Dropdown = ({ name, options, selectedOption }: Props) => {
@@ -32,7 +31,9 @@ const Dropdown = ({ name, options, selectedOption }: Props) => {
             <button
               className="flex w-full items-center gap-2 rounded-[8px] border border-transparent p-1 text-start hover:border-grey-200 hover:bg-grey-100 focus:border-grey-200 focus:bg-grey-100"
               onClick={() => {
-                option.optFunc && option.optFunc();
+                if (option.optFunc) {
+                  option.optFunc();
+                }
               }}
             >
               <span
