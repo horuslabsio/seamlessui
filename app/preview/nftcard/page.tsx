@@ -1,5 +1,5 @@
-import NFTCard from "@/app/components/nftCard/NftCard";
 import NftImg from "@/app/preview/nftcard/nft.svg";
+import NFTCard from "@/app/widgets/nftCard/NftCard";
 interface NFTData {
   name: string;
   collection: string;

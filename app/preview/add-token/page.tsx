@@ -1,6 +1,6 @@
 "use client";
 
-import AddToken from "@/app/components/add-token/AddToken";
+import AddToken from "@/app/widgets/add-token/AddToken";
 
 const page = () => {
   return (

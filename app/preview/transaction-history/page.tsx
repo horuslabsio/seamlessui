@@ -1,4 +1,4 @@
-import Transaction from "@/app/components/transaction-history/transaction-history";
+import TransactionList from "@/app/widgets/transaction-history/transaction-history";
 
 const page = () => {
   return (
@@ -8,10 +8,10 @@ const page = () => {
       </h1>
       <div className="mt-10 flex flex-row items-start gap-[20%]">
         <div className="relative w-1/3">
-          <Transaction theme="light" />
+          <TransactionList theme="light" />
         </div>
         <div className="relative w-1/3">
-          <Transaction theme="dark" />
+          <TransactionList theme="dark" />
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
-// pages/leaderboard/page.tsx
-import Leaderboard from "../../components/leaderboard/Leaderboard";
+import Leaderboard from "@/app/widgets/leaderboard/Leaderboard";
 
 const page = () => {
   return (

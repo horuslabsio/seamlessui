@@ -1,4 +1,4 @@
-import Swap from "@/app/components/swap/swap";
+import Swap from "@/app/widgets/swap/swap";
 
 const page = () => {
   return (
