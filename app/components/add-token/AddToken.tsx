@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { useConnect } from "@starknet-react/core";
-import Close from "../../../public/svg/Close";
+import { X } from "lucide-react";
 const AddTokenModal = ({ theme }: { theme: string }) => {
   const addTokenPopover = useRef<HTMLDivElement>(null);
   const { connector } = useConnect();
@@ -46,21 +46,22 @@ const AddTokenModal = ({ theme }: { theme: string }) => {
   return (
     <div
       popover="auto"
-      id="add-token-popover"
+      id="add-token-modal"
       ref={addTokenPopover}
-      className="bg-transparent"
+      className="bg-transparent py-6"
     >
       <div
-        className={`relative h-[90vh] max-h-[320px] w-[90vw] max-w-[400px] overflow-auto rounded-[12px] p-8 text-xs font-bold lg:max-h-[570px] lg:w-[70vw] lg:max-w-[46rem] lg:rounded-[24px] lg:text-base ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
+        className={`relative h-fit w-[90vw] max-w-[400px] overflow-auto rounded-[12px] p-8 text-xs font-bold lg:w-[70vw] lg:max-w-[46rem] lg:rounded-[24px] lg:text-base ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
       >
         <div className="mb-8 flex justify-between">
           <h3 className="text-base font-bold lg:text-2xl">Add Token</h3>
 
           <button
             // @ts-ignore
-            popovertarget="add-token-popover"
+            popovertarget="add-token-modal"
+            popovertargetaction="hide"
           >
-            <Close />
+            <X />
           </button>
         </div>
 
@@ -113,11 +114,12 @@ const AddTokenModal = ({ theme }: { theme: string }) => {
           </div>
 
           <button
-            className={`w-full rounded-[12px] p-[7px] text-xs leading-[18px] lg:p-3 lg:text-xl lg:leading-[30px] ${theme === "light" ? "bg-blue-700 text-base-light" : "bg-grey-50 text-base-dark"} disabled:cursor-not-allowed md:p-4`}
+            className={`w-full rounded-[12px] p-[7px] text-xs leading-[18px] disabled:cursor-not-allowed disabled:bg-opacity-80 lg:p-3 lg:text-xl lg:leading-[30px] ${theme === "light" ? "bg-blue-700 text-base-light" : "bg-grey-50 text-base-dark"} md:p-4`}
             onClick={async (e) => {
               e.preventDefault();
               handleAddToken();
             }}
+            disabled={!tokenAddress}
           >
             Add Token
           </button>
@@ -134,7 +136,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
         <button
           aria-haspopup="dialog"
           // @ts-ignore
-          popovertarget="add-token-popover"
+          popovertarget="add-token-modal"
           className={`min-w-[8rem] rounded-[8px] ${theme === "light" ? "bg-blue-700 text-base-light" : "bg-grey-50 text-base-dark"} px-4 py-2`}
         >
           Add Token
