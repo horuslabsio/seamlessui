@@ -1,4 +1,4 @@
-# Welcome to SeamlessUI Contributing Guide
+# Welcome to the SeamlessUI Contributing Guide
 
 Thank you for taking the time to contribute to SeamlessUI! This guide provides an overview of our contribution workflow, ensuring an effective process for all contributors.
 
@@ -10,7 +10,7 @@ For an overview of the project, please refer to the [README](README.md).
 
 ### Vision
 
-Our goal is to simplify building accessible, functional, and beautiful components in the web3 space. SeamlessUI ensures you don't have to repeatedly build common components, allowing for faster and more efficient dApp development.
+We aim to simplify building accessible, functional, and beautiful components in the web3 space. SeamlessUI ensures you don't have to repeatedly build common components, allowing for faster and more efficient dApp development.
 
 ### Project Status
 
@@ -32,7 +32,7 @@ Contributions are made via Issues and Pull Requests (PRs). Here are some general
 
 - Contributions should address either functionality or style, but not both in the same PR.
 
-- If reporting an error, provide detailed context: what you were trying to do and steps to reproduce the error.
+- If reporting an error, provide detailed context, such as what you were trying to do and steps to reproduce the error.
 
 - Follow the formatting specified in the [style-guide.md](style-guide.md).
 
@@ -78,7 +78,7 @@ Here are some tips for a successful PR:
 
 - Ensure the title accurately reflects the changes made.
 
-- Organize the description clearly. Use bullet points and screenshots where appropriate.
+- Organize the description. Use bullet points and screenshots where appropriate.
 
 - Link to the relevant issue, if applicable.
 
