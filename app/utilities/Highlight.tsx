@@ -18,7 +18,7 @@ export function Highlight({ code }: { code: string }) {
   }, [code]); // Run effect when code changes
 
   return (
-    <div className="overflow-auto bg-[#051626] p-8 text-[.85em] leading-4">
+    <div className="h-full overflow-auto rounded-[8px] bg-[#051626] p-8 text-[.85em] leading-4">
       {html ? <div dangerouslySetInnerHTML={{ __html: html }} /> : null}
     </div>
   );

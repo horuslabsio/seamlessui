@@ -14,6 +14,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.9",
     "@starknet-react/chains": "^3.0.0",
     "@starknet-react/core": "^3.0.0",
     "husky": "^9.1.6",

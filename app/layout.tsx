@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang={params.lang}>
       <StarknetProvider>
-        <body className={`p-8 antialiased`}>
+        <body className={`antialiased`}>
           <Header />
           {children}
         </body>

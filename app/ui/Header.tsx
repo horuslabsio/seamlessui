@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between px-[4.5rem] py-[2rem]">
+    <header className="flex items-center justify-between px-[2rem] py-[1.5rem]">
       <div className="flex basis-[45%] items-center">
         <Image src={"/logo.png"} alt="logo" width={56} height={56} />
         <h2>Starknet UI Kit</h2>

@@ -12,15 +12,14 @@ export default function Connect({
   theme: "dark" | "light";
   layout: "list" | "grid";
 }) {
-  const connectPopover = useRef<HTMLDivElement>(null);
+  const connectPopover = useRef<HTMLDialogElement>(null);
   const { connect, connectors, status: connectStatus } = useConnect();
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
 
   useEffect(() => {
     if (connectStatus === "error" || connectStatus === "success") {
-      // @ts-expect-error: Expecting an error because React doesn't recognize the popover API.
-      connectPopover.current.hidePopover();
+      connectPopover.current?.close();
     }
   }, [connectStatus]);
 
@@ -33,29 +32,26 @@ export default function Connect({
 
   return (
     <>
-      <div className="grid w-full place-content-center">
+      <div className="grid h-full w-full place-content-center">
         <button
           onClick={() => {
             if (address) {
               disconnect();
             } else {
-              // @ts-expect-error : Expecting an error because React doesn't recognize the popover API.
-              connectPopover.current.showPopover();
+              connectPopover.current?.showModal();
             }
           }}
           aria-haspopup="menu"
-          className="min-w-[8rem] rounded-[8px] bg-blue-700 px-4 py-2"
+          className="min-w-[8rem] rounded-[8px] bg-blue-700 px-4 py-2 text-white"
         >
           {address ? shortenAddress(address) : "connect"}
         </button>
       </div>
 
-      <div
-        //@ts-ignore
-        popover="auto"
+      <dialog
         id="connect-modal"
         ref={connectPopover}
-        className="bg-transparent"
+        className="mx-auto my-auto bg-transparent"
       >
         <div
           className={`relative max-h-[390px] w-[90vw] max-w-[25rem] rounded-[24px] p-8 text-base lg:max-h-[480px] ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
@@ -66,8 +62,9 @@ export default function Connect({
             <h3 className="text-xl font-bold lg:text-2xl">Connect</h3>
 
             <button
-              // @ts-expect-error: Expecting an error because React doesn't recognize the popover API.
-              popovertarget="connect-modal"
+              onClick={() => {
+                connectPopover.current?.close();
+              }}
               className={`w-fit rounded-full p-1 ${theme === "light" ? "" : "bg-grey-800"}`}
             >
               <X />
@@ -95,7 +92,7 @@ export default function Connect({
             </div>
           </div>
         </div>
-      </div>
+      </dialog>
     </>
   );
 }
