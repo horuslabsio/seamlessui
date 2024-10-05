@@ -1,13 +1,13 @@
 import { Highlight } from "@/app/utilities/Highlight";
 import Iframe from "@/app/utilities/Iframe";
 import { ReactElement, cloneElement, isValidElement, useState } from "react";
-import { Variant, VariantsProps } from "@/types";
+import { ThemeProps, Variant, VariantsProps } from "@/types";
 import Dropdown from "./Dropdown";
 import { BulbIcon, CodeIcon, CopyIcon, EyeIcon } from "@/public/icons/icons";
 
 interface ChildProps {
   layout: Variant;
-  theme: "light" | "dark";
+  theme: ThemeProps;
 }
 
 type Props = {
@@ -16,6 +16,8 @@ type Props = {
   children: ReactElement<ChildProps>;
   codeString: string;
   variants: VariantsProps;
+  themeVariants?: boolean;
+  layoutVariants?: boolean;
 };
 
 const Preview = ({
@@ -24,9 +26,11 @@ const Preview = ({
   description,
   name,
   variants,
+  themeVariants = true,
+  layoutVariants = true,
 }: Props) => {
   const [activeTab, setActiveTab] = useState<0 | 1>(0);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<ThemeProps>("light");
   const [variant, setVariant] = useState<Variant>(variants[0]);
 
   const options = variants.map((opt) => ({
@@ -36,37 +40,53 @@ const Preview = ({
   }));
 
   const modifiedChildren = isValidElement(children)
-    ? cloneElement(children as React.ReactElement, { layout: variant, theme }) // Casting children as ReactElement
+    ? (() => {
+        const hasLayout = "layout" in children.props;
+        const hasTheme = "theme" in children.props;
+
+        if (hasLayout && hasTheme) {
+          return cloneElement(children, { layout: variant, theme });
+        } else if (hasLayout) {
+          return cloneElement(children, { layout: variant });
+        } else if (hasTheme) {
+          return cloneElement(children, { theme });
+        } else {
+          return children;
+        }
+      })()
     : children;
 
   return (
     <div>
-      <div className="mb-20">
-        <h2 className="mb-8">{name}</h2>
+      <div className="mb-20 max-w-[900px]">
+        <h2 className="mb-8 text-3xl font-bold capitalize">{name}</h2>
         <p>{description}</p>
       </div>
 
-      <div className="flex h-screen flex-col py-4">
+      <div className="flex h-screen max-h-[900px] flex-col py-4">
         <div className="mb-8 flex items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            <p className="mr-4">{name}</p>
+            <p className="mr-4 font-bold capitalize">{`${name} ${layoutVariants ? `- ${variant}` : ""}`}</p>
 
-            <div className="relative z-50">
-              <Dropdown
-                name={`${variant} variant`}
-                selectedOption={variant}
-                options={options}
-              />
-            </div>
-
-            <button
-              onClick={() => {
-                setTheme((prev) => (prev === "light" ? "dark" : "light"));
-              }}
-              className={`grid h-8 w-8 rotate-180 place-content-center rounded-full border border-black ${theme === "light" ? "bg-black text-white" : "text-black"} text-[1.2em]`}
-            >
-              <BulbIcon />
-            </button>
+            {layoutVariants && (
+              <div className="relative z-50">
+                <Dropdown
+                  name={`${variant} variant`}
+                  selectedOption={variant}
+                  options={options}
+                />
+              </div>
+            )}
+            {themeVariants && (
+              <button
+                onClick={() => {
+                  setTheme((prev) => (prev === "light" ? "dark" : "light"));
+                }}
+                className={`grid h-8 w-8 rotate-180 place-content-center rounded-full border border-black ${theme === "light" ? "bg-black text-white" : "text-black"} text-[1.2em]`}
+              >
+                <BulbIcon />
+              </button>
+            )}
           </div>
 
           <div className="flex items-center gap-4">

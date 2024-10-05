@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang={params.lang}>
       <StarknetProvider>
-        <body className={`antialiased ${myFont.className}`}>
+        <body className={`text-base antialiased ${myFont.className}`}>
           <Header />
           {children}
         </body>

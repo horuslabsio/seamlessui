@@ -1,5 +1,33 @@
 import type { Config } from "tailwindcss";
 import tailwindConfig from "./tooling/tailwind.json";
 
-const config: Config = tailwindConfig;
+const config: Config = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  presets: [tailwindConfig],
+  plugins: [
+    function ({ addUtilities }: { addUtilities: any }) {
+      addUtilities({
+        ".seamlessui-container": {
+          width: "100%",
+          "@screen sm": {
+            maxWidth: "640px",
+          },
+          "@screen md": {
+            maxWidth: "768px",
+          },
+          "@screen lg": {
+            maxWidth: "1280px",
+          },
+          "@screen xl": {
+            maxWidth: "1536px",
+          },
+        },
+      });
+    },
+  ],
+};
 export default config;
