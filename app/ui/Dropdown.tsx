@@ -1,4 +1,4 @@
-import { CheckIcon, DownChevronIcon } from "@/public/icons";
+import { CheckIcon, DownChevronIcon } from "@/public/icons/icons";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 type Option = {

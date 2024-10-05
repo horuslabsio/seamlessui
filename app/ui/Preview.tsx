@@ -3,7 +3,7 @@ import Iframe from "@/app/utilities/Iframe";
 import { ReactElement, cloneElement, isValidElement, useState } from "react";
 import { Variant, VariantsProps } from "@/types";
 import Dropdown from "./Dropdown";
-import { BulbIcon, CodeIcon, CopyIcon, EyeIcon } from "@/public/icons";
+import { BulbIcon, CodeIcon, CopyIcon, EyeIcon } from "@/public/icons/icons";
 
 interface ChildProps {
   layout: Variant;
