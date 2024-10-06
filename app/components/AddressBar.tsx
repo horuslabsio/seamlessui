@@ -7,12 +7,12 @@ import {
   Address,
 } from "@starknet-react/core";
 import Erc20Abi from "../../public/abi/erc20.json";
-import Close from "../../public/svg/Close";
 import { formatCurrency } from "../utils/helpers";
 import { ETH_SEPOLIA, STRK_SEPOLIA } from "../utils/constant";
 import CopyButton from "./CopyButton";
 import EthLogo from "@/public/svg/EthLogo";
 import StrkLogo from "@/public/svg/StrkLogo";
+import { X } from "lucide-react";
 
 function AccountBalance({
   theme,
@@ -118,7 +118,7 @@ const UserModal = ({
             // @ts-ignore
             popovertarget="user-popover"
           >
-            <Close />
+            <X />
           </button>
         </div>
 
@@ -200,7 +200,7 @@ const AddressBar = ({
       <button
         aria-haspopup="dialog"
         onClick={() => togglePopover({ targetId: "user-popover" })}
-        className={`flex items-center gap-x-1 rounded-full border-[1px] ${theme === "light" ? "border-[#DADADA] bg-[#F5F5F5] text-[#141925]" : "border-[#494949] bg-[#3A3A3A] text-[#FAFAFA]"} px-[10px] py-2 text-[13px] font-bold leading-4 md:px-5 md:py-2 md:text-xl md:leading-[34px]`}
+        className={`flex items-center gap-x-2 rounded-full border-[1px] ${theme === "light" ? "border-[#DADADA] bg-[#F5F5F5] text-[#141925]" : "border-[#494949] bg-[#3A3A3A] text-[#FAFAFA]"} px-[10px] py-2 text-[13px] font-bold leading-4 md:px-5 md:py-2 md:text-xl md:leading-[34px]`}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
