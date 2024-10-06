@@ -15,10 +15,10 @@ export function Highlight({ code }: { code: string }) {
     };
 
     convertCodeToHtml();
-  }, [code]); // Run effect when code changes
+  }, [code]);
 
   return (
-    <div className="h-full overflow-auto rounded-[8px] bg-[#051626] p-8 text-[.85em] leading-4">
+    <div className="h-full min-h-[900px] overflow-auto rounded-[8px] bg-[#051626] p-8 text-[.85em] leading-4">
       {html ? <div dangerouslySetInnerHTML={{ __html: html }} /> : null}
     </div>
   );

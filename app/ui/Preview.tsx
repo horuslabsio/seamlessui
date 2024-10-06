@@ -1,12 +1,19 @@
 import { Highlight } from "@/app/utilities/Highlight";
 import Iframe from "@/app/utilities/Iframe";
-import { ReactElement, cloneElement, isValidElement, useState } from "react";
-import { ThemeProps, Variant, VariantsProps } from "@/types";
+import {
+  ReactElement,
+  cloneElement,
+  isValidElement,
+  useRef,
+  useState,
+} from "react";
+import { ThemeProps, VariantsProps } from "@/types";
 import Dropdown from "./Dropdown";
 import { BulbIcon, CodeIcon, CopyIcon, EyeIcon } from "@/public/icons/icons";
+import { useDimension } from "@/hooks/useDimension";
 
 interface ChildProps {
-  layout: Variant;
+  layout: VariantsProps;
   theme: ThemeProps;
 }
 
@@ -14,14 +21,14 @@ type Props = {
   name: string;
   description: string;
   children: ReactElement<ChildProps>;
-  codeString: string;
-  variants: VariantsProps;
+  codeStringGenerator: (theme: ThemeProps, variant: VariantsProps) => string;
+  variants: VariantsProps[];
   themeVariants?: boolean;
   layoutVariants?: boolean;
 };
 
 const Preview = ({
-  codeString,
+  codeStringGenerator,
   children,
   description,
   name,
@@ -31,7 +38,9 @@ const Preview = ({
 }: Props) => {
   const [activeTab, setActiveTab] = useState<0 | 1>(0);
   const [theme, setTheme] = useState<ThemeProps>("light");
-  const [variant, setVariant] = useState<Variant>(variants[0]);
+  const [variant, setVariant] = useState<VariantsProps>(variants[0]);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const dimensions = useDimension({ refElement: headerRef });
 
   const options = variants.map((opt) => ({
     optName: opt,
@@ -56,6 +65,8 @@ const Preview = ({
       })()
     : children;
 
+  const finalCodeString = codeStringGenerator(theme, variant);
+
   return (
     <div>
       <div className="mb-20 max-w-[900px]">
@@ -63,8 +74,11 @@ const Preview = ({
         <p>{description}</p>
       </div>
 
-      <div className="flex h-screen max-h-[900px] flex-col py-4">
-        <div className="mb-8 flex items-center justify-between px-4">
+      <div className="flex min-h-screen flex-col py-4">
+        <div
+          ref={headerRef}
+          className="mb-8 flex items-center justify-between px-4"
+        >
           <div className="flex items-center gap-2">
             <p className="mr-4 font-bold capitalize">{`${name} ${layoutVariants ? `- ${variant}` : ""}`}</p>
 
@@ -112,13 +126,18 @@ const Preview = ({
             </button>
           </div>
         </div>
-        <div className="flex-1">
+        <div>
           {activeTab === 0 ? (
-            <div className="relative grid h-full rounded-[8px] bg-[#e4e4e4]">
+            <div
+              style={{
+                height: `calc(100vh - ${dimensions.height}px)`,
+              }}
+              className="relative grid h-full max-h-[900px] rounded-[8px] bg-[#e4e4e4]"
+            >
               <Iframe>{modifiedChildren}</Iframe>
             </div>
           ) : (
-            <Highlight code={codeString} />
+            <Highlight code={finalCodeString} />
           )}
         </div>
       </div>
