@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import StarknetProvider from "./StarknetProvider";
-import Connect from "./components/connect/Connect";
+// import Connect from "./components/connect/Connect";
+import Settings from "./components/settings/Settings";
+import { i18n, type Locale } from "@/i18n-config";
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale.symbol }));
+}
 
 export const metadata: Metadata = {
   title: "SeamlessUI",
@@ -10,14 +16,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { lang: Locale };
 }>) {
   return (
-    <html lang="en">
+    <html lang={params.lang}>
       <StarknetProvider>
         <body className={`p-8 antialiased`}>
-          <Connect layout="grid" theme="light" />
+          {/* <Connect layout="grid" theme="dark" /> */}
+          <Settings />
           {children}
         </body>
       </StarknetProvider>
