@@ -11,6 +11,7 @@ import { ThemeProps, VariantsProps } from "@/types";
 import Dropdown from "./Dropdown";
 import { BulbIcon, CodeIcon, CopyIcon, EyeIcon } from "@/public/icons/icons";
 import { useDimension } from "@/hooks/useDimension";
+import CopyButton from "../utilities/CopyButton";
 
 interface ChildProps {
   layout: VariantsProps;
@@ -121,9 +122,7 @@ const Preview = ({
             </div>
 
             <p>React</p>
-            <button>
-              <CopyIcon />
-            </button>
+            <CopyButton copyText={finalCodeString} />
           </div>
         </div>
         <div>
