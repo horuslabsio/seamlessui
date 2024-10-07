@@ -23,8 +23,8 @@ const Components = () => {
           variants={["list", "grid"]}
           codeStringGenerator={connectCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
-          themeVariants={false}
           layoutVariants={false}
+          themeVariants={false}
         >
           <Settings />
         </Preview>
@@ -35,6 +35,7 @@ const Components = () => {
           codeStringGenerator={connectCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           layoutVariants={false}
+          themeVariants={true}
         >
           <Leaderboard theme="dark" />
         </Preview>
