@@ -5,6 +5,8 @@ import Connect from "@/app/widgets/connect/Connect";
 import Settings from "@/app/widgets/settings/Settings";
 import Leaderboard from "../widgets/leaderboard/Leaderboard";
 import { connCodeGen } from "../widgets/connect/code";
+import { settingsCodeGen } from "../widgets/settings/code";
+import { leaderboardCodeGen } from "../widgets/leaderboard/code";
 
 const Components = () => {
   return (
@@ -20,21 +22,22 @@ const Components = () => {
         </Preview>
         <Preview
           name="Settings"
-          variants={["list", "grid"]}
-          codeStringGenerator={connCodeGen}
+          variants={[]}
+          codeStringGenerator={settingsCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
-          themeVariants={false}
           layoutVariants={false}
+          themeVariants={false}
         >
           <Settings />
         </Preview>
 
         <Preview
           name="Leader board"
-          variants={["list", "grid"]}
-          codeStringGenerator={connCodeGen}
+          variants={[]}
+          codeStringGenerator={leaderboardCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           layoutVariants={false}
+          themeVariants={true}
         >
           <Leaderboard theme="dark" />
         </Preview>
