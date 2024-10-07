@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: helvetica-extrabold;
+  src: url("../public/font/HelveticaNowDisplay-ExtraBold.woff2");
+}
+@font-face {
+  font-family: helvetica-bold;
+  src: url("../public/font/HelveticaNowDisplay-Bold.woff2");
+}
+
+@font-face {
+  font-family: helvetica-medium;
+  src: url("../public/font/HelveticaNowDisplay-Medium.woff2");
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -16,7 +30,18 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "helvetica-medium", Helvetica, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "helvetica-extrabold", Helvetica, sans-serif;
+}
+button {
+  font-family: "helvetica-bold", Helvetica, sans-serif;
 }
 
 @layer utilities {

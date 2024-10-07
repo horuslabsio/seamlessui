@@ -37,13 +37,13 @@ export default function Settings() {
 
   const filledStyle =
     theme === "dark"
-      ? "bg-grey-50 border-grey-50 text-base-dark"
-      : "bg-base-dark border-base-dark text-grey-50";
+      ? "bg-[#fafafa] border-[#fafafa] text-[#1A1A1A]"
+      : "bg-[#1A1A1A] border-[#1A1A1A] text-[#fafafa]";
 
   const outlinedStyle =
     theme === "dark"
-      ? "border-grey-50 text-grey-50"
-      : "border-base-dark text-base-dark";
+      ? "border-[#fafafa] text-[#fafafa]"
+      : "border-[#1A1A1A] text-[#1A1A1A]";
 
   return (
     <>
@@ -51,7 +51,7 @@ export default function Settings() {
         <button
           onClick={() => settingsPopover.current?.showModal()}
           aria-haspopup="menu"
-          className="min-w-[8rem] rounded-[8px] bg-blue-700 px-4 py-2 text-white"
+          className="min-w-[8rem] rounded-[8px] bg-[#141925] px-4 py-2 text-white"
         >
           {t("settings")}
         </button>
@@ -59,7 +59,9 @@ export default function Settings() {
 
       <dialog ref={settingsPopover} className="mx-auto my-auto bg-transparent">
         <div
-          className={\`relative max-h-[390px] w-[90vw] max-w-[28rem] rounded-[24px] p-8 text-base lg:max-h-[480px] \${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}\`}
+          style={{
+                background: theme === "light" ? "linear-gradient(168.54deg, #FF9034 -46.81%, #FFFFFF 31.09%, #FFFFFF 77.47%)" : "linear-gradient(169.58deg, #E1852D -79.18%, #212121 19.19%, #1A1A1A 56.31%)"}}
+          className={\`relative max-h-[390px] w-[90vw] max-w-[28rem] rounded-[24px] p-8 text-base lg:max-h-[480px] \${theme === "light" ? "bg-white text-[#141925]" : "bg-[#1A1A1A] text-[#fafafa]"}\`}
         >
           <div className="relative flex w-full flex-col gap-[18px] md:gap-8">
             <div className="mb-4 flex items-center justify-between">
@@ -69,7 +71,7 @@ export default function Settings() {
                 onClick={() => {
                   settingsPopover.current?.close();
                 }}
-                className={\`w-fit rounded-full p-1 \${theme === "light" ? "" : "bg-grey-800"}\`}
+                className={\`w-fit rounded-full p-1 \${theme === "light" ? "" : "bg-[#343434]"}\`}
               >
                 <X />
                 <span className="sr-only">Close menu</span>
@@ -131,7 +133,7 @@ const ExplorerOptions = ({
   setExplorer: Dispatch<SetStateAction<string>>;
 }) => (
   <div
-    className={\`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 \${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}\`}
+    className={\`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 \${theme === "light" ? "border-[#DADADA] bg-[#F5F5F5]" : "border-[#494949] bg-[#3A3A3A]"}\`}
   >
     <p>Explorer</p>
     <div className="relative flex gap-2">
@@ -161,15 +163,15 @@ const DarkModeToggle = ({
   theme: string;
 }) => (
   <div
-    className={\`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 \${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}\`}
+    className={\`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 \${theme === "light" ? "border-[#DADADA] bg-[#F5F5F5]" : "border-[#494949] bg-[#3A3A3A]"}\`}
   >
     <p>Dark Mode</p>
     <div
       onClick={() => setEnabled(!enabled)}
-      className={\`flex h-7 w-12 cursor-pointer items-center rounded-full p-1 transition-colors duration-300 \${enabled ? "bg-grey-50" : "border-[2px] border-black bg-transparent"}\`}
+      className={\`flex h-7 w-12 cursor-pointer items-center rounded-full p-1 transition-colors duration-300 \${enabled ? "bg-[#fafafa]" : "border-[2px] border-black bg-transparent"}\`}
     >
       <div
-        className={\`h-4 w-4 transform rounded-full shadow-md transition-transform duration-300 \${enabled ? "translate-x-6 bg-grey-600" : "translate-x-0 bg-black"}\`}
+        className={\`h-4 w-4 transform rounded-full shadow-md transition-transform duration-300 \${enabled ? "translate-x-6 bg-[#3A3A3A]" : "translate-x-0 bg-black"}\`}
       />
     </div>
   </div>
@@ -191,7 +193,7 @@ const LanguageSelector = ({
   };
   return (
     <div
-      className={\`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 \${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}\`}
+      className={\`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 \${theme === "light" ? "border-[#DADADA] bg-[#F5F5F5]" : "border-[#494949] bg-[#3A3A3A]"}\`}
     >
       <p className="basis-1/2">{t("language")}</p>
       <div className="relative max-w-[8rem] flex-1">
@@ -204,7 +206,7 @@ const LanguageSelector = ({
             id="language"
             name="language"
             value={selectedLocale}
-            className={\`w-full appearance-none rounded-[8px] p-2 focus:outline-none \${theme === "light" ? "bg-grey-300" : "bg-grey-700 text-white"}\`}
+            className={\`w-full appearance-none rounded-[8px] p-2 focus:outline-none \${theme === "light" ? "bg-[#DADADA]" : "bg-[#494949] text-white"}\`}
             onChange={handleChangeLang}
           >
             {i18n.locales.map((locale) => (

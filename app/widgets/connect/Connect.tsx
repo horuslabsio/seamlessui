@@ -42,7 +42,7 @@ export default function Connect({
             }
           }}
           aria-haspopup="menu"
-          className="min-w-[8rem] rounded-[8px] bg-blue-700 px-4 py-2 text-white"
+          className="min-w-[8rem] rounded-[8px] bg-[#141925] px-4 py-2 text-[#fafafa]"
         >
           {address ? shortenAddress(address) : "connect"}
         </button>
@@ -54,7 +54,13 @@ export default function Connect({
         className="mx-auto my-auto bg-transparent"
       >
         <div
-          className={`relative max-h-[390px] w-[90vw] max-w-[25rem] rounded-[24px] p-8 text-base lg:max-h-[480px] ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
+          style={{
+            background:
+              theme === "light"
+                ? "linear-gradient(168.54deg, #FF9034 -46.81%, #FFFFFF 31.09%, #FFFFFF 77.47%)"
+                : "linear-gradient(169.58deg, #E1852D -79.18%, #212121 19.19%, #1A1A1A 56.31%)",
+          }}
+          className={`relative max-h-[390px] w-[90vw] max-w-[25rem] rounded-[24px] p-4 text-base md:p-8 lg:max-h-[480px] ${theme === "light" ? "bg-white text-[#141925]" : "bg-[#1A1A1A] text-[#fafafa]"}`}
         >
           {connectStatus === "pending" && <Loading />}
 
@@ -65,7 +71,7 @@ export default function Connect({
               onClick={() => {
                 connectPopover.current?.close();
               }}
-              className={`w-fit rounded-full p-1 ${theme === "light" ? "" : "bg-grey-800"}`}
+              className={`w-fit rounded-full p-1 ${theme === "light" ? "" : "bg-[#343434]"}`}
             >
               <X />
               <span className="sr-only">Close menu</span>
@@ -134,7 +140,7 @@ function ConnectButton({
   return (
     <button
       onClick={func}
-      className={`flex w-full items-center gap-4 rounded-[12px] border-[1px] border-solid border-transparent text-sm focus:outline-none ${theme === "light" ? "bg-transparent hover:border-grey-200 hover:bg-grey-100 focus:border-grey-200 focus:bg-grey-100" : "bg-grey-900 hover:border-grey-700 hover:bg-grey-800 focus:border-grey-700 focus:bg-grey-800"} ${layout === "list" ? "flex-row p-3" : "mx-auto h-[104px] flex-col justify-center p-1 lg:h-[124px]"}`}
+      className={`flex w-full items-center gap-4 rounded-[12px] border-[1px] border-solid border-transparent text-sm focus:outline-none ${theme === "light" ? "bg-transparent hover:border-[#EEEEEE] hover:bg-[#F7F7F7] focus:border-[#EEEEEE] focus:bg-[#F7F7F7]" : "bg-[#222222] hover:border-[#494949] hover:bg-[#343434] focus:border-[#494949] focus:bg-[#343434]"} ${layout === "list" ? "flex-row p-3" : "mx-auto h-[104px] flex-col justify-center p-1 lg:h-[124px]"}`}
     >
       <img
         className="h-[24px] w-[24px]"

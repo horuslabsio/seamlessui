@@ -2,7 +2,6 @@
 
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import tailwindConfig from "../../tooling/tailwind.json";
 
 const customStyles = `
     dialog {
@@ -43,17 +42,21 @@ const Iframe = ({ children, ...props }: { children: ReactNode }) => {
   useEffect(() => {
     const iframe = iframeRef.current;
     if (iframe) {
+      iframe.style.opacity = "0";
+
       const iframeDoc = iframe.contentDocument;
       if (iframeDoc) {
         // Add Tailwind CSS via the script from CDN
         const script = iframeDoc.createElement("script");
         script.src = "https://cdn.tailwindcss.com";
+
         iframeDoc.head.appendChild(script);
 
         //Configure Tailwind after loading
         script.onload = () => {
           // @ts-ignore
-          iframe.contentWindow.tailwind.config = tailwindConfig;
+          iframe.contentWindow.tailwind.config = {};
+          iframe.style.opacity = "1";
         };
 
         // Create and append the custom styles
