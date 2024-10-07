@@ -1,6 +1,6 @@
 import { ThemeProps, VariantsProps } from "@/types";
 
-export const connCodeGen = (theme: ThemeProps, variant: VariantsProps) => `
+export const connectCodeGen = (theme: ThemeProps, variant: VariantsProps) => `
 "use client";
 
 import { useConnect, useAccount, useDisconnect } from "@starknet-react/core";

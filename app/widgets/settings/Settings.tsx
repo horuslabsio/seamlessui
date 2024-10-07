@@ -100,7 +100,7 @@ export default function Settings() {
                 >
                   <div className="h-auto w-[24px]">
                     <Image
-                      src={`/${platform}.svg`}
+                      src={`/assets/${platform}.svg`}
                       alt={`${platform} icon`}
                       width={100}
                       height={100}

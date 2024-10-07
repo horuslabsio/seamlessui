@@ -3,11 +3,6 @@ import "./globals.css";
 import StarknetProvider from "./providers/StarknetProvider";
 import { i18n, type Locale } from "@/i18n-config";
 import Header from "@/app/ui/Header";
-import localFont from "next/font/local";
-
-const myFont = localFont({
-  src: "../public/font/HelveticaNowDisplay-Regular.woff2",
-});
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale.symbol }));
@@ -28,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang={params.lang}>
       <StarknetProvider>
-        <body className={`text-base antialiased ${myFont.className}`}>
+        <body className={`text-base antialiased`}>
           <Header />
           {children}
         </body>
