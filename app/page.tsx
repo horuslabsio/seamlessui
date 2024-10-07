@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Gradient from "@/app/ui/Gradient";
 import HERO_IMG from "@/public/assets/hero-img.svg";
 import { RightArrow } from "@/public/icons/icons";
 import { useRouter } from "next/navigation";
