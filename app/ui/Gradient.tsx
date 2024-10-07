@@ -1,4 +1,5 @@
 "use client";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const Gradient = () => {
@@ -6,6 +7,8 @@ const Gradient = () => {
   const [cols, setCols] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const path = usePathname();
 
   useEffect(() => {
     const updateTableSize = () => {
@@ -33,7 +36,9 @@ const Gradient = () => {
       <div className="absolute inset-0 z-[1] transform-gpu overflow-hidden">
         <div className="absolute left-0 top-0 h-[20%] w-full bg-white mix-blend-difference blur-lg" />
       </div>
-      <div className="absolute inset-0 top-[12%] z-[2] transform-gpu overflow-hidden blur-[28px]">
+      <div
+        className={`absolute inset-0 top-[12%] z-[2] transform-gpu overflow-hidden ${path === "/" ? "blur-[28px]" : "blur-[128px]"}`}
+      >
         <div
           style={{
             background: `radial-gradient(81.6% 120.7% at 52.81% -16.97%, rgba(245, 245, 245, 0.9) 14.17%, rgba(253, 147, 50, 0.92) 39.2%, rgba(245, 245, 245, 1) 79.17%)`,

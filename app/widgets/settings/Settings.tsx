@@ -58,7 +58,7 @@ export default function Settings() {
 
       <dialog ref={settingsPopover} className="mx-auto my-auto bg-transparent">
         <div
-          className={`relative max-h-[390px] w-[90vw] max-w-[28rem] rounded-[24px] p-8 text-base lg:max-h-[480px] ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
+          className={`relative max-h-[390px] w-[90vw] max-w-[28rem] rounded-[24px] p-4 text-base md:p-8 lg:max-h-[480px] ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
         >
           <div className="relative flex w-full flex-col gap-[18px] md:gap-8">
             <div className="mb-4 flex items-center justify-between">
@@ -130,19 +130,19 @@ const ExplorerOptions = ({
   setExplorer: Dispatch<SetStateAction<string>>;
 }) => (
   <div
-    className={`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 ${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}`}
+    className={`flex min-h-[4.5rem] flex-wrap items-center justify-between gap-2 rounded-[8px] border p-2 md:p-4 ${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}`}
   >
     <p>Explorer</p>
     <div className="relative flex gap-2">
       <button
         onClick={() => setExplorer("voyager")}
-        className={`w-fit min-w-24 rounded-[8px] border p-[0.35rem] ${explorer === "voyager" ? filledStyle : outlinedStyle}`}
+        className={`w-[5.5rem] rounded-[8px] border p-[0.35rem] md:min-w-24 ${explorer === "voyager" ? filledStyle : outlinedStyle}`}
       >
         Voyager
       </button>
       <button
         onClick={() => setExplorer("starkscan")}
-        className={`w-fit min-w-24 rounded-[8px] border p-[0.35rem] ${explorer === "starkscan" ? filledStyle : outlinedStyle}`}
+        className={`w-[5.5rem] rounded-[8px] border p-[0.35rem] md:min-w-24 ${explorer === "starkscan" ? filledStyle : outlinedStyle}`}
       >
         Starkscan
       </button>
@@ -160,7 +160,7 @@ const DarkModeToggle = ({
   theme: string;
 }) => (
   <div
-    className={`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 ${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}`}
+    className={`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-2 md:p-4 ${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}`}
   >
     <p>Dark Mode</p>
     <div
@@ -190,7 +190,7 @@ const LanguageSelector = ({
   };
   return (
     <div
-      className={`flex min-h-[4.5rem] items-center justify-between rounded-[8px] border p-4 ${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}`}
+      className={`flex items-center justify-between rounded-[8px] border p-2 md:min-h-[4.5rem] md:p-4 ${theme === "light" ? "border-grey-300 bg-grey-10" : "border-grey-700 bg-grey-600"}`}
     >
       <p className="basis-1/2">{t("language")}</p>
       <div className="relative max-w-[8rem] flex-1">

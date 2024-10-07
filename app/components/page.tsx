@@ -5,11 +5,13 @@ import Connect from "@/app/widgets/connect/Connect";
 import Settings from "@/app/widgets/settings/Settings";
 import Leaderboard from "../widgets/leaderboard/Leaderboard";
 import { connectCodeGen } from "../widgets/connect/code";
+import { settingsCodeGen } from "../widgets/settings/code";
+import { leaderboardCodeGen } from "../widgets/leaderboard/code";
 
 const Components = () => {
   return (
-    <main className="mx-auto px-8 pb-12 seamlessui-container">
-      <section className="flex flex-col gap-20 pt-[12rem]">
+    <main className="mx-auto px-2 pb-12 seamlessui-container lg:px-[clamp(2rem,4vw,4rem)]">
+      <section className="flex flex-col gap-20 pt-[10rem] md:pt-[18rem]">
         <Preview
           name="Connect"
           variants={["list", "grid"]}
@@ -21,7 +23,7 @@ const Components = () => {
         <Preview
           name="Settings"
           variants={["list", "grid"]}
-          codeStringGenerator={connectCodeGen}
+          codeStringGenerator={settingsCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           layoutVariants={false}
           themeVariants={false}
@@ -32,7 +34,7 @@ const Components = () => {
         <Preview
           name="Leader board"
           variants={["list", "grid"]}
-          codeStringGenerator={connectCodeGen}
+          codeStringGenerator={leaderboardCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           layoutVariants={false}
           themeVariants={true}

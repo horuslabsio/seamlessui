@@ -54,7 +54,7 @@ export default function Connect({
         className="mx-auto my-auto bg-transparent"
       >
         <div
-          className={`relative max-h-[390px] w-[90vw] max-w-[25rem] rounded-[24px] p-8 text-base lg:max-h-[480px] ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
+          className={`relative max-h-[390px] w-[90vw] max-w-[25rem] rounded-[24px] p-4 text-base md:p-8 lg:max-h-[480px] ${theme === "light" ? "bg-base-light bg-light-linear-gradient text-blue-700" : "bg-base-dark bg-dark-linear-gradient text-grey-50"}`}
         >
           {connectStatus === "pending" && <Loading />}
 

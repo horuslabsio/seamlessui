@@ -3,6 +3,7 @@ import "./globals.css";
 import StarknetProvider from "./providers/StarknetProvider";
 import { i18n, type Locale } from "@/i18n-config";
 import Header from "@/app/ui/Header";
+import Gradient from "./ui/Gradient";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale.symbol }));
@@ -23,8 +24,9 @@ export default function RootLayout({
   return (
     <html lang={params.lang}>
       <StarknetProvider>
-        <body className={`text-base antialiased`}>
+        <body className={`text-sm antialiased lg:text-base`}>
           <Header />
+          <Gradient />
           {children}
         </body>
       </StarknetProvider>

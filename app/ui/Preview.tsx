@@ -70,7 +70,7 @@ const Preview = ({
 
   return (
     <div>
-      <div className="mb-20 max-w-[900px]">
+      <div className="mb-20 max-w-[900px] px-2 md:px-0">
         <h2 className="mb-8 text-3xl font-bold capitalize">{name}</h2>
         <p>{description}</p>
       </div>
@@ -78,26 +78,28 @@ const Preview = ({
       <div className="flex flex-col py-4">
         <div
           ref={headerRef}
-          className="mb-8 flex items-center justify-between px-4"
+          className="mb-8 flex items-center justify-between px-2 md:px-4"
         >
           <div className="flex items-center gap-2">
-            <p className="mr-4 font-bold capitalize">{`${name} ${layoutVariants ? `- ${variant}` : ""}`}</p>
+            <div className="flex w-fit flex-wrap items-center gap-2">
+              <p className="mr-4 text-lg font-bold capitalize">{`${name} ${layoutVariants ? `- ${variant}` : ""}`}</p>
 
-            {layoutVariants && (
-              <div className="relative z-50">
-                <Dropdown
-                  name={`${variant} variant`}
-                  selectedOption={variant}
-                  options={options}
-                />
-              </div>
-            )}
+              {layoutVariants && (
+                <div className="relative z-50">
+                  <Dropdown
+                    name={`${variant} variant`}
+                    selectedOption={variant}
+                    options={options}
+                  />
+                </div>
+              )}
+            </div>
             {themeVariants && (
               <button
                 onClick={() => {
                   setTheme((prev) => (prev === "light" ? "dark" : "light"));
                 }}
-                className={`grid h-8 w-8 rotate-180 place-content-center rounded-full border border-black ${theme === "light" ? "bg-black text-white" : "text-black"} text-[1.2em]`}
+                className={`mr-2 grid h-8 min-w-8 rotate-180 place-content-center rounded-full border border-black ${theme === "light" ? "bg-black text-white" : "text-black"} text-[1.2em]`}
               >
                 <BulbIcon />
               </button>
@@ -121,8 +123,11 @@ const Preview = ({
               <div className="absolute left-[calc(100%+1rem)] top-1/2 h-[80%] w-[1px] -translate-y-1/2 bg-black"></div>
             </div>
 
-            <p>React</p>
-            <CopyButton copyText={finalCodeString} />
+            <p className="hidden lg:block">React</p>
+            <CopyButton
+              className="text-[1.5em] text-grey-500"
+              copyText={finalCodeString}
+            />
           </div>
         </div>
         <div>
@@ -157,12 +162,12 @@ const Tab = ({ isActive, icon, label, onClick }: TabProps) => {
   return (
     <button
       onClick={onClick}
-      className={`flex min-w-[6rem] items-center justify-center gap-1 rounded-[8px] p-1 ${isActive ? "bg-black text-white" : "text-grey-500"}`}
+      className={`flex h-[38px] w-[38px] items-center justify-center gap-1 rounded-[8px] p-1 lg:min-w-[6rem] ${isActive ? "bg-black text-white" : "text-grey-500"}`}
     >
       <span className={`${isActive ? "text-white" : "text-black"}`}>
         {icon}
       </span>
-      <span>{label}</span>
+      <span className="hidden lg:block">{label}</span>
     </button>
   );
 };

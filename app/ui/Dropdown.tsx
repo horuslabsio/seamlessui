@@ -16,7 +16,7 @@ type Props = {
 const Dropdown = ({ name, options, selectedOption }: Props) => {
   return (
     <Menu>
-      <MenuButton className="flex items-center gap-2 rounded-full border border-black px-4 py-1">
+      <MenuButton className="flex items-center gap-2 rounded-full border border-black px-4 py-2">
         <span className="capitalize">{name}</span>
         <span>
           <DownChevronIcon />
