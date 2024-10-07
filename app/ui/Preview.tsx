@@ -9,7 +9,7 @@ import {
 } from "react";
 import { ThemeProps, VariantsProps } from "@/types";
 import Dropdown from "./Dropdown";
-import { BulbIcon, CodeIcon, CopyIcon, EyeIcon } from "@/public/icons/icons";
+import { BulbIcon, CodeIcon, EyeIcon } from "@/public/icons/icons";
 import { useDimension } from "@/hooks/useDimension";
 import CopyButton from "../utilities/CopyButton";
 
