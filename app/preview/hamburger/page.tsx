@@ -1,4 +1,4 @@
-import Hamburger from "@/app/components/hamburger/hamburger";
+import Hamburger from "@/app/widgets/hamburger/hamburger";
 
 const page = () => {
   return (

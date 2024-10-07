@@ -1,5 +1,4 @@
-import Connect from "../../components/connect/Connect";
-
+import Connect from "@/app/widgets/connect/Connect";
 const page = () => {
   return (
     <div className="pt-16">

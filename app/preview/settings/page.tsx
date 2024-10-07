@@ -1,4 +1,4 @@
-import Settings from "../../components/settings/Settings";
+import Settings from "@/app/widgets/settings/Settings";
 
 const page = () => {
   return (

@@ -6,14 +6,13 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
 body {
   color: var(--foreground);
   background: var(--background);
@@ -25,10 +24,11 @@ body {
     text-wrap: balance;
   }
 }
-[popover] {
-  transform: translateY(10%); /* closing popover style*/
+
+dialog {
+  transform: translateY(10%);
 }
-[popover],
+dialog,
 ::backdrop {
   opacity: 0;
   transition-property: opacity display overlay;
@@ -36,21 +36,21 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-behavior: allow-discrete;
 }
-[popover]:popover-open {
+dialog[open] {
   opacity: 1;
   transform: translateY(0);
 }
-[popover]:popover-open::backdrop {
+dialog[open],
+dialog[open]::backdrop {
   opacity: 1;
   backdrop-filter: blur(5px);
 }
 @starting-style {
-  [popover]:popover-open {
+  dialog[open] {
     opacity: 0;
     transform: translateY(10%);
   }
-
-  ::backdrop::popover-open {
+  dialog[open]::backdrop {
     opacity: 0;
   }
 }

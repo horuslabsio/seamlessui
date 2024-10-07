@@ -1,6 +1,5 @@
-const capturingGroupType = /(\w*:\s)/; // 'type: '
-const capturingGroupSubject = /([^[].+)/; // 'subject'
-
+const capturingGroupType = /(\w*:\s)/i; // 'type: '
+const capturingGroupSubject = /([^[].+)/i; // 'subject'
 
 /*
   ❌ Bad commit messages
@@ -20,7 +19,6 @@ const capturingGroupSubject = /([^[].+)/; // 'subject'
   git commit -m "[TASK-456] fix: correct issue in user login"
   // Includes an identifier (optional) and correctly follows 'type: subject' format.
 */
-
 
 module.exports = {
   parserPreset: {
@@ -45,7 +43,9 @@ module.exports = {
           const { type } = parsed;
           if (
             type &&
-            !Object.keys(expectedValue).includes(type.split(":")[0])
+            !Object.keys(expectedValue).includes(
+              type.split(":")[0].toLowerCase()
+            )
           ) {
             return [
               false,
