@@ -7,12 +7,13 @@ import Leaderboard from "../widgets/leaderboard/Leaderboard";
 import { connectCodeGen } from "../widgets/connect/code";
 import { settingsCodeGen } from "../widgets/settings/code";
 import { leaderboardCodeGen } from "../widgets/leaderboard/code";
-import AddToken from "../widgets/add-token/AddToken";
 import Hamburger from "../widgets/hamburger/hamburger";
 import NFTCard from "../widgets/nftCard/NftCard";
 import NftImg from "@/app/preview/nftcard/nft.svg";
 import Swap from "../widgets/swap/swap";
 import TransactionList from "../widgets/transaction-history/transaction-history";
+import { addTokenCodeGen } from "../widgets/add-token/code";
+import AddToken from "../widgets/add-token/AddToken";
 
 interface NFTData {
   name: string;
@@ -63,13 +64,13 @@ const Components = () => {
         >
           <Leaderboard theme="dark" />
         </Preview>
-
         <Preview
-          codeStringGenerator={leaderboardCodeGen}
-          description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
-          name="Add Token"
-          layoutVariants={false}
+          name="Add token"
           variants={[]}
+          codeStringGenerator={addTokenCodeGen}
+          description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
+          layoutVariants={false}
+          themeVariants={true}
         >
           <AddToken theme="dark" />
         </Preview>

@@ -104,7 +104,7 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
   return (
     <div className="relative">
       <button
-        className={`flex w-[457px] items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
+        className={`flex w-full items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
           theme === "dark"
             ? "rounded-xl border-[1.75px] border-grey-700 bg-grey-600"
             : "rounded-xl border border-[#9a9a9a]"

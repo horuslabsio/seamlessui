@@ -136,7 +136,7 @@ const Preview = ({
               style={{
                 height: `calc(100vh - ${dimensions.height}px)`,
               }}
-              className="relative grid h-full max-h-[900px] rounded-[8px] bg-[#e4e4e4]"
+              className={`relative grid h-full max-h-[900px] rounded-[8px] ${theme === "light" ? "bg-[#e4e4e4]" : "bg-[#1f1f1f]"}`}
             >
               <Iframe>{modifiedChildren}</Iframe>
             </div>

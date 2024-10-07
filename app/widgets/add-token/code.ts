@@ -1,3 +1,6 @@
+import { ThemeProps } from "@/types";
+
+export const addTokenCodeGen = (theme: ThemeProps) => `
 "use client";
 import { useRef, useState } from "react";
 import { useConnect } from "@starknet-react/core";
@@ -49,9 +52,11 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
       <button
         onClick={() => addTokenPopover.current?.showModal()}
         aria-haspopup="menu"
-        className={`mx-auto mt-4 flex w-full max-w-[500px] items-center justify-center gap-2 rounded-xl py-4 md:h-[60px] md:py-0 md:font-[700] ${
-          theme === "dark" ? "bg-white text-black" : "bg-[#141925] text-white"
-        }`}
+        className="flex w-full items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
+          theme === "dark"
+            ? "rounded-xl bg-white text-black"
+            : "rounded-xl bg-black text-white"
+        }"
       >
         Add token
       </button>
@@ -66,7 +71,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
                 ? "linear-gradient(168.54deg, #FF9034 -46.81%, #FFFFFF 31.09%, #FFFFFF 77.47%)"
                 : "linear-gradient(169.58deg, #E1852D -79.18%, #212121 19.19%, #1A1A1A 56.31%)",
           }}
-          className={`relative h-fit w-[300px] overflow-auto p-8 text-xs font-bold lg:w-[35rem] lg:text-base ${theme === "light" ? "bg-white text-[#141925]" : "bg-[#1A1A1A] text-[#fafafa]"}`}
+          className="relative h-fit w-[300px] overflow-auto p-8 text-xs font-bold lg:w-[35rem] lg:text-base ${theme === "light" ? "bg-white text-[#141925]" : "bg-[#1A1A1A] text-[#fafafa]"}"
         >
           <div className="mb-8 flex justify-between">
             <h3 className="text-base font-bold lg:text-2xl">Add Token</h3>
@@ -87,7 +92,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
               <input
                 type="text"
                 placeholder="Enter Token Contract Address"
-                className={`w-full rounded-[8px] border-[2px] border-solid ${theme === "light" ? "border-[#dadada] bg-[#f5f5f5]" : "border-[#494949] bg-[#3a3a3a]"} p-2 leading-[1.25rem] lg:p-3`}
+                className="w-full rounded-[8px] border-[2px] border-solid ${theme === "light" ? "border-[#dadada] bg-[#f5f5f5]" : "border-[#494949] bg-[#3a3a3a]"} p-2 leading-[1.25rem] lg:p-3"
                 value={tokenAddress}
                 onChange={(e) => setTokenAddress(e.target.value)}
               />
@@ -97,7 +102,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
               <input
                 type="text"
                 placeholder="Enter Name"
-                className={`w-full rounded-[8px] border-[2px] border-solid ${theme === "light" ? "border-[#dadada] bg-[#f5f5f5]" : "border-[#494949] bg-[#3a3a3a]"} p-2 leading-[1.25rem] lg:p-3`}
+                className="w-full rounded-[8px] border-[2px] border-solid ${theme === "light" ? "border-[#dadada] bg-[#f5f5f5]" : "border-[#494949] bg-[#3a3a3a]"} p-2 leading-[1.25rem] lg:p-3"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -107,7 +112,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
               <input
                 type="text"
                 placeholder="Enter Symbol"
-                className={`w-full rounded-[8px] border-[2px] border-solid ${theme === "light" ? "border-[#dadada] bg-[#f5f5f5]" : "border-[#494949] bg-[#3a3a3a]"} p-2 leading-[1.25rem] lg:p-3`}
+                className="w-full rounded-[8px] border-[2px] border-solid ${theme === "light" ? "border-[#dadada] bg-[#f5f5f5]" : "border-[#494949] bg-[#3a3a3a]"} p-2 leading-[1.25rem] lg:p-3"
                 value={symbol}
                 onChange={(e) => setSymbol(e.target.value)}
               />
@@ -117,7 +122,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
               <input
                 type="text"
                 placeholder="0"
-                className={`mb-4 w-full rounded-[8px] border-[2px] border-solid ${theme === "light" ? "border-[#dadada] bg-[#f5f5f5]" : "border-[#494949] bg-[#3a3a3a]"} p-2 leading-[1.25rem] lg:p-3`}
+                className="mb-4 w-full rounded-[8px] border-[2px] border-solid ${theme === "light" ? "border-[#dadada] bg-[#f5f5f5]" : "border-[#494949] bg-[#3a3a3a]"} p-2 leading-[1.25rem] lg:p-3"
                 value={decimals}
                 inputMode="decimal"
                 onChange={(e) => {
@@ -130,7 +135,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
             </div>
 
             <button
-              className={`w-full rounded-[12px] p-[7px] text-xs leading-[18px] disabled:cursor-not-allowed disabled:bg-opacity-80 lg:p-3 lg:text-xl lg:leading-[30px] ${theme === "light" ? "bg-[#141925] text-white" : "bg-[#fafafa] text-[#1A1A1A]"} md:p-4`}
+              className="w-full rounded-[12px] p-[7px] text-xs leading-[18px] disabled:cursor-not-allowed disabled:bg-opacity-80 lg:p-3 lg:text-xl lg:leading-[30px] ${theme === "light" ? "bg-[#141925] text-white" : "bg-[#fafafa] text-[#1A1A1A]"} md:p-4"
               onClick={async (e) => {
                 e.preventDefault();
                 handleAddToken();
@@ -147,3 +152,4 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
 };
 
 export default AddToken;
+`;
