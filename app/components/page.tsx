@@ -14,6 +14,8 @@ import Swap from "../widgets/swap/swap";
 import TransactionList from "../widgets/transaction-history/transaction-history";
 import { addTokenCodeGen } from "../widgets/add-token/code";
 import AddToken from "../widgets/add-token/AddToken";
+import { nftCardCodeGen } from "../widgets/nftCard/code";
+import { hamburgerCodeGen } from "../widgets/hamburger/code";
 
 interface NFTData {
   name: string;
@@ -75,7 +77,7 @@ const Components = () => {
           <AddToken theme="dark" />
         </Preview>
         <Preview
-          codeStringGenerator={leaderboardCodeGen}
+          codeStringGenerator={hamburgerCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           name="Hamburger"
           layoutVariants={false}
@@ -84,7 +86,7 @@ const Components = () => {
           <Hamburger theme="dark" />
         </Preview>
         <Preview
-          codeStringGenerator={leaderboardCodeGen}
+          codeStringGenerator={nftCardCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           name="NFT Card"
           variants={["grid", "list"]}

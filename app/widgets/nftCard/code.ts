@@ -1,3 +1,6 @@
+import { ThemeProps, VariantsProps } from "@/types";
+
+export const nftCardCodeGen = (theme: ThemeProps, variant: VariantsProps) => `
 import React from "react";
 import { EllipsisVertical } from "lucide-react";
 import Image from "next/image";
@@ -19,7 +22,6 @@ interface NFTCardProps {
 const NFTCard: React.FC<NFTCardProps> = ({ theme, layout, nft }) => {
   const isDark = theme === "dark";
   const isList = layout === "list";
-
   return (
     <div
       style={{
@@ -28,16 +30,16 @@ const NFTCard: React.FC<NFTCardProps> = ({ theme, layout, nft }) => {
             ? ""
             : "linear-gradient(169.58deg, #E1852D -79.18%, #212121 19.19%, #1A1A1A 56.31%)",
       }}
-      className={`my-auto grid ${
-        isList
+      className="my-auto grid ${
+        variant === "list"
           ? "w-[345px] min-w-[280px] grid-cols-1 md:max-h-[232px] md:w-full md:min-w-[431px] md:max-w-[431px] md:grid-cols-[130px_120px_130px]"
           : "w-[345px] min-w-[280px] grid-cols-1 md:w-[431px] md:max-w-[345px]"
       } gap-3 overflow-hidden rounded-xl p-3 ${
-        isDark ? "bg-[#1A1A1A] text-white" : "bg-white text-[#141925]"
-      } shadow-lg`}
+        theme === "dark" ? "bg-[#1A1A1A] text-white" : "bg-white text-[#141925]"
+      } shadow-lg"
     >
       <div
-        className={`relative aspect-square rounded-xl ${isList ? "md:max-h-[144px] md:max-w-[200px]" : ""}`}
+        className="relative aspect-square rounded-xl ${variant === "list" ? "md:max-h-[144px] md:max-w-[200px]" : ""}"
       >
         <Image
           fill
@@ -47,19 +49,19 @@ const NFTCard: React.FC<NFTCardProps> = ({ theme, layout, nft }) => {
         />
       </div>
       <div
-        className={`grid grid-rows-[auto_1fr_auto] ${isList ? "md:col-span-2 md:items-center md:gap-1 md:pt-3" : "pt-3"}`}
+        className="grid grid-rows-[auto_1fr_auto] ${variant === "list" ? "md:col-span-2 md:items-center md:gap-1 md:pt-3" : "pt-3"}"
       >
         <h3 className="truncate text-lg font-bold">{nft.name}</h3>
         <div
-          className={`flex justify-between ${isList ? "md:flex-col md:justify-start md:gap-1" : "flex-row items-center justify-between"}`}
+          className="flex justify-between ${variant === "list" ? "md:flex-col md:justify-start md:gap-1" : "flex-row items-center justify-between"}"
         >
           <div className="flex items-center gap-2">
             <button
-              className={`rounded-xl p-2 ${
-                isDark
+              className="rounded-xl p-2 ${
+                theme === "dark"
                   ? "border border-[#343434] hover:bg-[#494949]"
                   : "border border-[#DADADA] hover:bg-[#EEEEEE]"
-              }`}
+              }"
               // disabled={true}
             >
               <svg
@@ -93,39 +95,39 @@ const NFTCard: React.FC<NFTCardProps> = ({ theme, layout, nft }) => {
               </svg>
             </button>
             <p
-              className={`text-sm font-bold ${
-                isDark ? "text-[#FAFAFA]" : "text-[#141925]"
-              }`}
+              className="text-sm font-bold ${
+                theme === "dark" ? "text-[#FAFAFA]" : "text-[#141925]"
+              }"
             >
               {nft.ethPrice.toFixed(4)} ETH
             </p>
           </div>
           <p
-            className={`justify-self-end text-sm font-bold ${
-              isDark ? "text-[#FAFAFA]" : "text-[#141925]"
-            }`}
+            className="justify-self-end text-sm font-bold ${
+              theme === "dark" ? "text-[#FAFAFA]" : "text-[#141925]"
+            }"
           >
-            ${nft.price.toFixed(3)}
+            \${nft.price.toFixed(3)}
           </p>
         </div>
       </div>
       <div
-        className={`grid grid-cols-[1fr_auto] gap-2 ${isList ? "md:col-span-3" : ""}`}
+        className="grid grid-cols-[1fr_auto] gap-2 ${variant === "list" ? "md:col-span-3" : ""}"
       >
         <button
-          className={`rounded-lg px-4 py-2 text-sm font-bold ${
-            isDark
+          className="rounded-lg px-4 py-2 text-sm font-bold ${
+            theme === "dark"
               ? "bg-[#FAFAFA] text-[#1A1A1A] hover:bg-[#EEEEEE]"
               : "bg-[#1A1A1A] text-[#FAFAFA] hover:bg-[#343434]"
-          }`}
+          }"
         >
           Add to Buy
         </button>
         <button
-          className={`rounded-lg border-[1.75px] ${isDark ? "border-[#494949] bg-[#3A3A3A] hover:bg-[#313131]" : "border-[#EEEEEE] bg-[#F7F7F7] hover:bg-[#EEEEEE]"} p-2`}
+          className="rounded-lg border-[1.75px] ${theme === "dark" ? "border-[#494949] bg-[#3A3A3A] hover:bg-[#313131]" : "border-[#EEEEEE] bg-[#F7F7F7] hover:bg-[#EEEEEE]"} p-2"
         >
           <EllipsisVertical
-            className={`h-5 w-5 ${isDark ? "text-[#FAFAFA]" : "text-[#1A1A1A]"}`}
+            className="h-5 w-5 ${theme === "dark" ? "text-[#FAFAFA]" : "text-[#1A1A1A]"}"
           />
         </button>
       </div>
@@ -134,3 +136,4 @@ const NFTCard: React.FC<NFTCardProps> = ({ theme, layout, nft }) => {
 };
 
 export default NFTCard;
+`;

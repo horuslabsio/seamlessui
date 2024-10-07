@@ -45,7 +45,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
   }
 
   return (
-    <>
+    <div className="my-auto w-full">
       <button
         onClick={() => addTokenPopover.current?.showModal()}
         aria-haspopup="menu"
@@ -142,7 +142,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
           </form>
         </div>
       </dialog>
-    </>
+    </div>
   );
 };
 

@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { useConnect } from "@starknet-react/core";
 import { X } from "lucide-react";
 
-const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
+const AddToken = () => {
   const addTokenPopover = useRef<HTMLDialogElement>(null);
   const { connector } = useConnect();
   const [tokenAddress, setTokenAddress] = useState("");
@@ -48,14 +48,12 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
   }
 
   return (
-    <>
+    <div className="my-auto w-full">
       <button
         onClick={() => addTokenPopover.current?.showModal()}
         aria-haspopup="menu"
-        className="flex w-full items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
-          theme === "dark"
-            ? "rounded-xl bg-white text-black"
-            : "rounded-xl bg-black text-white"
+        className="mx-auto mt-4 flex w-full max-w-[500px] items-center justify-center gap-2 rounded-xl py-4 md:h-[60px] md:py-0 md:font-[700] ${
+          theme === "dark" ? "bg-white text-black" : "bg-[#141925] text-white"
         }"
       >
         Add token
@@ -147,7 +145,7 @@ const AddToken = ({ theme = "light" }: { theme: "light" | "dark" }) => {
           </form>
         </div>
       </dialog>
-    </>
+    </div>
   );
 };
 
