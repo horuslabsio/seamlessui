@@ -9,7 +9,7 @@ import {
 } from "react";
 import { ThemeProps, VariantsProps } from "@/types";
 import Dropdown from "./Dropdown";
-import { BulbIcon, CodeIcon, CopyIcon, EyeIcon } from "@/public/icons/icons";
+import { BulbIcon, CodeIcon, EyeIcon } from "@/public/icons/icons";
 import { useDimension } from "@/hooks/useDimension";
 import CopyButton from "../utilities/CopyButton";
 
@@ -75,7 +75,7 @@ const Preview = ({
         <p>{description}</p>
       </div>
 
-      <div className="flex min-h-screen flex-col py-4">
+      <div className="flex flex-col py-4">
         <div
           ref={headerRef}
           className="mb-8 flex items-center justify-between px-4"

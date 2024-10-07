@@ -8,8 +8,8 @@ import { connectCodeGen } from "../widgets/connect/code";
 
 const Components = () => {
   return (
-    <main className="mx-auto px-8 py-20 seamlessui-container">
-      <section className="flex flex-col gap-20">
+    <main className="mx-auto px-8 pb-12 seamlessui-container">
+      <section className="flex flex-col gap-20 pt-[12rem]">
         <Preview
           name="Connect"
           variants={["list", "grid"]}
