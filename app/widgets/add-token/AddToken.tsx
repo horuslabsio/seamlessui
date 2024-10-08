@@ -37,6 +37,7 @@ const AddToken = ({
           type: "wallet_watchAsset",
           params: asset,
         });
+        console.log(resp);
       } catch (err) {
         console.log(err);
       } finally {
