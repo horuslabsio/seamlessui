@@ -4,6 +4,10 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const customStyles = `
+    body{
+      display: grid;
+      place-content: center;
+    }
     dialog {
       transform: translateY(10%);
     }
