@@ -64,6 +64,17 @@ const Iframe = ({ children, ...props }: { children: ReactNode }) => {
         style.appendChild(iframeDoc.createTextNode(customStyles));
         iframeDoc.head.appendChild(style);
 
+        iframeDoc.body.classList.add(
+          "flex",
+          "items-start",
+          "justify-center",
+          "min-h-[100vh]",
+          "w-full",
+          "min-h-screen",
+          "overflow-y-auto",
+          "p-4"
+        );
+
         setMountNode(iframeDoc.body);
       }
     }

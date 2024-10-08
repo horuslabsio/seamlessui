@@ -5,7 +5,7 @@ import SecondRankIcon from "@/public/icons/second-rank";
 import ThirdRankIcon from "@/public/icons/third-rank";
 import { ThemeProps } from "@/types";
 
-const Leaderboard = ({ theme }: { theme: ThemeProps }) => {
+const Leaderboard = () => {
   const leaderboardData = [
     { rank: 1, user: "0xc662c4100CEC747543f5b", score: "6,500,370.000" },
     { rank: 2, user: "0xc662c4100CEC747543f5b", score: "6,100,525.000" },
