@@ -1,6 +1,6 @@
 import { ThemeProps } from "@/types";
 
-export const hamburgerCodeGen = (theme: ThemeProps) => `
+export const hamburgerCodeGen = ({ theme }: { theme?: ThemeProps }) => `
 "use client";
 import React, { useState } from "react";
 import { useSwitchChain } from "@starknet-react/core";

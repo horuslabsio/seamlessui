@@ -63,7 +63,6 @@ const Components = () => {
           codeStringGenerator={leaderboardCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           layoutVariants={false}
-          themeVariants={true}
         >
           <Leaderboard theme="dark" />
         </Preview>
@@ -73,9 +72,9 @@ const Components = () => {
           codeStringGenerator={addTokenCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           layoutVariants={false}
-          themeVariants={true}
+          full={false}
         >
-          <AddToken theme="dark" />
+          <AddToken full={false} theme="dark" />
         </Preview>
         <Preview
           codeStringGenerator={hamburgerCodeGen}
