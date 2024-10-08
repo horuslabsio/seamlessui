@@ -39,7 +39,14 @@ const customStyles = `
     }
 `;
 
-const Iframe = ({ children, ...props }: { children: ReactNode }) => {
+const Iframe = ({
+  children,
+  fullScreen,
+  ...props
+}: {
+  children: ReactNode;
+  fullScreen?: boolean;
+}) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
 
@@ -75,7 +82,16 @@ const Iframe = ({ children, ...props }: { children: ReactNode }) => {
 
   return (
     <iframe className="h-full w-full" {...props} ref={iframeRef}>
-      {mountNode ? createPortal(children, mountNode) : null}
+      {fullScreen
+        ? mountNode
+          ? createPortal(
+              <div className="h-screen w-screen">{children}</div>,
+              mountNode
+            )
+          : null
+        : mountNode
+          ? createPortal(children, mountNode)
+          : null}
     </iframe>
   );
 };

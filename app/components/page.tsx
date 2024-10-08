@@ -63,6 +63,7 @@ const Components = () => {
           codeStringGenerator={leaderboardCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           layoutVariants={false}
+          fullScreen
         >
           <Leaderboard theme="dark" />
         </Preview>
@@ -82,6 +83,7 @@ const Components = () => {
           name="Hamburger"
           layoutVariants={false}
           variants={[]}
+          fullScreen
         >
           <Hamburger theme="dark" />
         </Preview>

@@ -35,21 +35,19 @@ export default function Connect() {
 
   return (
     <>
-      <div className="grid h-full w-full place-content-center">
-        <button
-          onClick={() => {
-            if (address) {
-              disconnect();
-            } else {
-              connectPopover.current?.showModal();
-            }
-          }}
-          aria-haspopup="menu"
-          className="min-w-[8rem] rounded-[8px] bg-blue-700 px-4 py-2 text-white"
-        >
-          {address ? shortenAddress(address) : "connect"}
-        </button>
-      </div>
+      <button
+        onClick={() => {
+          if (address) {
+            disconnect();
+          } else {
+            connectPopover.current?.showModal();
+          }
+        }}
+        aria-haspopup="menu"
+        className="min-w-[8rem] rounded-[8px] bg-blue-700 px-4 py-2 text-white"
+      >
+        {address ? shortenAddress(address) : "connect"}
+      </button>
 
       <dialog
         id="connect-modal"

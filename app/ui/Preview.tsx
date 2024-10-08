@@ -35,6 +35,7 @@ type Props = {
   themeVariants?: boolean;
   layoutVariants?: boolean;
   full?: boolean;
+  fullScreen?: boolean;
 };
 
 const Preview = ({
@@ -46,6 +47,7 @@ const Preview = ({
   themeVariants = true,
   layoutVariants = true,
   full = true,
+  fullScreen = false,
 }: Props) => {
   const [activeTab, setActiveTab] = useState<0 | 1>(0);
   const [theme, setTheme] = useState<ThemeProps>("light");
@@ -148,7 +150,7 @@ const Preview = ({
               }}
               className="relative grid h-full max-h-[900px] rounded-[8px] bg-[#e4e4e4]"
             >
-              <Iframe>{modifiedChildren}</Iframe>
+              <Iframe fullScreen={fullScreen}>{modifiedChildren}</Iframe>
             </div>
           ) : (
             <Highlight code={finalCodeString} />
