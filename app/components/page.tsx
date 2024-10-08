@@ -16,6 +16,7 @@ import { addTokenCodeGen } from "../widgets/add-token/code";
 import AddToken from "../widgets/add-token/AddToken";
 import { nftCardCodeGen } from "../widgets/nftCard/code";
 import { hamburgerCodeGen } from "../widgets/hamburger/code";
+import { swapCodeGen } from "../widgets/swap/code";
 
 interface NFTData {
   name: string;
@@ -95,7 +96,7 @@ const Components = () => {
         </Preview>
 
         <Preview
-          codeStringGenerator={leaderboardCodeGen}
+          codeStringGenerator={swapCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           name="Swap"
           variants={[]}

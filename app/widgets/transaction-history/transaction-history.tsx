@@ -104,33 +104,37 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
   return (
     <div className="relative">
       <button
-        className={`flex w-full items-center justify-center gap-2 py-4 md:h-[60px] md:py-0 md:font-[700] ${
+        className={`z-10 flex h-[60px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl border py-4 focus:outline-none md:py-0 md:font-[700] ${
           theme === "dark"
-            ? "rounded-xl border-[1.75px] border-grey-700 bg-grey-600"
-            : "rounded-xl border border-[#9a9a9a]"
+            ? "border-[#494949] bg-[#141925] text-[#fafafa]"
+            : "border-[#9a9a9a] bg-transparent text-[#141925]"
         } `}
         onClick={() => setOpen(!open)}
       >
-        {!open && (
-          <span className="flex w-[460px] items-center justify-center">
-            <LibraryBig size={30} />
-            Transaction History
-          </span>
-        )}
+        <span className="flex w-[460px] items-center justify-center">
+          <LibraryBig size={30} />
+          Transaction History
+        </span>
       </button>
 
       {open && (
         <div
-          className={`${theme === "dark" ? "bg-dark-linear-gradient" : "bg-light-linear-gradient"} absolute left-0 top-0 mx-auto flex h-fit w-[632px] flex-col items-center rounded-xl px-[40px] py-[32px]`}
+          style={{
+            background:
+              theme === "light"
+                ? "linear-gradient(168.54deg, #FF9034 -46.81%, #FFFFFF 31.09%, #FFFFFF 77.47%)"
+                : "linear-gradient(169.58deg, #E1852D -79.18%, #212121 19.19%, #1A1A1A 56.31%)",
+          }}
+          className="absolute left-0 top-[70px] mx-auto flex h-fit w-[632px] flex-col items-center rounded-xl px-[40px] py-[32px] transition-all duration-300 ease-in-out"
         >
           <div className="mb-8 flex w-full flex-row items-center justify-between">
             <h1
-              className={`${theme === "dark" ? "text-white" : "text-black"} text-[24px] font-[700]`}
+              className={`${theme === "dark" ? "text-[#FAFAFA]" : "text-[#141925]"} text-[24px] font-[700]`}
             >
               Transaction List
             </h1>
             <X
-              className={`${theme === "dark" ? "text-white" : "text-black"}`}
+              className={`${theme === "dark" ? "text-[#FAFAFA]" : "text-[#141925]"}`}
               size={30}
               onClick={() => setOpen(!open)}
             />
@@ -143,7 +147,7 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                 showDetails[transaction.id]
                   ? "max-h-fit justify-start"
                   : "max-h-[144px]"
-              } overflow-hidden ${theme === "dark" ? "border-[#2A2A2A] bg-base-dark" : "border-[#F5F5F5] bg-base-light"} mb-4 flex w-[552px] flex-col items-center justify-start gap-[24px] rounded-[24px] border px-[17px] py-[24px]`}
+              } overflow-hidden ${theme === "dark" ? "border-[#2A2A2A] bg-[#1A1A1A]" : "border-[#F5F5F5] bg-white"} mb-4 flex w-[552px] flex-col items-center justify-start gap-[24px] rounded-[24px] border px-[17px] py-[24px]`}
             >
               <div className="relative flex flex-shrink-0 items-center justify-start gap-[24px]">
                 <div
@@ -159,12 +163,12 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                 </div>
 
                 <div className="flex h-fit w-[419px] flex-col gap-2">
-                  <div className="flex justify-between border-b-[1.75px] border-grey-300 px-[2px] py-[12px]">
+                  <div className="flex justify-between border-b-[1.75px] border-[#DADADA] px-[2px] py-[12px]">
                     <div
                       className={`flex h-[48px] w-[209px] items-center gap-[16px] rounded-3xl border px-[16px] py-[12px] ${
                         theme === "dark"
-                          ? "border-grey-700 bg-grey-700"
-                          : "border-grey-300 bg-[#f5f5f5]"
+                          ? "border-[#494949] bg-[#494949]"
+                          : "border-[#DADADA] bg-[#f5f5f5]"
                       }`}
                     >
                       <div className="h-[24px] w-[24px] rounded-full bg-purple-900"></div>
@@ -179,7 +183,7 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                           {transaction.currency}
                         </span>
                       </p>
-                      <p className="flex gap-1 text-[12px] font-[700] text-grey-500">
+                      <p className="flex gap-1 text-[12px] font-[700] text-[#7A7A7A]">
                         ${transaction.usdAmount.toFixed(2)} USD
                       </p>
                     </div>
@@ -192,7 +196,7 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                           className={`${
                             theme === "dark"
                               ? "bg-[#2A2A2A] text-[#9A9A9A]"
-                              : "bg-[#F5F5F5] text-grey-500"
+                              : "bg-[#F5F5F5] text-[#7A7A7A]"
                           } rounded-sm px-[8px] py-[3px] text-[12px] font-[700]`}
                         >
                           {transaction.date}
@@ -201,7 +205,7 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                           className={`${
                             theme === "dark"
                               ? "bg-[#2A2A2A] text-[#9A9A9A]"
-                              : "bg-[#F5F5F5] text-grey-500"
+                              : "bg-[#F5F5F5] text-[#7A7A7A]"
                           } rounded-sm px-[8px] py-[3px] text-[12px] font-[700]`}
                         >
                           {transaction.time}
@@ -213,14 +217,14 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                         onClick={() => toggleDetails(transaction.id)}
                       >
                         <p
-                          className={`${theme === "dark" ? "text-[#9A9A9A]" : "text-grey-500"} text-[12px] font-[700]`}
+                          className={`${theme === "dark" ? "text-[#9A9A9A]" : "text-[#7A7A7A]"} text-[12px] font-[700]`}
                         >
                           TRANSACTION ID
                         </p>
                         <ChevronDown
                           className={`${
                             theme === "dark"
-                              ? "text-grey-300"
+                              ? "text-[#DADADA]"
                               : "text-[#141925]"
                           } transform ${showDetails[transaction.id] ? "rotate-180" : ""}`}
                           size={20}
@@ -234,14 +238,14 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                 <div
                   className={`flex h-[244px] w-[419px] items-start justify-start gap-[25px] rounded-[12px] px-[14px] py-[32px] text-start ${theme === "dark" ? "bg-[#48433D]" : "bg-[#FFEBDA]"} self-end`}
                 >
-                  <ListCheck className="text-grey-500" size={20} />
+                  <ListCheck className="text-[#7A7A7A]" size={20} />
 
                   <div className="flex flex-col gap-[15px]">
-                    <p className="text-[12px] font-[700] text-grey-500">
+                    <p className="text-[12px] font-[700] text-[#7A7A7A]">
                       Fee 0.00024158 ETH ($0.92)
                     </p>
                     <div>
-                      <p className="text-[16px] font-[700] text-grey-500">
+                      <p className="text-[16px] font-[700] text-[#7A7A7A]">
                         Transaction hash
                       </p>
                       <h2 className="text-[#FD9332]">
@@ -249,7 +253,7 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                       </h2>
                     </div>
                     <div>
-                      <p className="text-[16px] font-[700] text-grey-500">
+                      <p className="text-[16px] font-[700] text-[#7A7A7A]">
                         Wallet Address Recipient
                       </p>
                       <div className="flex items-center gap-4">
@@ -263,7 +267,7 @@ const TransactionList: React.FC<TransactionProps> = ({ theme }) => {
                     </div>
 
                     <p
-                      className={`underline ${theme === "dark" ? "text-white" : "text-black"}`}
+                      className={`underline ${theme === "dark" ? "text-[#FAFAFA]" : "text-[#141925]"}`}
                     >
                       See transactions
                     </p>

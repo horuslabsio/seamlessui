@@ -108,9 +108,9 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative my-auto">
+    <div className="relative">
       <button
-        className="z-10 flex h-8 w-8 cursor-pointer flex-col justify-around border-none bg-transparent p-0 focus:outline-none"
+        className="z-10 flex h-8 w-8 cursor-pointer flex-col justify-around border-none bg-transparent focus:outline-none"
         onClick={() => setOpen(!open)}
       >
         {open ? (

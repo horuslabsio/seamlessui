@@ -1,11 +1,9 @@
+import { ThemeProps } from "@/types";
+export const swapCodeGen = (theme: ThemeProps) => `
 "use client";
 import React, { useState, useEffect } from "react";
 import { useAccount } from "@starknet-react/core";
 import { ArrowUpDown, ChevronDown, ChevronUp, X } from "lucide-react";
-
-interface SwapProps {
-  theme: "dark" | "light";
-}
 
 const tokenAddresses: {
   [key in "ETH" | "DAI" | "USDC" | "USDT" | "STRK"]: string;
@@ -26,9 +24,8 @@ const tokenPrices: { [key in keyof typeof tokenAddresses]: number } = {
 
 const CustomSelect: React.FC<{
   selectedToken: keyof typeof tokenAddresses;
-  theme: string;
   onTokenSelect: (token: keyof typeof tokenAddresses) => void;
-}> = ({ selectedToken, onTokenSelect, theme }) => {
+}> = ({ selectedToken, onTokenSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const tokens = Object.keys(tokenAddresses);
 
@@ -40,7 +37,7 @@ const CustomSelect: React.FC<{
   return (
     <div className="relative h-[10.45px] w-[25%] md:h-[36px] md:w-[121px]">
       <div
-        className={`${theme === "light" ? "bg-[#DADADA] font-[700] text-black" : "bg-[#343434] font-[700] text-white"} flex h-full w-full cursor-pointer items-center justify-between gap-2 rounded-sm px-2 py-3 text-[10px] md:gap-4 md:rounded-md md:px-4 md:text-[16px]`}
+        className="${theme === "light" ? "bg-[#DADADA] font-[700] text-black" : "bg-[#343434] font-[700] text-white"} flex h-full w-full cursor-pointer items-center justify-between gap-2 rounded-sm px-2 py-3 text-[10px] md:gap-4 md:rounded-md md:px-4 md:text-[16px]"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selectedToken}</span>
@@ -66,7 +63,7 @@ const CustomSelect: React.FC<{
   );
 };
 
-const Swap: React.FC<SwapProps> = ({ theme }) => {
+const Swap: React.FC<SwapProps> = () => {
   const [fromToken, setFromToken] =
     useState<keyof typeof tokenAddresses>("ETH");
   const [toToken, setToToken] = useState<keyof typeof tokenAddresses>("USDT");
@@ -115,7 +112,7 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
       try {
         const swappedAmount = parseFloat(amount) * rate;
         console.log(
-          `Swapped ${amount} ${fromToken} for ${swappedAmount.toFixed(6)} ${toToken}`
+          \`Swapped \${amount} \${fromToken} for \${swappedAmount.toFixed(6)} \${toToken}\`
         );
         setAmount("");
         setEquivalent("0");
@@ -150,7 +147,7 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
             ? "linear-gradient(168.54deg, #FF9034 -46.81%, #FFFFFF 31.09%, #FFFFFF 77.47%)"
             : "linear-gradient(169.58deg, #E1852D -79.18%, #212121 19.19%, #1A1A1A 56.31%)",
       }}
-      className={`mx-auto mt-12 flex h-[371.67px] w-full cursor-pointer ${theme === "light" ? "text-[#141925]" : "text-[#FAFAFA]"} flex-col items-center gap-2 rounded-xl p-[18px] md:h-[636px] md:w-[594px] md:gap-6 md:p-[26px]`}
+      className="mx-auto mt-12 flex h-[371.67px] w-full cursor-pointer ${theme === "light" ? "text-[#141925]" : "text-[#FAFAFA]"} flex-col items-center gap-2 rounded-xl p-[18px] md:h-[636px] md:w-[594px] md:gap-6 md:p-[26px]"
     >
       <div className="flex w-full items-center justify-between">
         <p className="text-[15px] font-[700] md:text-[25px]">Swap</p>
@@ -162,7 +159,7 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
           <div className="mb-4 flex w-full flex-col">
             <label className="mb-2 text-[9.97px] md:text-[16px]">From</label>
             <div
-              className={`flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "light" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-[#494949] bg-[#3A3A3A]"}`}
+              className="flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "light" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-[#494949] bg-[#3A3A3A]"}"
             >
               <div className="flex w-full items-center justify-between">
                 <div className="flex flex-col items-start">
@@ -174,13 +171,12 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
                     className="w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px]"
                   />
                   <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-[#7A7A7A] md:text-[16px]">
-                    = ${(parseFloat(amount || "0") * rate).toFixed(3)}
+                    = \${(parseFloat(amount || "0") * rate).toFixed(3)}
                   </p>
                 </div>
                 <CustomSelect
                   selectedToken={fromToken}
                   onTokenSelect={setFromToken}
-                  theme={theme}
                 />
               </div>
             </div>
@@ -189,7 +185,7 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
           <button
             type="button"
             onClick={handleTokenSwap}
-            className={`absolute top-[44%] h-[46px] w-[46px] rounded-full px-[9.97px] py-0 md:h-[80px] md:w-[80px] md:px-[18px] md:py-[17px] ${theme === "light" ? "border-[5px] border-white bg-gray-200" : "border-[5px] border-[#1A1A1A] bg-[#3A3A3A]"}`}
+            className="absolute top-[44%] h-[46px] w-[46px] rounded-full px-[9.97px] py-0 md:h-[80px] md:w-[80px] md:px-[18px] md:py-[17px] ${theme === "light" ? "border-[5px] border-white bg-gray-200" : "border-[5px] border-[#1A1A1A] bg-[#3A3A3A]"}"
           >
             <div className="relative flex h-[15.95px] w-[15.95px] items-center justify-center md:h-[32px] md:w-[32px]">
               <ArrowUpDown size={30} />
@@ -199,7 +195,7 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
           <div className="mt-0 flex w-full flex-col">
             <label className="mb-2 text-[9.97px] md:text-[16px]">To</label>
             <div
-              className={`flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "light" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-[#494949] bg-[#3A3A3A]"}`}
+              className="flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "light" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-[#494949] bg-[#3A3A3A]"}"
             >
               <div className="flex w-full items-center justify-between">
                 <div className="flex flex-col items-start">
@@ -211,13 +207,12 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
                     className="w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px]"
                   />
                   <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-[#7A7A7A] md:text-[16px]">
-                    = ${Number(equivalent).toFixed(3)}
+                    = \${Number(equivalent).toFixed(3)}
                   </p>
                 </div>
                 <CustomSelect
                   selectedToken={toToken}
                   onTokenSelect={setToToken}
-                  theme={theme}
                 />
               </div>
             </div>
@@ -226,7 +221,9 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
 
         <div className="flex w-full flex-col gap-[8px] md:my-4">
           <div className="flex w-full items-center justify-between">
-            <p className="text-[9.97px] font-[700] text-[#7A7A7A] md:text-[16px]">
+            <p
+              className="text-[9.97px] font-[700] text-[#7A7A7A] md:text-[16px]"
+            >
               Current price
             </p>
             <p className="text-[9.97px] font-[700] md:text-[16px]">
@@ -234,7 +231,9 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
             </p>
           </div>
           <div className="flex w-full items-center justify-between">
-            <p className="text-[9.97px] font-[700] text-[#7A7A7A] md:text-[16px]">
+            <p
+              className="text-[9.97px] font-[700] text-[#7A7A7A] md:text-[16px]"
+            >
               Min received
             </p>
             <p className="text-[9.97px] font-[700] md:text-[16px]">
@@ -251,7 +250,7 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
           onClick={handleSwap}
           disabled={isLoading || !address}
           type="submit"
-          className={`my-4 h-[31.94px] w-full rounded-xl py-[6.97px] text-[11.97px] font-[700] md:h-[54px] md:py-[12px] md:text-[20px] ${theme === "light" ? "bg-black text-white" : "bg-white text-black"} ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
+          className="my-4 h-[31.94px] w-full rounded-xl py-[6.97px] text-[11.97px] font-[700] md:h-[54px] md:py-[12px] md:text-[20px] ${theme === "light" ? "bg-black text-white" : "bg-white text-black"} \${isLoading ? "cursor-not-allowed opacity-50" : ""}"
         >
           {isLoading ? "Processing..." : address ? "Swap" : "Connect Wallet"}
         </button>
@@ -261,3 +260,4 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
 };
 
 export default Swap;
+`;
