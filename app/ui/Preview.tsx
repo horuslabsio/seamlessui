@@ -22,10 +22,19 @@ type Props = {
   name: string;
   description: string;
   children: ReactElement<ChildProps>;
-  codeStringGenerator: (theme: ThemeProps, variant: VariantsProps) => string;
+  codeStringGenerator: ({
+    full,
+    theme,
+    variant,
+  }: {
+    theme?: ThemeProps;
+    variant?: VariantsProps;
+    full?: boolean;
+  }) => string;
   variants: VariantsProps[];
   themeVariants?: boolean;
   layoutVariants?: boolean;
+  full?: boolean;
 };
 
 const Preview = ({
@@ -36,6 +45,7 @@ const Preview = ({
   variants,
   themeVariants = true,
   layoutVariants = true,
+  full = true,
 }: Props) => {
   const [activeTab, setActiveTab] = useState<0 | 1>(0);
   const [theme, setTheme] = useState<ThemeProps>("light");
@@ -66,7 +76,7 @@ const Preview = ({
       })()
     : children;
 
-  const finalCodeString = codeStringGenerator(theme, variant);
+  const finalCodeString = codeStringGenerator({ theme, variant, full });
 
   return (
     <div>

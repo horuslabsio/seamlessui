@@ -1,5 +1,5 @@
 import { ThemeProps } from "@/types";
-export const swapCodeGen = (theme: ThemeProps) => `
+export const swapCodeGen = ({ theme }: { theme?: ThemeProps }) => `
 "use client";
 import React, { useState, useEffect } from "react";
 import { useAccount } from "@starknet-react/core";

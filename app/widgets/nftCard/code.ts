@@ -1,6 +1,12 @@
 import { ThemeProps, VariantsProps } from "@/types";
 
-export const nftCardCodeGen = (theme: ThemeProps, variant: VariantsProps) => `
+export const nftCardCodeGen = ({
+  theme,
+  variant,
+}: {
+  theme?: ThemeProps;
+  variant?: VariantsProps;
+}) => `
 import React from "react";
 import { EllipsisVertical } from "lucide-react";
 import Image from "next/image";

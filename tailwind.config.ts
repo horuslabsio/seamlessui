@@ -13,12 +13,9 @@ const config: Config = {
       addUtilities({
         ".seamlessui-container": {
           width: "100%",
-          // "@screen lg": {
-          //   maxWidth: "1280px",
-          // },
-          // "@screen xl": {
-          //   maxWidth: "1536px",
-          // },
+          "@screen xl": {
+            maxWidth: "1536px",
+          },
         },
       });
     },

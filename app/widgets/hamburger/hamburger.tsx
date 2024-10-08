@@ -150,7 +150,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
 
             <TransactionList theme={theme} />
           </div>
-          <AddToken theme={theme} />
+          <AddToken full theme={theme} />
         </div>
       )}
     </div>

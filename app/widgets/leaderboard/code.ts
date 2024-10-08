@@ -1,5 +1,5 @@
 import { ThemeProps } from "@/types";
-export const leaderboardCodeGen = (theme: ThemeProps) => `
+export const leaderboardCodeGen = ({ theme }: { theme?: ThemeProps }) => `
 import FirstRankIcon from "@/public/icons/first-rank";
 import SecondRankIcon from "@/public/icons/second-rank";
 import ThirdRankIcon from "@/public/icons/third-rank";
