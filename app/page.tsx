@@ -29,7 +29,7 @@ export default function Home() {
           </button>
         </div>
         <div aria-hidden={true} className="justify-end">
-          <Image src={HERO_IMG} alt="" />
+          <Image priority src={HERO_IMG} alt="" />
         </div>
       </section>
     </main>
