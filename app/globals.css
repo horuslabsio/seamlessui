@@ -18,7 +18,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
 }
 *,
 *::after,
@@ -39,9 +39,6 @@ h4,
 h5,
 h6 {
   font-family: "helvetica-extrabold", Helvetica, sans-serif;
-}
-button {
-  font-family: "helvetica-bold", Helvetica, sans-serif;
 }
 
 @layer utilities {

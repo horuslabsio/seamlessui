@@ -12,6 +12,7 @@ import Dropdown from "./Dropdown";
 import { BulbIcon, CodeIcon, EyeIcon } from "@/public/icons/icons";
 import { useDimension } from "@/hooks/useDimension";
 import CopyButton from "../utilities/CopyButton";
+import Button from "./Button";
 
 interface ChildProps {
   layout: VariantsProps;
@@ -107,14 +108,15 @@ const Preview = ({
               )}
             </div>
             {themeVariants && (
-              <button
+              <Button
+                variant="ghost"
                 onClick={() => {
                   setTheme((prev) => (prev === "light" ? "dark" : "light"));
                 }}
                 className={`mr-2 grid h-8 min-w-8 rotate-180 place-content-center rounded-full border border-black ${theme === "light" ? "bg-black text-white" : "text-black"} text-[1.2em]`}
               >
                 <BulbIcon />
-              </button>
+              </Button>
             )}
           </div>
 

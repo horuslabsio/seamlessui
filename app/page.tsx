@@ -3,6 +3,7 @@ import Image from "next/image";
 import HERO_IMG from "@/public/assets/hero-img.svg";
 import { RightArrow } from "@/public/icons/icons";
 import { useRouter } from "next/navigation";
+import Button from "./ui/Button";
 
 export default function Home() {
   const router = useRouter();
@@ -18,18 +19,21 @@ export default function Home() {
             component examples you can add to your Starknet projects and
             customize to your style.
           </p>
-          <button
+          <Button
             onClick={() => router.push("/components")}
-            className="group flex items-center gap-2 rounded-[12px] bg-base-dark px-6 py-3 text-base-light"
+            variant="big"
+            className="group"
           >
-            <span>Explore Components</span>
-            <span className="text-[1.4em] transition-all duration-300 group-hover:-rotate-[20deg]">
-              <RightArrow />
-            </span>
-          </button>
+            <>
+              <span>Explore Components</span>
+              <span className="text-[1.4em] transition-all duration-300 group-hover:-rotate-[20deg]">
+                <RightArrow />
+              </span>
+            </>
+          </Button>
         </div>
         <div aria-hidden={true} className="justify-end">
-          <Image src={HERO_IMG} alt="" />
+          <Image priority src={HERO_IMG} alt="" />
         </div>
       </section>
     </main>

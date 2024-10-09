@@ -82,16 +82,15 @@ const Iframe = ({
 
   return (
     <iframe className="h-full w-full" {...props} ref={iframeRef}>
-      {fullScreen
-        ? mountNode
-          ? createPortal(
-              <div className="h-screen w-screen">{children}</div>,
-              mountNode
-            )
-          : null
-        : mountNode
-          ? createPortal(children, mountNode)
-          : null}
+      {mountNode &&
+        createPortal(
+          fullScreen ? (
+            <div className="h-screen w-screen">{children}</div>
+          ) : (
+            children
+          ),
+          mountNode
+        )}
     </iframe>
   );
 };

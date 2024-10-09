@@ -5,10 +5,18 @@ import { useEffect, useRef, useState } from "react";
 const Gradient = () => {
   const [rows, setRows] = useState(0);
   const [cols, setCols] = useState(0);
-
   const containerRef = useRef<HTMLDivElement>(null);
 
   const path = usePathname();
+
+  // Debounce resize events to improve performance
+  const debounce = (func: () => void, timeout = 100) => {
+    let timer: ReturnType<typeof setTimeout>;
+    return () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func(), timeout);
+    };
+  };
 
   useEffect(() => {
     const updateTableSize = () => {
@@ -20,13 +28,16 @@ const Gradient = () => {
       }
     };
 
-    updateTableSize();
-    window.addEventListener("resize", updateTableSize);
+    const debouncedResize = debounce(updateTableSize);
+
+    updateTableSize(); // Initial call to set table size
+    window.addEventListener("resize", debouncedResize);
 
     return () => {
-      window.removeEventListener("resize", updateTableSize);
+      window.removeEventListener("resize", debouncedResize);
     };
   }, []);
+
   return (
     <div
       ref={containerRef}
@@ -50,22 +61,24 @@ const Gradient = () => {
         <div className="absolute bottom-0 left-0 h-[50%] w-full bg-white mix-blend-difference" />
       </div>
 
-      <div className="relative h-full w-full">
-        <table className="h-full w-full border-collapse">
-          <tbody>
-            {Array.from({ length: rows }).map((_, rowIndex) => (
-              <tr key={rowIndex}>
-                {Array.from({ length: cols }).map((_, colIndex) => (
-                  <td
-                    key={colIndex}
-                    className="h-[70px] w-[70px] border border-[#7a7a7a66] bg-white mix-blend-overlay"
-                  ></td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {rows > 0 && cols > 0 && (
+        <div
+          className="relative grid h-full w-full"
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${cols}, 70px)`,
+            gridTemplateRows: `repeat(${rows}, 70px)`,
+          }}
+        >
+          {Array.from({ length: rows * cols }).map((_, index) => (
+            <div
+              key={index}
+              className="border border-[#7a7a7a66] border-r-transparent border-t-transparent bg-white mix-blend-overlay"
+              style={{ height: "70px", width: "70px" }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
