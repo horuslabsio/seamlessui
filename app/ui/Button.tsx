@@ -10,7 +10,7 @@ const buttonProps = {
   default:
     "flex items-center gap-2 rounded-[12px] bg-base-dark px-4 py-2 text-base-light",
   icon: "flex items-center h-8 w-8 rounded-full justify-center p-2 bg-base-dark text-base-light text-[1.2em]",
-  big: "flex items-center gap-2 rounded-[12px] bg-base-dark px-6 py-3 text-base-light",
+  big: "flex items-center justify-center gap-2 rounded-[12px] bg-base-dark px-6 py-3 text-base-light",
   ghost: "",
 };
 
