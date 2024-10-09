@@ -83,7 +83,7 @@ const Components = () => {
           name="Hamburger"
           layoutVariants={false}
           variants={[]}
-          fullScreen
+          // full={false}
         >
           <Hamburger theme="dark" />
         </Preview>
@@ -111,6 +111,8 @@ const Components = () => {
           name="Transaction List"
           variants={[]}
           layoutVariants={false}
+          fullScreen={false}
+          full={true}
         >
           <TransactionList theme="light" />
         </Preview>

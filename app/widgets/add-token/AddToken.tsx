@@ -55,7 +55,7 @@ const AddToken = ({
       <button
         onClick={() => addTokenPopover.current?.showModal()}
         aria-haspopup="menu"
-        className={`w-full min-w-[8rem] rounded-[8px] bg-[#141925] px-4 py-2 text-[#fafafa] ${full ? "" : "min-w-[8rem]"}`}
+        className={`w-full min-w-[8rem] rounded-[8px] bg-[#141925] px-4 py-[14px] text-base font-medium text-[#fafafa] ${full ? "" : "min-w-[8rem]"}`}
       >
         Add token
       </button>
@@ -74,7 +74,7 @@ const AddToken = ({
           className={`relative w-[90vw] max-w-[390px] rounded-[24px] p-4 md:p-8 lg:w-[35rem] lg:max-w-none ${theme === "light" ? "bg-white text-[#141925]" : "bg-[#1A1A1A] text-[#fafafa]"}`}
         >
           <div className="mb-8 flex justify-between">
-            <h3 className="text-base font-bold lg:text-2xl">Add Token</h3>
+            <h3 className="text-xl font-bold lg:text-2xl">Add Token</h3>
 
             <button
               onClick={() => {
@@ -135,7 +135,7 @@ const AddToken = ({
             </div>
 
             <button
-              className={`w-full rounded-[12px] p-3 disabled:cursor-not-allowed disabled:bg-opacity-80 ${theme === "light" ? "bg-[#141925] text-white" : "bg-[#fafafa] text-[#1A1A1A]"}`}
+              className={`w-full rounded-[12px] p-3 font-semibold disabled:cursor-not-allowed disabled:bg-opacity-80 ${theme === "light" ? "bg-[#141925] text-white" : "bg-[#fafafa] text-[#1A1A1A]"}`}
               onClick={async (e) => {
                 e.preventDefault();
                 handleAddToken();

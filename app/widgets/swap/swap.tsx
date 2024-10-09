@@ -150,39 +150,37 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
             ? "linear-gradient(168.54deg, #FF9034 -46.81%, #FFFFFF 31.09%, #FFFFFF 77.47%)"
             : "linear-gradient(169.58deg, #E1852D -79.18%, #212121 19.19%, #1A1A1A 56.31%)",
       }}
-      className={`mx-auto mt-12 flex h-[371.67px] w-full cursor-pointer ${theme === "light" ? "text-[#141925]" : "text-[#FAFAFA]"} flex-col items-center gap-2 rounded-xl p-[18px] md:h-[636px] md:w-[594px] md:gap-6 md:p-[26px]`}
+      className={`flex w-full cursor-pointer ${theme === "light" ? "text-[#141925]" : "text-[#FAFAFA]"} flex flex-col rounded-xl p-[18px] md:w-[594px] md:p-[2rem]`}
     >
-      <div className="flex w-full items-center justify-between">
-        <p className="text-[15px] font-[700] md:text-[25px]">Swap</p>
-        <X size={30} />
+      <div className="mb-4 flex w-full items-center justify-between md:mb-8">
+        <p className="text-xl font-[700] md:text-2xl">Swap</p>
+        <X size={24} />
       </div>
 
-      <form>
+      <form className="m-0">
         <div className="relative flex w-full flex-col items-center">
           <div className="mb-4 flex w-full flex-col">
             <label className="mb-2 text-[9.97px] md:text-[16px]">From</label>
             <div
-              className={`flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "light" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-[#494949] bg-[#3A3A3A]"}`}
+              className={`flex items-center justify-between rounded-[8px] px-[10px] py-[10px] md:px-[24px] md:py-[30px] ${theme === "light" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-[#494949] bg-[#3A3A3A]"}`}
             >
-              <div className="flex w-full items-center justify-between">
-                <div className="flex flex-col items-start">
-                  <input
-                    type="text"
-                    value={amount}
-                    placeholder="0"
-                    onChange={handleAmountChange}
-                    className="w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px]"
-                  />
-                  <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-[#7A7A7A] md:text-[16px]">
-                    = ${(parseFloat(amount || "0") * rate).toFixed(3)}
-                  </p>
-                </div>
-                <CustomSelect
-                  selectedToken={fromToken}
-                  onTokenSelect={setFromToken}
-                  theme={theme}
+              <div className="flex flex-col items-start">
+                <input
+                  type="text"
+                  value={amount}
+                  placeholder="0"
+                  onChange={handleAmountChange}
+                  className="w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px]"
                 />
+                <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-[#7A7A7A] md:text-[16px]">
+                  = ${(parseFloat(amount || "0") * rate).toFixed(3)}
+                </p>
               </div>
+              <CustomSelect
+                selectedToken={fromToken}
+                onTokenSelect={setFromToken}
+                theme={theme}
+              />
             </div>
           </div>
 
@@ -199,59 +197,61 @@ const Swap: React.FC<SwapProps> = ({ theme }) => {
           <div className="mt-0 flex w-full flex-col">
             <label className="mb-2 text-[9.97px] md:text-[16px]">To</label>
             <div
-              className={`flex h-[78.49px] flex-col items-center rounded-[8px] px-[10px] py-[10px] md:h-[134px] md:px-[24px] md:py-[30px] ${theme === "light" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-[#494949] bg-[#3A3A3A]"}`}
+              className={`flex items-center justify-between rounded-[8px] px-[10px] py-[10px] md:px-[24px] md:py-[30px] ${theme === "light" ? "border border-[#dadada] bg-[#f5f5f5]" : "border border-[#494949] bg-[#3A3A3A]"}`}
             >
-              <div className="flex w-full items-center justify-between">
-                <div className="flex flex-col items-start">
-                  <input
-                    type="text"
-                    value={parseFloat(equivalent).toFixed(3)}
-                    placeholder="0"
-                    readOnly
-                    className="w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px]"
-                  />
-                  <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-[#7A7A7A] md:text-[16px]">
-                    = ${Number(equivalent).toFixed(3)}
-                  </p>
-                </div>
-                <CustomSelect
-                  selectedToken={toToken}
-                  onTokenSelect={setToToken}
-                  theme={theme}
+              <div className="flex flex-col items-start">
+                <input
+                  type="text"
+                  value={parseFloat(equivalent).toFixed(3)}
+                  placeholder="0"
+                  readOnly
+                  className="w-[45%] bg-transparent text-[18.59px] font-[700] outline-none md:w-[75%] md:text-[32px]"
                 />
+                <p className="ml-[2px] max-w-[45%] overflow-hidden text-ellipsis whitespace-nowrap text-[9.97px] font-[600] text-[#7A7A7A] md:text-[16px]">
+                  = ${Number(equivalent).toFixed(3)}
+                </p>
               </div>
+              <CustomSelect
+                selectedToken={toToken}
+                onTokenSelect={setToToken}
+                theme={theme}
+              />
             </div>
           </div>
         </div>
 
-        <div className="flex w-full flex-col gap-[8px] md:my-4">
+        <div
+          className={`mt-3 flex w-full flex-col gap-[8px] ${error ? "mb-2" : "mb-8"}`}
+        >
           <div className="flex w-full items-center justify-between">
-            <p className="text-[9.97px] font-[700] text-[#7A7A7A] md:text-[16px]">
+            <p className="text-[9.97px] font-[700] text-[#7A7A7A] md:text-sm">
               Current price
             </p>
-            <p className="text-[9.97px] font-[700] md:text-[16px]">
+            <p className="text-[9.97px] font-[600] md:text-sm">
               1 {fromToken} = {rate.toFixed(3)} {toToken}
             </p>
           </div>
           <div className="flex w-full items-center justify-between">
-            <p className="text-[9.97px] font-[700] text-[#7A7A7A] md:text-[16px]">
+            <p className="text-[9.97px] font-[600] text-[#7A7A7A] md:text-sm">
               Min received
             </p>
-            <p className="text-[9.97px] font-[700] md:text-[16px]">
+            <p className="text-[9.97px] font-[600] md:text-sm">
               {parseFloat(equivalent || "0").toFixed(3)} {toToken}
             </p>
           </div>
         </div>
 
         {error && (
-          <p className="text-[9.97px] text-red-500 md:text-[16px]">{error}</p>
+          <p className="mb-2 text-[9.97px] text-red-500 md:text-[16px]">
+            {error}
+          </p>
         )}
 
         <button
           onClick={handleSwap}
           disabled={isLoading || !address}
           type="submit"
-          className={`my-4 h-[31.94px] w-full rounded-xl py-[6.97px] text-[11.97px] font-[700] md:h-[54px] md:py-[12px] md:text-[20px] ${theme === "light" ? "bg-black text-white" : "bg-white text-black"} ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
+          className={`w-full rounded-xl py-[6.97px] text-[11.97px] font-[600] md:py-[12px] md:text-[20px] ${theme === "light" ? "bg-black text-white" : "bg-white text-black"} ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
         >
           {isLoading ? "Processing..." : address ? "Swap" : "Connect Wallet"}
         </button>

@@ -128,29 +128,27 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
         <div
           className={`absolute left-0 top-10 ${
             theme === "dark" ? "bg-[#1A1A1A] text-white" : "bg-white text-black"
-          } h-fit w-full rounded-3xl px-[18px] py-[16px] text-center transition-all duration-300 ease-in-out md:w-[500px] md:p-5 md:font-[700]`}
+          } flex h-fit w-full flex-col gap-4 rounded-3xl px-[18px] py-[16px] text-center transition-all duration-300 ease-in-out md:w-[500px] md:p-[2rem] md:font-[700]`}
         >
-          <div className="flex flex-col gap-4">
-            <div
-              className={`flex items-center justify-between gap-[18px] px-1 py-3 ${
-                theme === "dark"
-                  ? "border-b border-[#9a9a9a]"
-                  : "border-b border-[#9a9a9a]"
+          <div
+            className={`flex items-center justify-between gap-[18px] pb-4 ${
+              theme === "dark"
+                ? "border-b border-[#9a9a9a]"
+                : "border-b border-[#9a9a9a]"
+            }`}
+          >
+            <p
+              className={`${
+                theme === "dark" ? "text-[#7A7A7A]" : "text-[#7A7A7A]"
               }`}
             >
-              <p
-                className={`${
-                  theme === "dark" ? "text-[#7A7A7A]" : "text-[#7A7A7A]"
-                }`}
-              >
-                Select Network
-              </p>
-              <CustomSelect theme={theme} />
-            </div>
-
-            <TransactionList theme={theme} />
+              Select Network
+            </p>
+            <CustomSelect theme={theme} />
           </div>
-          <AddToken full theme={theme} />
+
+          <TransactionList theme={theme} />
+          <AddToken full={true} theme={theme} />
         </div>
       )}
     </div>
