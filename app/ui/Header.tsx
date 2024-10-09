@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { GithubIcon, SearchIcon } from "@/public/icons/icons";
 import Link from "next/link";
+import Button from "./Button";
 
 const Header = () => {
   return (
@@ -19,10 +20,10 @@ const Header = () => {
       </Link>
       {/* mobile menu */}
       <div className="flex items-center gap-4 lg:hidden">
-        <button className="text-[1.8em]">
+        <Button variant="ghost" className="text-[1.8em]">
           <SearchIcon />
-        </button>
-        <button className="text-[1.8em]">
+        </Button>
+        <Button variant="ghost" className="text-[1.8em]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1em"
@@ -38,7 +39,7 @@ const Header = () => {
             </g>
           </svg>
           {/* <HamburgerIcon /> */}
-        </button>
+        </Button>
       </div>
       {/* desktop */}
       <div className="hidden items-center justify-between gap-8 lg:flex">

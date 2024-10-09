@@ -1,5 +1,6 @@
 import { CheckIcon, CopyIcon } from "@/public/icons/icons";
 import { useEffect, useState } from "react";
+import Button from "../ui/Button";
 
 type Props = {
   copyText: string;
@@ -50,7 +51,7 @@ function CopyButton({
     }
   }
   return (
-    <button
+    <Button
       aria-label={isCopied ? "Copied!" : "copy"}
       aria-live="assertive"
       title={isCopied ? "Copied!" : "click to copy address"}
@@ -59,12 +60,13 @@ function CopyButton({
         handleCopyClick();
       }}
       className={className}
+      variant="ghost"
     >
       <span>{buttonText}</span>
       <span aria-hidden className={iconClassName}>
         {isCopied ? <CheckIcon /> : <CopyIcon />}
       </span>
-    </button>
+    </Button>
   );
 }
 

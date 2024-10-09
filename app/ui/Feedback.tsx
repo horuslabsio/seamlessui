@@ -65,7 +65,7 @@ const Feedback = () => {
             </button>
           </div>
           <h2 className="flex-1 text-center text-2xl">
-            How can we better serve you?
+            How Can We Better Serve You?
           </h2>
           <div className="mx-auto grid h-[6rem] w-[6rem] place-content-center rounded-full bg-base-dark p-1">
             <Image src={Logo} alt="logo" />

@@ -40,9 +40,6 @@ h5,
 h6 {
   font-family: "helvetica-extrabold", Helvetica, sans-serif;
 }
-button {
-  font-family: "helvetica-bold", Helvetica, sans-serif;
-}
 
 @layer utilities {
   .text-balance {
