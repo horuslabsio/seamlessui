@@ -18,16 +18,17 @@ const Feedback = () => {
       !visitData.hasVisited ||
       (visitData.timestamp && now - visitData.timestamp > expirationTime)
     ) {
-      if (feedbackModal.current) {
-        feedbackModal.current.showModal();
-      }
+      setTimeout(() => {
+        if (feedbackModal.current) {
+          feedbackModal.current.showModal();
+        }
+        const updatedVisitData = {
+          hasVisited: true,
+          timestamp: now,
+        };
 
-      const updatedVisitData = {
-        hasVisited: true,
-        timestamp: now,
-      };
-
-      localStorage.setItem("visitData", JSON.stringify(updatedVisitData));
+        localStorage.setItem("visitData", JSON.stringify(updatedVisitData));
+      }, 5000);
     }
   }, []);
 
