@@ -54,29 +54,13 @@ const AddToken = () => {
 
   return (
     <>
-      ${
-        full
-          ? `
-        <button
-          onClick={() => addTokenPopover.current?.showModal()}
-          aria-haspopup="menu"
-          className="w-full min-w-[8rem] rounded-[8px] bg-[#141925] px-4 py-2 text-[#fafafa]"
-        >
-          Add token
-        </button>
-          `
-          : `
-        <div className="grid h-full w-full place-content-center">
-          <button
-            onClick={() => addTokenPopover.current?.showModal()}
-            aria-haspopup="menu"
-            className="min-w-[8rem] rounded-[8px] bg-[#141925] px-4 py-2 text-[#fafafa]"
-          >
-            Add token
-          </button>
-        </div>
-      `
-      }
+      <button
+        onClick={() => addTokenPopover.current?.showModal()}
+        aria-haspopup="menu"
+        className="w-full min-w-[8rem] rounded-[8px] bg-[#141925] px-4 py-2 text-[#fafafa] ${full ? "" : "min-w-[8rem]"}"
+      >
+        Add token
+      </button>
 
       <dialog
         ref={addTokenPopover}
