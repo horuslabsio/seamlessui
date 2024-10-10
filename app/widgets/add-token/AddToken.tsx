@@ -77,9 +77,6 @@ const AddToken = ({
             <h3 className="text-xl font-bold lg:text-2xl">Add Token</h3>
 
             <button
-              onClick={() => {
-                addTokenPopover.current?.close();
-              }}
               className={`w-fit rounded-full p-1 ${theme === "light" ? "" : "bg-[#343434]"}`}
             >
               <X />

@@ -26,7 +26,7 @@ const Leaderboard = ({ theme }: { theme: ThemeProps }) => {
 
   return (
     <div
-      className={`mx-auto my-4 mb-8 w-[70%] overflow-hidden rounded-3xl shadow-lg ${
+      className={`mx-auto my-4 mb-8 w-[90%] overflow-hidden rounded-3xl shadow-lg ${
         isDarkTheme ? "bg-[#1A1A1A] text-white" : "bg-white text-black"
       } `}
     >

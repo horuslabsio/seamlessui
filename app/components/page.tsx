@@ -17,6 +17,7 @@ import AddToken from "../widgets/add-token/AddToken";
 import { nftCardCodeGen } from "../widgets/nftCard/code";
 import { hamburgerCodeGen } from "../widgets/hamburger/code";
 import { swapCodeGen } from "../widgets/swap/code";
+import AddressBar from "../widgets/address-bar/addressBar";
 
 interface NFTData {
   name: string;
@@ -45,6 +46,15 @@ const Components = () => {
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
         >
           <Connect layout="list" theme="light" />
+        </Preview>
+        <Preview
+          name="Address Bar"
+          variants={[]}
+          codeStringGenerator={connectCodeGen}
+          description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
+          layoutVariants={false}
+        >
+          <AddressBar theme="light" />
         </Preview>
         <Preview
           name="Settings"
