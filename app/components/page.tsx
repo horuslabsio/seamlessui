@@ -56,17 +56,6 @@ const Components = () => {
         >
           <Settings />
         </Preview>
-
-        <Preview
-          name="Leader board"
-          variants={["list", "grid"]}
-          codeStringGenerator={leaderboardCodeGen}
-          description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
-          layoutVariants={false}
-          fullScreen
-        >
-          <Leaderboard theme="dark" />
-        </Preview>
         <Preview
           name="Add token"
           variants={[]}
@@ -115,6 +104,16 @@ const Components = () => {
           full={true}
         >
           <TransactionList theme="light" />
+        </Preview>
+        <Preview
+          name="Leader board"
+          variants={["list", "grid"]}
+          codeStringGenerator={leaderboardCodeGen}
+          description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
+          layoutVariants={false}
+          fullScreen
+        >
+          <Leaderboard theme="dark" />
         </Preview>
       </section>
     </main>

@@ -115,11 +115,11 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
       >
         {open ? (
           <X
-            className={`h-8 w-8 ${theme === "light" ? "text-[#343434]" : "text-white"} transition duration-300 ease-in-out`}
+            className={`h-8 w-8 ${theme === "dark" ? "text-[#343434]" : "text-white"} transition duration-300 ease-in-out`}
           />
         ) : (
           <Menu
-            className={`h-8 w-8 ${theme === "light" ? "text-[#343434]" : "text-white"} transition duration-300 ease-in-out`}
+            className={`h-8 w-8 ${theme === "dark" ? "text-[#343434]" : "text-white"} transition duration-300 ease-in-out`}
           />
         )}
       </button>
@@ -128,7 +128,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
         <div
           className={`absolute left-0 top-10 ${
             theme === "dark" ? "bg-[#1A1A1A] text-white" : "bg-white text-black"
-          } flex h-fit w-full flex-col gap-4 rounded-3xl px-[18px] py-[16px] text-center transition-all duration-300 ease-in-out md:w-[500px] md:p-[2rem] md:font-[700]`}
+          } flex h-fit w-full flex-col gap-4 rounded-3xl px-[18px] py-[16px] text-center transition-all duration-300 ease-in-out md:w-[430px] md:p-[2rem] md:font-[700]`}
         >
           <div
             className={`flex items-center justify-between gap-[18px] pb-4 ${
@@ -138,7 +138,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
             }`}
           >
             <p
-              className={`${
+              className={`text-sm ${
                 theme === "dark" ? "text-[#7A7A7A]" : "text-[#7A7A7A]"
               }`}
             >

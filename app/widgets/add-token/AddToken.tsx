@@ -55,7 +55,7 @@ const AddToken = ({
       <button
         onClick={() => addTokenPopover.current?.showModal()}
         aria-haspopup="menu"
-        className={`w-full min-w-[8rem] rounded-[8px] bg-[#141925] px-4 py-[14px] text-base font-medium text-[#fafafa] ${full ? "" : "min-w-[8rem]"}`}
+        className={`w-full min-w-[8rem] rounded-[8px] ${theme === "dark" ? "bg-[#FAFAFA] text-[#343434]" : "bg-[#141925] text-[#FAFAFA]"} px-4 py-[14px] text-base font-medium ${full ? "" : "min-w-[8rem]"}`}
       >
         Add token
       </button>

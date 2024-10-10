@@ -29,10 +29,9 @@ interface TransactionProps {
 
 const TransactionList: React.FC<TransactionProps> = ({
   theme,
-  width = "full",
+  // width = "full",
 }) => {
   const txnHistoryPopover = useRef<HTMLDialogElement>(null);
-  // const [open, setOpen] = useState(false);
   const [showDetails, setShowDetails] = useState<string>("");
 
   const transactions: Transaction[] = [
@@ -102,20 +101,17 @@ const TransactionList: React.FC<TransactionProps> = ({
       <button
         onClick={() => txnHistoryPopover.current?.showModal()}
         aria-haspopup="menu"
-        className={`flex ${width === "full" || !width ? "w-full" : `w-[${width.toString()}]`} cursor-pointer items-center justify-center gap-2 rounded-xl border py-[14px] font-medium focus:outline-none ${
+        className={`flex w-full max-w-[400px] cursor-pointer items-center justify-center gap-2 rounded-xl border py-[14px] font-medium focus:outline-none ${
           theme === "dark"
-            ? "border-[#494949] bg-[#141925] text-[#fafafa]"
-            : "border-[#9a9a9a] bg-transparent text-[#141925]"
+            ? "border-[#494949] bg-[#3A3A3A] text-[#fafafa]"
+            : "border-[#9a9a9a] bg-[#FAFAFA] text-[#141925]"
         } `}
-        // onClick={() => setOpen(!open)}
       >
         <span className="flex w-[460px] items-center justify-center">
           <LibraryBig size={30} />
           Transaction History
         </span>
       </button>
-
-      {/* {open && ( */}
       <dialog
         ref={txnHistoryPopover}
         className="overflow-hidden rounded-[12px] bg-transparent lg:rounded-[24px]"
@@ -295,7 +291,6 @@ const TransactionList: React.FC<TransactionProps> = ({
           </div>
         </div>
       </dialog>
-      {/* )} */}
     </div>
   );
 };
