@@ -24,12 +24,13 @@ interface Transaction {
 
 interface TransactionProps {
   theme: "dark" | "light";
-  width?: "full" | number;
+  full: boolean;
 }
 
 const TransactionList: React.FC<TransactionProps> = ({
   theme,
   // width = "full",
+  full,
 }) => {
   const txnHistoryPopover = useRef<HTMLDialogElement>(null);
   const [showDetails, setShowDetails] = useState<string>("");
@@ -101,16 +102,14 @@ const TransactionList: React.FC<TransactionProps> = ({
       <button
         onClick={() => txnHistoryPopover.current?.showModal()}
         aria-haspopup="menu"
-        className={`flex w-full max-w-[400px] cursor-pointer items-center justify-center gap-2 rounded-xl border py-[14px] font-medium focus:outline-none ${
+        className={`flex w-full ${full ? "" : "min-w-[8rem]"} cursor-pointer items-center justify-center gap-1 rounded-xl border px-4 py-[14px] font-medium focus:outline-none ${
           theme === "dark"
             ? "border-[#494949] bg-[#3A3A3A] text-[#fafafa]"
             : "border-[#9a9a9a] bg-[#FAFAFA] text-[#141925]"
         } `}
       >
-        <span className="flex w-[460px] items-center justify-center">
-          <LibraryBig size={30} />
-          Transaction History
-        </span>
+        <LibraryBig size={20} />
+        Transaction History
       </button>
       <dialog
         ref={txnHistoryPopover}

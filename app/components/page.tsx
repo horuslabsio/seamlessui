@@ -101,9 +101,9 @@ const Components = () => {
           variants={[]}
           layoutVariants={false}
           fullScreen={false}
-          full={true}
+          full={false}
         >
-          <TransactionList theme="light" />
+          <TransactionList full={false} theme="light" />
         </Preview>
         <Preview
           name="Leader board"

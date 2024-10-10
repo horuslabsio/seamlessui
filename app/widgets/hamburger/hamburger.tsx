@@ -105,7 +105,7 @@ const CustomSelect: React.FC<{ theme: "dark" | "light" }> = ({ theme }) => {
 };
 
 const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <div className="relative">
@@ -115,11 +115,11 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
       >
         {open ? (
           <X
-            className={`h-8 w-8 ${theme === "dark" ? "text-[#343434]" : "text-white"} transition duration-300 ease-in-out`}
+            className={`h-8 w-8 text-[#343434] transition duration-300 ease-in-out`}
           />
         ) : (
           <Menu
-            className={`h-8 w-8 ${theme === "dark" ? "text-[#343434]" : "text-white"} transition duration-300 ease-in-out`}
+            className={`h-8 w-8 text-[#343434] transition duration-300 ease-in-out`}
           />
         )}
       </button>
@@ -147,7 +147,7 @@ const Hamburger: React.FC<HamburgerProps> = ({ theme }) => {
             <CustomSelect theme={theme} />
           </div>
 
-          <TransactionList theme={theme} />
+          <TransactionList theme={theme} full={true} />
           <AddToken full={true} theme={theme} />
         </div>
       )}
