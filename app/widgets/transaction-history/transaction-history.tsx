@@ -9,7 +9,7 @@ import {
   Files,
   LibraryBig,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 interface Transaction {
   id: string;
@@ -24,14 +24,15 @@ interface Transaction {
 
 interface TransactionProps {
   theme: "dark" | "light";
-  width?: "full" | number;
+  full: boolean;
 }
 
 const TransactionList: React.FC<TransactionProps> = ({
   theme,
-  width = "full",
+  // width = "full",
+  full,
 }) => {
-  const [open, setOpen] = useState(false);
+  const txnHistoryPopover = useRef<HTMLDialogElement>(null);
   const [showDetails, setShowDetails] = useState<string>("");
 
   const transactions: Transaction[] = [
@@ -81,15 +82,15 @@ const TransactionList: React.FC<TransactionProps> = ({
     switch (status) {
       case "success":
         return (
-          <BadgeCheck className="text-[#CDFFD2]" size={30} fill="#10a41f" />
+          <BadgeCheck className="text-[#CDFFD2]" size={40} fill="#10a41f" />
         );
       case "warning":
         return (
-          <BadgeAlert className="text-[#FFEECD]" size={30} fill="#FD9332" />
+          <BadgeAlert className="text-[#FFEECD]" size={40} fill="#FD9332" />
         );
       case "error":
         return (
-          <BadgeMinus className="text-[#FFCDCD]" size={30} fill="#D81616" />
+          <BadgeMinus className="text-[#FFCDCD]" size={40} fill="#D81616" />
         );
       default:
         return null;
@@ -99,20 +100,21 @@ const TransactionList: React.FC<TransactionProps> = ({
   return (
     <div className="relative">
       <button
-        className={`flex ${width === "full" || !width ? "w-full" : `w-[${width.toString()}]`} cursor-pointer items-center justify-center gap-2 rounded-xl border py-[14px] font-medium focus:outline-none ${
+        onClick={() => txnHistoryPopover.current?.showModal()}
+        aria-haspopup="menu"
+        className={`flex w-full ${full ? "" : "min-w-[8rem]"} cursor-pointer items-center justify-center gap-1 rounded-xl border px-4 py-[14px] font-medium focus:outline-none ${
           theme === "dark"
-            ? "border-[#494949] bg-[#141925] text-[#fafafa]"
-            : "border-[#9a9a9a] bg-transparent text-[#141925]"
+            ? "border-[#494949] bg-[#3A3A3A] text-[#fafafa]"
+            : "border-[#9a9a9a] bg-[#FAFAFA] text-[#141925]"
         } `}
-        onClick={() => setOpen(!open)}
       >
-        <span className="flex w-[460px] items-center justify-center">
-          <LibraryBig size={30} />
-          Transaction History
-        </span>
+        <LibraryBig size={20} />
+        Transaction History
       </button>
-
-      {open && (
+      <dialog
+        ref={txnHistoryPopover}
+        className="overflow-hidden rounded-[12px] bg-transparent lg:rounded-[24px]"
+      >
         <div
           style={{
             background:
@@ -120,7 +122,7 @@ const TransactionList: React.FC<TransactionProps> = ({
                 ? "linear-gradient(168.54deg, #FF9034 -46.81%, #FFFFFF 31.09%, #FFFFFF 77.47%)"
                 : "linear-gradient(169.58deg, #E1852D -79.18%, #212121 19.19%, #1A1A1A 56.31%)",
           }}
-          className="absolute left-0 top-[70px] flex w-fit flex-col items-center rounded-xl p-[2rem] transition-all duration-300 ease-in-out"
+          className="relative flex w-fit flex-col items-center rounded-xl p-4 md:p-[2rem]"
         >
           <div
             className={`mb-8 flex w-full items-center justify-between ${theme === "dark" ? "text-[#FAFAFA]" : "text-[#141925]"}`}
@@ -130,7 +132,7 @@ const TransactionList: React.FC<TransactionProps> = ({
               size={24}
               onClick={() => {
                 setShowDetails("");
-                setOpen(!open);
+                txnHistoryPopover.current?.close();
               }}
             />
           </div>
@@ -138,7 +140,7 @@ const TransactionList: React.FC<TransactionProps> = ({
             {transactions.map((transaction) => (
               <div
                 key={transaction.id}
-                className={`grid w-[500px] transition-all duration-500 ease-in-out ${theme === "dark" ? "border-[#2A2A2A] bg-[#1A1A1A]" : "border-[#F5F5F5] bg-white"} items-center gap-[24px] rounded-[24px] border px-[16px] py-[24px]`}
+                className={`h-fit w-[500px] transition-all duration-500 ease-in-out ${theme === "dark" ? "border-[#2A2A2A] bg-[#1A1A1A]" : "border-[#F5F5F5] bg-white"} items-center gap-[24px] rounded-[24px] border px-[16px] py-[24px]`}
               >
                 <div className="mb-0 grid grid-cols-[auto_1fr] items-center gap-x-6">
                   <div
@@ -156,19 +158,19 @@ const TransactionList: React.FC<TransactionProps> = ({
                   <div className="flex h-fit flex-col gap-2">
                     <div className="flex items-center justify-between border-b-[1.75px] border-[#DADADA] pb-3">
                       <div
-                        className={`flex w-fit items-center gap-[14px] rounded-full border px-[20px] py-[12px] ${
+                        className={`flex w-fit items-center gap-3 rounded-full border px-4 py-2 text-xs ${
                           theme === "dark"
                             ? "border-[#494949] bg-[#494949]"
                             : "border-[#DADADA] bg-[#f5f5f5]"
                         }`}
                       >
-                        <div className="h-[24px] w-[24px] rounded-full bg-purple-900"></div>
-                        <p className="text-[14px] font-[600] text-[#FD9332]">
+                        <div className="h-[20px] w-[20px] rounded-full bg-purple-900"></div>
+                        <p className="font-[600] text-[#FD9332]">
                           {transaction.address}
                         </p>
                       </div>
                       <div>
-                        <p className="flex gap-1 text-[16px] font-[700] text-[#10A41F]">
+                        <p className="flex gap-1 text-sm font-[700] text-[#10A41F]">
                           +{transaction.amount}{" "}
                           <span className="self-end text-[12px]">
                             {transaction.currency}
@@ -203,7 +205,7 @@ const TransactionList: React.FC<TransactionProps> = ({
                       </div>
 
                       <div
-                        className="flex cursor-pointer items-center gap-2"
+                        className="flex cursor-pointer items-center gap-1"
                         onClick={() => {
                           if (showDetails === transaction.id) {
                             setShowDetails("");
@@ -214,7 +216,7 @@ const TransactionList: React.FC<TransactionProps> = ({
                         }}
                       >
                         <p
-                          className={`${theme === "dark" ? "text-[#9A9A9A]" : "text-[#7A7A7A]"} text-[12px] font-[700]`}
+                          className={`${theme === "dark" ? "text-[#9A9A9A]" : "text-[#7A7A7A]"} text-[11px] font-[700]`}
                         >
                           TRANSACTION ID
                         </p>
@@ -231,14 +233,14 @@ const TransactionList: React.FC<TransactionProps> = ({
                   </div>
                 </div>
                 <div
-                  className={`justify-self-end transition-all duration-300 ${
+                  className={`grid justify-end overflow-hidden transition-all duration-500 ${
                     showDetails === transaction.id
                       ? "max-h-[500px] grid-rows-[auto]"
-                      : "max-h-0 grid-rows-[0fr] overflow-hidden"
+                      : "max-h-0 grid-rows-[0fr]"
                   }`}
                 >
                   <div
-                    className={`flex w-[350px] items-start justify-start gap-[25px] overflow-hidden rounded-[12px] px-[14px] py-[24px] text-start ease-in-out ${
+                    className={`mt-4 flex w-[350px] items-start justify-start gap-[25px] overflow-hidden rounded-[12px] px-[14px] py-[24px] text-start ease-in-out ${
                       theme === "dark" ? "bg-[#48433D]" : "bg-[#FFEBDA]"
                     } self-end`}
                   >
@@ -287,7 +289,7 @@ const TransactionList: React.FC<TransactionProps> = ({
             ))}
           </div>
         </div>
-      )}
+      </dialog>
     </div>
   );
 };
