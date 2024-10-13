@@ -1,8 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project bootstrapped using the powerful [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) tool.
 
 ## Getting Started
 
-First, run the development server:
+1. Install Dependencies
+
+Ensure you have the necessary dependencies installed by running one of the following commands in the project root:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+2. Run the development server:
+
+Start the local development server with:
 
 ```bash
 npm run dev
@@ -14,7 +30,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to view the application.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
