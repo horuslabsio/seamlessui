@@ -46,18 +46,6 @@ h6 {
     text-wrap: balance;
   }
 }
-
-dialog {
-  transform: translateY(10%);
-}
-dialog,
-::backdrop {
-  opacity: 0;
-  transition-property: opacity display overlay;
-  transition-duration: 0.5s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-behavior: allow-discrete;
-}
 dialog[open] {
   opacity: 1;
   transform: translateY(0);
@@ -67,6 +55,18 @@ dialog[open]::backdrop {
   opacity: 1;
   backdrop-filter: blur(5px);
 }
+dialog {
+  transform: translateY(-10%);
+}
+dialog,
+::backdrop {
+  opacity: 0;
+  transition-property: opacity, transform, overlay, display;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-behavior: allow-discrete;
+}
+
 @starting-style {
   dialog[open] {
     opacity: 0;

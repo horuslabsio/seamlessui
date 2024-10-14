@@ -4,6 +4,7 @@ import {
   ReactElement,
   cloneElement,
   isValidElement,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -79,7 +80,10 @@ const Preview = ({
       })()
     : children;
 
-  const finalCodeString = codeStringGenerator({ theme, variant, full });
+  const finalCodeString = useMemo(
+    () => codeStringGenerator({ theme, variant, full }),
+    [theme, variant]
+  );
 
   return (
     <div>
@@ -144,19 +148,16 @@ const Preview = ({
             />
           </div>
         </div>
-        <div>
-          {activeTab === 0 ? (
-            <div
-              style={{
-                height: `calc(100vh - ${dimensions.height}px)`,
-              }}
-              className="relative grid h-full max-h-[900px] rounded-[8px] bg-[#e4e4e4]"
-            >
-              <Iframe fullScreen={fullScreen}>{modifiedChildren}</Iframe>
-            </div>
-          ) : (
-            <Highlight code={finalCodeString} />
-          )}
+        <div className="grid grid-cols-[1fr] grid-rows-[1fr]">
+          <Highlight activeTab={activeTab} code={finalCodeString} />
+          <div
+            style={{
+              height: `calc(100vh - ${dimensions.height}px)`,
+            }}
+            className={`relative col-start-1 row-start-[1] row-end-1 grid h-full max-h-[900px] rounded-[8px] bg-[#e4e4e4] ${activeTab === 0 ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+          >
+            <Iframe fullScreen={fullScreen}>{modifiedChildren}</Iframe>
+          </div>
         </div>
       </div>
     </div>

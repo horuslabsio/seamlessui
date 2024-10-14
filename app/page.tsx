@@ -34,9 +34,9 @@ export default function Home() {
         </div>
         <div
           aria-hidden={true}
-          className="ml-auto justify-end py-8 pl-4 md:p-0"
+          className="ml-auto max-h-[calc(100vh-15rem)] justify-end py-8 pl-4 md:p-0 lg:basis-[45%]"
         >
-          <Image priority src={HERO_IMG} alt="" />
+          <Image className="h-full w-full" priority src={HERO_IMG} alt="" />
         </div>
       </section>
     </main>
