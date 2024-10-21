@@ -57,6 +57,7 @@ function CopyButton({
       title={isCopied ? "Copied!" : "click to copy address"}
       onClick={(e) => {
         e.preventDefault();
+        e.stopPropagation();
         handleCopyClick();
       }}
       className={className}
