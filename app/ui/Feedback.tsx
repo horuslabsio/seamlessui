@@ -28,7 +28,7 @@ const Feedback = () => {
         };
 
         localStorage.setItem("visitData", JSON.stringify(updatedVisitData));
-      }, 1000);
+      }, 5000);
     }
   }, []);
 
