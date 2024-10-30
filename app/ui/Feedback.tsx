@@ -40,7 +40,7 @@ const Feedback = () => {
             feedbackModal.current.showModal();
           }
         }}
-        className="fixed right-0 top-1/2 z-[9999] h-[7rem] w-6 -translate-y-1/2 transform-gpu rounded-bl-[4px] rounded-tl-[4px] bg-base-dark text-base-light"
+        className="fixed right-0 top-1/2 z-[9999] h-[7rem] w-6 -translate-y-1/2 transform-gpu rounded-bl-[4px] rounded-tl-[4px] bg-base-dark text-base-light will-change-transform"
       >
         <span className="absolute left-1/2 top-1/2 inline-block -translate-x-1/2 -translate-y-1/2 -rotate-[90deg] font-normal">
           Feedback

@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 
 const Gradient = () => {
   const [rows, setRows] = useState(0);
@@ -30,7 +30,7 @@ const Gradient = () => {
 
     const debouncedResize = debounce(updateTableSize);
 
-    updateTableSize(); // Initial call to set table size
+    updateTableSize();
     window.addEventListener("resize", debouncedResize);
 
     return () => {
@@ -42,7 +42,7 @@ const Gradient = () => {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="absolute left-1/2 -z-10 mx-auto h-screen max-h-[1024px] w-screen -translate-x-1/2 overflow-hidden bg-blend-difference"
+      className="absolute left-1/2 -z-10 mx-auto h-screen w-screen -translate-x-1/2 overflow-hidden bg-blend-difference"
     >
       <div className="absolute inset-0 z-[1] transform-gpu overflow-hidden">
         <div className="absolute left-0 top-0 h-[20%] w-full bg-white mix-blend-difference blur-lg" />
@@ -83,4 +83,4 @@ const Gradient = () => {
   );
 };
 
-export default Gradient;
+export default memo(Gradient);
