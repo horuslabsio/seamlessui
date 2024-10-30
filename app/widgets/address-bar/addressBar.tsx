@@ -7,7 +7,9 @@ import {
   Address,
 } from "@starknet-react/core";
 import Erc20Abi from "../../../public/abi/erc20.json";
-import CopyButton from "@/app/utilities/CopyButton";
+import { FormEvent, useEffect, useState } from "react";
+import { Check, Copy as CopyIcon } from "lucide-react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import EthLogo from "@/public/icons/EthLogo";
 import StrkLogo from "@/public/icons/StrkLogo";
 import { X } from "lucide-react";
@@ -15,6 +17,48 @@ import { formatCurrency } from "@/app/utilities/helpers";
 import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utilities/constant";
 import Connect from "../connect/Connect";
 import { useRef } from "react";
+
+function CopyButton({
+  copyText,
+  buttonText,
+  className,
+  iconClassName = "",
+}: {
+  copyText: string;
+  buttonText?: string;
+  className?: string;
+  iconClassName?: string;
+}) {
+  const [isCopied, setIsCopied] = useState(false);
+
+  useEffect(() => {
+    if (isCopied) {
+      const id = setTimeout(() => setIsCopied(false), 1500);
+      return () => clearTimeout(id);
+    }
+  }, [isCopied]);
+
+  function handleCopyClick(e: FormEvent) {
+    e.stopPropagation();
+  }
+
+  return (
+    <CopyToClipboard text={copyText} onCopy={() => setIsCopied(true)}>
+      <button
+        aria-label={isCopied ? "Copied!" : "copy"}
+        aria-live="assertive"
+        title={isCopied ? "Copied!" : "click to copy address"}
+        onClick={(e) => handleCopyClick(e)}
+        className={className}
+      >
+        <span>{buttonText}</span>
+        <span aria-hidden className={iconClassName}>
+          {isCopied ? <Check size={16} /> : <CopyIcon size={16} />}
+        </span>
+      </button>
+    </CopyToClipboard>
+  );
+}
 
 function AccountBalance({
   theme,
@@ -98,10 +142,10 @@ function AccountBalance({
 
 const AddressBar = ({
   theme,
-  showAssets = true,
+  showAssets,
 }: {
   theme: "light" | "dark";
-  showAssets?: boolean;
+  showAssets: boolean;
 }) => {
   const { address } = useAccount();
   const addressBarPopover = useRef<HTMLDialogElement>(null);

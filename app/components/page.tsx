@@ -50,11 +50,13 @@ const Components = () => {
         <Preview
           name="Address Bar"
           variants={[]}
+          assetsVariants={true}
+          showAssetsVariants={true}
           codeStringGenerator={connectCodeGen}
           description="lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem rem quos, at consequuntur magni blanditiis quae libero debitis repudiandae dolorum dicta amet explicabo nihil? Id voluptas nihil culpa! Reiciendis."
           layoutVariants={false}
         >
-          <AddressBar theme="light" />
+          <AddressBar showAssets={true} theme="light" />
         </Preview>
         <Preview
           name="Settings"

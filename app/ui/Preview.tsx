@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ThemeProps, VariantsProps } from "@/types";
+import { AssetsVariantsProps, ThemeProps, VariantsProps } from "@/types";
 import Dropdown from "./Dropdown";
 import { BulbIcon, CodeIcon, EyeIcon } from "@/public/icons/icons";
 import { useDimension } from "@/hooks/useDimension";
@@ -17,6 +17,7 @@ import Button from "./Button";
 interface ChildProps {
   layout: VariantsProps;
   theme: ThemeProps;
+  showAssets: AssetsVariantsProps;
 }
 
 type Props = {
@@ -33,6 +34,8 @@ type Props = {
     full?: boolean;
   }) => string;
   variants: VariantsProps[];
+  assetsVariants?: AssetsVariantsProps;
+  showAssetsVariants?: boolean;
   themeVariants?: boolean;
   layoutVariants?: boolean;
   full?: boolean;
@@ -45,6 +48,8 @@ const Preview = ({
   description,
   name,
   variants,
+  assetsVariants,
+  showAssetsVariants = false,
   themeVariants = true,
   layoutVariants = true,
   full = true,
@@ -53,6 +58,9 @@ const Preview = ({
   const [activeTab, setActiveTab] = useState<0 | 1>(0);
   const [theme, setTheme] = useState<ThemeProps>("light");
   const [variant, setVariant] = useState<VariantsProps>(variants[0]);
+  const [showAssets, setShowAssets] = useState<AssetsVariantsProps | undefined>(
+    assetsVariants
+  );
   const headerRef = useRef<HTMLDivElement>(null);
   const dimensions = useDimension({ refElement: headerRef });
 
@@ -62,13 +70,25 @@ const Preview = ({
     optFunc: () => setVariant(opt), // Function to set variant
   }));
 
+  const assetOptions = ["show", "hide"].map((opt) => ({
+    optName: opt,
+    optTitle: `${opt} assets`,
+    optFunc: () => setShowAssets(opt === "show" ? true : false), // Function to set variant
+  }));
+
   const modifiedChildren = isValidElement(children)
     ? (() => {
         const hasLayout = "layout" in children.props;
         const hasTheme = "theme" in children.props;
+        const hasShowAssets = "showAssets" in children.props;
 
         if (hasLayout && hasTheme) {
           return cloneElement(children, { layout: variant, theme });
+        } else if (hasShowAssets && hasTheme) {
+          return cloneElement(children, {
+            showAssets,
+            theme,
+          });
         } else if (hasLayout) {
           return cloneElement(children, { layout: variant });
         } else if (hasTheme) {
@@ -103,6 +123,15 @@ const Preview = ({
                     name={`${variant} variant`}
                     selectedOption={variant}
                     options={options}
+                  />
+                </div>
+              )}
+              {showAssetsVariants && (
+                <div className="relative z-50">
+                  <Dropdown
+                    name={`${showAssets ? "show" : "hide"} Assets`}
+                    selectedOption={showAssets ? "show" : "hide"}
+                    options={assetOptions}
                   />
                 </div>
               )}
