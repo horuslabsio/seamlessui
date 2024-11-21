@@ -42,7 +42,7 @@ const Gradient = () => {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="absolute left-1/2 -z-10 mx-auto h-screen w-screen -translate-x-1/2 overflow-hidden bg-blend-difference"
+      className="absolute left-1/2 -z-10 mx-auto h-screen w-full -translate-x-1/2 overflow-hidden bg-blend-difference"
     >
       <div className="absolute inset-0 z-[1] transform-gpu overflow-hidden">
         <div className="absolute left-0 top-0 h-[20%] w-full bg-white mix-blend-difference blur-lg" />
